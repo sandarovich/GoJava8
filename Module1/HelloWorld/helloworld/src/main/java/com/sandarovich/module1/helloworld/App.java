@@ -10,7 +10,11 @@ package com.sandarovich.module1.helloworld;
 
 public class App {
     public static void main(String[] args) {
+	
 	String message = "Hello World!"; 
-	System.out.println(message);
+	
+	Messenger messenger = new Messenger();
+	messenger.setOutputFormatter(new SimpleConsoleOutput());
+	messenger.getOutputFormatter().outputMessage(message);
     }
 }
