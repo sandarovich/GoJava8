@@ -31,14 +31,14 @@ public class AppTest {
     @Test
     public void testSimpleConsoleOutputMessage(){
 	messenger.setOutputFormatter(new SimpleConsoleOutput());
-	messenger.getOutputFormatter().outputMessage(message);
+	messenger.getOutputFormatter().processMessage(message);
 	assertEquals("Hello World!", outContent.toString() );
     }
     
     @Test
     public void testLog4jConsoleOutputMessage(){
 	messenger.setOutputFormatter(new Log4jConsoleOutput());
-	messenger.getOutputFormatter().outputMessage(message);
+	messenger.getOutputFormatter().processMessage(message);
 	assertEquals("Hello World!", outContent.toString() );
     }
    

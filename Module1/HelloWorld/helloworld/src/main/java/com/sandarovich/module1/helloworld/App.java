@@ -15,6 +15,6 @@ public class App {
 	
 	Messenger messenger = new Messenger();
 	messenger.setOutputFormatter(new SimpleConsoleOutput());
-	messenger.getOutputFormatter().outputMessage(message);
+	messenger.showMessage(message);
     }
 }

@@ -9,7 +9,7 @@ package com.sandarovich.module1.helloworld;
  */
 public class SimpleConsoleOutput implements OutputFormatter {
 
-    public void outputMessage(String message) {
+    public void processMessage(String message) {
 	System.out.print(message);	
     }
 

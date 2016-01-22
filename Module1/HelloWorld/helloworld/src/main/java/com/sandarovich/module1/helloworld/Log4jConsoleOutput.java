@@ -15,7 +15,7 @@ public class Log4jConsoleOutput implements OutputFormatter {
     private static final Logger log = Logger.getLogger(Log4jConsoleOutput.class);
     
     @Override
-    public void outputMessage(String message) {
+    public void processMessage(String message) {
 	PropertyConfigurator.configure("src/main/resources/log4j.properties");
 	log.info(message);
     }

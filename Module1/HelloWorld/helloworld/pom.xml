@@ -13,6 +13,22 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>1.2.17</log4j.version>
 	</properties>
+	
+	<profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.jdbc.url>jdbc:postgresql://localhost/sonarQube</sonar.jdbc.url>
+                <sonar.jdbc.driverClassName>org.postgresql.Driver</sonar.jdbc.driverClassName>
+                <sonar.jdbc.username>sonar</sonar.jdbc.username>
+                <sonar.jdbc.password>753dfx@@</sonar.jdbc.password>
+                <sonar.host.url>http://localhost:9000/sonar</sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
 
 	<dependencies>
 		<dependency>

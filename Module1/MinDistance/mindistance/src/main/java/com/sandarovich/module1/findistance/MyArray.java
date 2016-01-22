@@ -2,6 +2,7 @@ package com.sandarovich.module1.findistance;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.processing.SupportedSourceVersion;
 
@@ -16,8 +17,8 @@ import org.hamcrest.core.SubstringMatcher;
 
 public class MyArray {
 
-    private ArrayList<Integer> array;
-    private ArrayList<Integer> sortedArray;
+    private List<Integer> array;
+    private List<Integer> sortedArray;
 
     public MyArray(int[] array) {
         this.array = new ArrayList<Integer>();
@@ -80,7 +81,7 @@ public class MyArray {
         String out = "";
         
         for (int elem: distances) {
-            out = out + elem +  ", ";
+            out += elem +  ", ";
         }
         return out.substring(0, out.length() - 2);
         
@@ -89,7 +90,7 @@ public class MyArray {
     // TODO O.Kolodiazhny. MAYBE PATTERN STRATEGY??? Not sure.
     
     public String getDistance() {
-        this.sort();
+        sort();
         if (getElementCount(sortedArray.get(0)) >= 2) {
             return distancesToString(getDistanceBetweenSameElement(sortedArray.get(0)));
         } else if (getElementCount(sortedArray.get(0)) == 1) {

@@ -8,5 +8,5 @@ package com.sandarovich.module1.helloworld;
  *
  */
 public interface OutputFormatter {
-    public void outputMessage(String message);
+    public void processMessage(String message);
 }
