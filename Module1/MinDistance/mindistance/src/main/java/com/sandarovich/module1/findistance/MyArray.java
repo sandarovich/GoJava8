@@ -20,41 +20,42 @@ public class MyArray {
     private List<Integer> array;
     private List<Integer> sortedArray;
 
-    public MyArray(int[] array) {
-        this.array = new ArrayList<Integer>();
-        for (int i : array) {
-            this.array.add(i);
+    public MyArray(int[] inputArray) {
+        array = new ArrayList<Integer>();
+        for (int i : inputArray) {
+            array.add(i);
         }
-        this.sortedArray = new ArrayList<Integer>(this.array);
+
+        sortedArray = new ArrayList<Integer>(this.array);
     }
 
     private void sort() {
-        Collections.sort(this.sortedArray);
+        Collections.sort(sortedArray);
 
     }
 
     private int getElementCount(int element) {
-        if (this.array.contains(element)) {
-            return Collections.frequency(this.array, element);
+        if (array.contains(element)) {
+            return Collections.frequency(array, element);
         }
         return 0;
     }
 
     private int getElementIndex(int element) {
-        return this.array.indexOf(element);
+        return array.indexOf(element);
     }
 
-    private ArrayList<Integer> getDublikatElementIndex(int firstMin) {
+    private ArrayList<Integer> getMinElementIndexes(int minElement) {
 
-        ArrayList<Integer> indexesOfMin = new ArrayList<Integer>();
+        ArrayList<Integer> minIndexes = new ArrayList<Integer>();
 
-        for (int i = 0; i < this.array.size(); i++) {
-            if (this.array.get(i) == firstMin) {
-                indexesOfMin.add(i);
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i) == minElement) {
+                minIndexes.add(i);
             }
         }
 
-        return indexesOfMin;
+        return minIndexes;
     }
 
     private String getDistanceBetweenTwoElement(int firstMin, int secondMin) {
@@ -62,9 +63,9 @@ public class MyArray {
         return String.valueOf(out);
     }
 
-    private ArrayList<Integer> getDistanceBetweenSameElement(int firstMin) {
+    private List<Integer> getDistanceBetweenSameElement(int firstMin) {
         ArrayList<Integer> out = new ArrayList<>();
-        ArrayList<Integer> indexesOfMin = getDublikatElementIndex(firstMin);
+        ArrayList<Integer> indexesOfMin = getMinElementIndexes(firstMin);
 
         for (int i = 0; i <= indexesOfMin.size(); i++) {
             for (int j = i + 1; j < indexesOfMin.size(); j++) {
@@ -73,29 +74,30 @@ public class MyArray {
                 out.add(Math.abs(firstIndex - secondIndex));
             }
         }
-        
+
         return out;
     }
-    
-    private String distancesToString(ArrayList<Integer> distances) {
+
+    private String distancesToString(List<Integer> distances) {
         String out = "";
-        
-        for (int elem: distances) {
-            out += elem +  ", ";
+
+        for (int elem : distances) {
+            out += elem + ", ";
         }
         return out.substring(0, out.length() - 2);
-        
+
     }
 
     // TODO O.Kolodiazhny. MAYBE PATTERN STRATEGY??? Not sure.
-    
+
     public String getDistance() {
         sort();
         if (getElementCount(sortedArray.get(0)) >= 2) {
             return distancesToString(getDistanceBetweenSameElement(sortedArray.get(0)));
-        } else if (getElementCount(sortedArray.get(0)) == 1) {
+        }
+        if (getElementCount(sortedArray.get(0)) == 1) {
             return getDistanceBetweenTwoElement(sortedArray.get(0), sortedArray.get(1));
-        } else
-            return "-1";
+        }
+        return "-1";
     }
 }
