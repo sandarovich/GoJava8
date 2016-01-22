@@ -58,11 +58,15 @@ public class MyArray {
 	}
 	
 	private String getDistanceBetweenSameElement(int firstMin) {
+		//TODO To write algorith to search distances
+		ArrayList<Integer> out = new ArrayList<>();
+		ArrayList<Integer> indexesOfMin = getDublikatElementIndex(firstMin);
 		
-		
+		for (int i = 0; i < indexesOfMin.size(); i++) {
+			
+		}
 	
-		
-		return "";
+		return out;
 	}
 	//TODO O.Kolodiazhny. MAYBE PATTERN STRATEGY??? Not sure. 
 	public String getDistance() {
