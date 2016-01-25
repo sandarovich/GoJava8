@@ -24,6 +24,30 @@ public class LongDivide {
 	private int remain;
 	private StringBuilder result;
 	
+	public int getDividen() {
+		return dividen;
+	}
+
+	public void setDividen(int dividen) {
+		this.dividen = dividen;
+	}
+
+	public int getDivider() {
+		return divider;
+	}
+
+	public void setDivider(int divider) {
+		this.divider = divider;
+	}
+
+	public int getRemain() {
+		return remain;
+	}
+
+	public void setRemain(int remain) {
+		this.remain = remain;
+	}
+	
 	private String readFromKeyboard() {
 		System.out.println("Please enter input. Example \"12/42\"");
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -53,6 +77,7 @@ public class LongDivide {
 			} catch (Exception e) {
 				return false;
 			}
+			System.out.println("Successfully");
 			return true;
 		}
 	}
