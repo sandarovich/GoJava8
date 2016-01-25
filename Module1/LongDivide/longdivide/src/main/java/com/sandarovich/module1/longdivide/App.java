@@ -10,8 +10,7 @@ public class App {
 	public static void main(String[] args) {
 		LongDivide ld = new LongDivide();
 		ld.readNumbers();
-		System.out.println(ld.getDividen());
-		System.out.println(ld.getDivider());
+		ld.showResult();
 		
 	}
 }
