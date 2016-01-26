@@ -16,16 +16,11 @@ import org.apache.commons.lang3.StringUtils;
  */
 
 public class ColumnDivision {
-    private static final String COLUMN_DIVIDER = "|";
-    private static final String OPERATION_DIVIDER = "---";
-    private static final String OPERATION_MINUS = "-";
-    private static final String SPACE = " ";
-    private static final String BRACKET_LEFT = "(";
-    private static final String BRACKET_RIGHT = ")";
+
     private static final int DIVIDE_DEPTH = 6;
     private static final int GUESS_LIMIT = 10;
     private static final int MULTIPLYER = 10;
-    private static final String TAB = "  ";
+
     private int dividen;
     private int divider;
     private double result = 0;
@@ -72,11 +67,11 @@ public class ColumnDivision {
     public void showResult() {
 
         resultStr = new ArrayList<String>();
-        resultStr.add(OPERATION_MINUS + dividen + " " + COLUMN_DIVIDER + divider);
+        resultStr.add(Strings.OPERATION_MINUS.toString() + dividen + " " + Strings.COLUMN_DIVIDER.toString() + divider);
         calcRemain(dividen, divider);
-        resultStr.add(1, TAB + this.firstDiff + COLUMN_DIVIDER + formatResult(this.result));
-        resultStr.add(StringUtils.repeat(TAB, depth) + OPERATION_DIVIDER);
-        resultStr.add(StringUtils.repeat(TAB, depth) + String.valueOf(this.remain));
+        resultStr.add(1, Strings.TAB.toString() + this.firstDiff + Strings.COLUMN_DIVIDER.toString() + formatResult(this.result));
+        resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
+        resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + String.valueOf(this.remain));
 
         System.out.println("Results: ");
         for (String line : resultStr) {
@@ -88,8 +83,8 @@ public class ColumnDivision {
         String format = "%." + String.valueOf(DIVIDE_DEPTH) + "f";
         if (remain != 0 && depth == DIVIDE_DEPTH) {
             String out = String.format(format, result);
-            out = out.substring(0, out.indexOf(".") + 1) + BRACKET_LEFT
-                    + out.substring(out.indexOf(".") + 1, out.length()) + BRACKET_RIGHT;
+            out = out.substring(0, out.indexOf(".") + 1) + Strings.BRACKET_LEFT.toString()
+                    + out.substring(out.indexOf(".") + 1, out.length()) + Strings.BRACKET_RIGHT.toString();
             return out;
         }
         return String.format(format, result);
@@ -119,9 +114,9 @@ public class ColumnDivision {
             this.dividen = remain;
 
             if (!ignoreOperation) {
-                resultStr.add(StringUtils.repeat(TAB, depth) + OPERATION_DIVIDER);
-                resultStr.add(StringUtils.repeat(TAB, depth) + SPACE + (int) dividen);
-                resultStr.add(StringUtils.repeat(TAB, depth) + OPERATION_MINUS + diff);
+                resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
+                resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.SPACE.toString() + (int) dividen);
+                resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_MINUS.toString() + diff);
             }
             ignoreOperation = false;
 
@@ -130,16 +125,16 @@ public class ColumnDivision {
     }
 
     private int findGuessCoef(double dividen, double divider) {
-        int guessCoef = 0;
+        int result = 0;
 
         for (int i = GUESS_LIMIT; i >= 1; i--) {
             if (divider * i <= dividen) {
-                guessCoef = i;
+                result = i;
                 break;
 
             }
         }
-        return guessCoef;
+        return result;
     }
 
 }
