@@ -1,4 +1,4 @@
-package com.sandarovich.module1.longdivide;
+package com.sandarovich.module1.columndivision;
 
 /**
  * @author Olexander Kolodiahzny 2016 
