@@ -8,7 +8,7 @@ package com.sandarovich.module1.longdivide;
  */
 public class App {
 	public static void main(String[] args) {
-		LongDivide ld = new LongDivide();
+		ColumnDivision ld = new ColumnDivision();
 		ld.readNumbers();
 		ld.showResult();
 		

@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  */
 
-public class LongDivide {
+public class ColumnDivision {
 	private static final String COLUMN_DIVIDER = "|";
 	private static final String OPERATION_DIVIDER = "---";
 	private static final String OPERATION_MINUS = "-";
