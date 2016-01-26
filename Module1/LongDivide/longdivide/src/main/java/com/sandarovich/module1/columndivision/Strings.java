@@ -12,7 +12,8 @@ public enum Strings {
     SPACE(" "),
     BRACKET_LEFT("("),
     BRACKET_RIGHT(")"),
-    TAB("  ");
+    TAB("  "),
+    DIVIDER("/");
     
     private final String text;
     

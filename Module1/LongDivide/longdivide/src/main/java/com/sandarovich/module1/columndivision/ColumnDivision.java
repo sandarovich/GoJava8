@@ -49,10 +49,10 @@ public class ColumnDivision {
     }
 
     private boolean parseInput(String inputString) {
-        if (inputString.equals(null) || inputString.equals("-1")) {
+        if (inputString == null || inputString.equals("-1")) {
             return false;
         } else {
-            String[] numbers = inputString.split("/");
+            String[] numbers = inputString.split(Strings.DIVIDER.toString());
             try {
                 dividen = Integer.parseInt(numbers[0]);
                 divider = Integer.parseInt(numbers[1]);
@@ -67,7 +67,8 @@ public class ColumnDivision {
     public void showResult() {
 
         resultStr = new ArrayList<String>();
-        resultStr.add(Strings.OPERATION_MINUS.toString() + dividen + " " + Strings.COLUMN_DIVIDER.toString() + divider);
+        resultStr.add(Strings.OPERATION_MINUS.toString() + dividen 
+                + Strings.SPACE.toString() + Strings.COLUMN_DIVIDER.toString() + divider);
         calcRemain(dividen, divider);
         resultStr.add(1, Strings.TAB.toString() + this.firstDiff + Strings.COLUMN_DIVIDER.toString() + formatResult(this.result));
         resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
