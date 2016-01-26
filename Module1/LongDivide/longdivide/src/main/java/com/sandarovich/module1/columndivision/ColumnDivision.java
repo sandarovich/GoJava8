@@ -26,116 +26,81 @@ public class ColumnDivision {
     private double result = 0;
     private int remain = -1;
     private int diff;
-    private int firstDiff;
+    private int firstDifference;
     private int depth = 0;
-    List<String> resultStr;
+    List<String> calculationDetails;
 
-    public void readNumbers() {
-        while (!parseInput(readFromKeyboard())) {
-            System.out.println("\nWARNING!. Input is incorrect. Please try again.\n");
-        }
+    public ColumnDivision(int dividen, int divider) {
+        this.dividen = dividen;
+        this.divider = divider;
+        calculationDetails = new ArrayList<String>();
     }
 
-    private String readFromKeyboard() {
-        System.out.println("Please enter input. Example \"12/42\"");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String inputString = null;
-        try {
-            inputString = bufferedReader.readLine();
-        } catch (IOException e) {
-            inputString = "-1";
-        }
-        return inputString;
+   
+    private void addCalculationDetails() {
+        Formatter formatter = new Formatter();
+        calculationDetails.addAll(formatter.getCalculationDeatils(depth, dividen, diff));
     }
 
-    private boolean parseInput(String inputString) {
-        if (inputString == null || inputString.equals("-1")) {
-            return false;
-        } else {
-            String[] numbers = inputString.split(Strings.DIVIDER.toString());
-            try {
-                dividen = Integer.parseInt(numbers[0]);
-                divider = Integer.parseInt(numbers[1]);
-            } catch (Exception e) {
-                return false;
+    private void doCalculations() {
+
+        while (depth < DIVIDE_DEPTH) {
+            if (dividen <= divider) {
+                increaseDividen();
+            } else {
+                firstDifference = (int) divider * getFactor(dividen, divider);
             }
-            System.out.println(">> Input parsed Successfully<<");
+            int factor = getFactor(dividen, divider);
+            result += factor / (Math.pow(MULTIPLYER, depth));
+            this.diff = (int) (divider * factor);   
+            
+            if (!isFirstOperation()) {addCalculationDetails();}
+                
+            this.remain = (int) (dividen - divider * factor);
+            this.dividen = remain;
+            
+            if (remain == 0) break;           
+        }
+    }
+    
+    private void increaseDividen() {
+        dividen = dividen * MULTIPLYER;
+        depth++;
+    }
+    
+    private boolean isFirstOperation() {
+        if (depth == 1 && firstDifference == 0) {
+            this.firstDifference = diff;
             return true;
         }
+        return false;
     }
 
-    public void showResult() {
-
-        resultStr = new ArrayList<String>();
-        resultStr.add(Strings.OPERATION_MINUS.toString() + dividen 
-                + Strings.SPACE.toString() + Strings.COLUMN_DIVIDER.toString() + divider);
-        calcRemain(dividen, divider);
-        resultStr.add(1, Strings.TAB.toString() + this.firstDiff + Strings.COLUMN_DIVIDER.toString() + formatResult(this.result));
-        resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
-        resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + String.valueOf(this.remain));
-
-        System.out.println("Results: ");
-        for (String line : resultStr) {
-            System.out.println(line);
-        }
-    }
-
-    private String formatResult(double result) {
-        String format = "%." + String.valueOf(DIVIDE_DEPTH) + "f";
-        if (remain != 0 && depth == DIVIDE_DEPTH) {
-            String out = String.format(format, result);
-            out = out.substring(0, out.indexOf(".") + 1) + Strings.BRACKET_LEFT.toString()
-                    + out.substring(out.indexOf(".") + 1, out.length()) + Strings.BRACKET_RIGHT.toString();
-            return out;
-        }
-        return String.format(format, result);
-
-    }
-
-    private double calcRemain(double dividen, double divider) {
-
-        boolean ignoreOperation = false;
-        if (remain == 0 || depth >= DIVIDE_DEPTH) {
-            return remain;
-        } else {
-            if (dividen <= divider) {
-                dividen = dividen * MULTIPLYER;
-                depth++;
-            } else {
-                firstDiff = (int) divider * findGuessCoef(dividen, divider);
-            }
-            int multipl = findGuessCoef(dividen, divider);
-            result += multipl / (Math.pow(MULTIPLYER, depth));
-            this.diff = (int) (divider * multipl);
-            if (depth == 1 && firstDiff == 0) {
-                this.firstDiff = diff;
-                ignoreOperation = true;
-            }
-            remain = (int) (dividen - divider * multipl);
-            this.dividen = remain;
-
-            if (!ignoreOperation) {
-                resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
-                resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.SPACE.toString() + (int) dividen);
-                resultStr.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_MINUS.toString() + diff);
-            }
-            ignoreOperation = false;
-
-            return calcRemain(this.dividen, this.divider);
-        }
-    }
-
-    private int findGuessCoef(double dividen, double divider) {
+    private int getFactor(double dividen, double divider) {
         int result = 0;
 
         for (int i = GUESS_LIMIT; i >= 1; i--) {
             if (divider * i <= dividen) {
                 result = i;
                 break;
-
             }
         }
         return result;
+    }
+    
+    public List<String> getResults() {
+
+        List<String> resultStr = new ArrayList<String>();
+        Formatter formatter = new Formatter();
+
+        resultStr.add(formatter.getFirstLine(dividen, divider));
+        doCalculations();
+        resultStr.addAll(calculationDetails);
+        String SecondLine = formatter.getSecondLine(this.firstDifference, this.result)
+                + formatter.formatResult(this.result, this.remain, this.depth, DIVIDE_DEPTH);
+        resultStr.add(1, SecondLine);
+        resultStr.addAll(formatter.getFooter(this.remain, this.depth));
+        return resultStr;
     }
 
 }

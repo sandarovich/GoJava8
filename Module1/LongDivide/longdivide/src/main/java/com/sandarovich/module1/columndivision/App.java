@@ -8,9 +8,26 @@ package com.sandarovich.module1.columndivision;
 
 public class App {
     
+    private App () {
+        
+    }
+    
     public static void main(String[] args) {
-        ColumnDivision ld = new ColumnDivision();
-        ld.readNumbers();
-        ld.showResult();
+        
+        Reader reader = new Reader();
+        Parser parser = new Parser ();
+        Output output = new ConsoleOutput();
+        
+        output.askUserForInput();
+        String userInput = reader.readFromKeyboard();
+        
+        if (parser.isParsed(userInput)) {
+            output.parseSuccessfully();
+            ColumnDivision columnDivision = new ColumnDivision(parser.getDividen(), parser.getDivider());
+            output.showResult(columnDivision.getResults());
+        } else {
+            output.parseUnSuccessfully();
+        }
+        
     }
 }
