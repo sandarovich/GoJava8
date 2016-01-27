@@ -16,12 +16,12 @@ As User:
 		- Create public view/landing page.
 		- Create Sign in form/view.
 		- Create Sign out form/view.
-		- Create DB Table with required fields.
+		- Create DB Table Users with required fields.
 	
 As Crowdfinder	
  2. I need to post a project description, attach video, choose appropriate category.
  	- Create form/view for register new project.
- 	- Create DB Table with reauired fields.
+ 	- Create DB Table Projects with required fields.
  	
  3. It's good to me to see milestones and statistic of project.
  	- Create search form for already posted project.
@@ -34,7 +34,7 @@ As Crowdfinder
  
  5. Easy donate(invest) into interested project. 
  	- Create form.
- 	- Update DB Table.
+ 	- Create DB Table Donates.
  
  6. It's good to me to see milestones and statistic in already donated project.
  	- Create search form for already donated project.
