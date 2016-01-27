@@ -72,10 +72,10 @@ As Crowdfinder:
  
  	5. Easy donate(invest) into interested project. 
  		5.1 Create point Donate in project overview menu.
- 			5.5.1 Show form.
- 			5.5.2 Read user input.
- 			5.5.3 Check and validate input.
- 			5.5.4 Post in DB.
+ 			5.1.1 Show form.
+ 			5.1.2 Read user input.
+ 			5.1.3 Check and validate input.
+ 			5.1.4 Post in DB.
  		5.2 Create DB Table Donates.
  			5.2.1 Include fields: 
  				DonateId long, 
