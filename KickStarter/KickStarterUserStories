@@ -1,0 +1,43 @@
+/**
+ * @author Olexander Kolodiahzny 2016  
+ * 	Module #2. Task #1  User stories vs Users cases.
+ *	KickStarter Simulator.
+ */ 
+
+
+1.1 KickStarter Simulator
+Actors:
+	- Investor - somebody who will donate project.
+	- Crowdfinder - somebody who want gather money from public.
+	- User - somebody who will use KickStarter tool.
+	
+As User:
+	1. Public interface and register in program.	
+		- Create public view/landing page.
+		- Create Sign in form/view.
+		- Create Sign out form/view.
+		- Create DB Table with required fields.
+	
+As Crowdfinder	
+ 2. I need to post a project description, attach video, choose appropriate category.
+ 	- Create form/view for register new project.
+ 	- Create DB Table with reauired fields.
+ 	
+ 3. It's good to me to see milestones and statistic of project.
+ 	- Create search form for already posted project.
+ 	- Create pre-defined views to see statistics.
+ 
+ As Investor:
+ 
+ 4. I need to Search over categories.
+ 	- Create form to search over categories.
+ 
+ 5. Easy donate(invest) into interested project. 
+ 	- Create form.
+ 	- Update DB Table.
+ 
+ 6. It's good to me to see milestones and statistic in already donated project.
+ 	- Create search form for already donated project.
+ 	- Create pre-defined views to see statistics
+ 	
+ 
