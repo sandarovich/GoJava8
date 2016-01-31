@@ -17,13 +17,13 @@ public class MenuElement {
         this.id = id;
     }
     
-    public String getNameLabel() {
-        return this.nameLabel;
+    public Actions getAction() {
+        return this.action;
     }
 
     @Override
     public String toString() {
-        String result =  this.id + " -  " + nameLabel;
+        String result =  this.id + " - " + nameLabel;
         return result;
     }
     

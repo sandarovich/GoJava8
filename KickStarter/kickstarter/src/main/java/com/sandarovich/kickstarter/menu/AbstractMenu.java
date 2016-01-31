@@ -16,7 +16,7 @@ public abstract class AbstractMenu {
  
     public void show() {
         output.print("-----------");
-        output.print(headerLabel);
+        output.print("{" + menuId + "}" + headerLabel);
         output.print("-----------");
         for (int index = 0; index < menuElements.length; index++) {
             output.print(menuElements[index].toString());
@@ -31,7 +31,7 @@ public abstract class AbstractMenu {
 
     private int validateMenuElement(int checkedNumber) {
         int result = checkedNumber;
-        while (result < 0 || result > menuElements.length) {
+        while (result < 0 || result > menuElements.length - 1) {
             output.print(">> Option is not found. Please try again");
             result = menuReader.read();
         }

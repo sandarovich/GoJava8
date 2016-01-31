@@ -22,9 +22,6 @@ public enum Actions {
         return this.id;
     }
 
-    public static Actions SHOW_CATEGORY(int i) {
-        
-        return null;
-    }
+   
 
 }

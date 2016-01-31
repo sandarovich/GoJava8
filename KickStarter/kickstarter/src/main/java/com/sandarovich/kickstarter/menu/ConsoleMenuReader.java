@@ -22,7 +22,7 @@ public class ConsoleMenuReader implements MenuReader {
             resultStr = reader.readLine();
         }
         catch (IOException e) {
-            new ConsoleOutput().print(">Exception.Unable to read input");
+            new ConsoleOutput().print(">> Exception.Unable to read input");
         }
         
         return parse(resultStr);
@@ -33,7 +33,7 @@ public class ConsoleMenuReader implements MenuReader {
        try {
            result = Integer.parseInt(inputStr);
        } catch(Exception e) {
-           new ConsoleOutput().print(">Only numbers is allowed");
+           new ConsoleOutput().print(">> Only numbers is allowed");
        }
        
        return result;     

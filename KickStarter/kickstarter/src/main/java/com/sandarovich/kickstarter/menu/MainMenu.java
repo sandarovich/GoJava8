@@ -15,14 +15,14 @@ public class MainMenu extends AbstractMenu{
         menuId = 0;
         headerLabel = "Main Menu:";
         menuElements = new MenuElement[2];
-        menuElements[0] = new MenuElement("Show categories", Actions.SHOW_ALL_CATEGORIES, 1);
-        menuElements[1] = new MenuElement("Exit", Actions.EXIT, 0);
+        menuElements[0] = new MenuElement("Show categories", Actions.SHOW_ALL_CATEGORIES, 0);
+        menuElements[1] = new MenuElement("Exit", Actions.EXIT, 1);
         
     }
  
     @Override
     public void doAction(int choise) {
-        Actions action = Actions.values()[choise];
+        Actions action = menuElements[choise].getAction();
         
         if (action == Actions.EXIT) {
             output.print(">> Bye");
