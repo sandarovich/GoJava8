@@ -5,7 +5,7 @@ package com.sandarovich.kickstarter;
  *
  *         Show Application name, author and quote.
  */
-public class Intro implements Runnable {
+public class Intro  {
     private Output output;
     private String appVersion;
 
@@ -15,7 +15,7 @@ public class Intro implements Runnable {
     }
     
 
-    public void run() {
+    public void start() {
         show();
     }
 
