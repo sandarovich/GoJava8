@@ -25,11 +25,9 @@ public class KickStarter {
         new Intro(output, APP_VERSION).show();
        
         MenuReader menuReader = new ConsoleMenuReader();
-        
         AbstractMenu menu = new MainMenu(output, menuReader);
         menu.show();
-        int choice = menu.readUserFeedback();
-        menu.doAction(choice);
+        menu.doAction(menu.readUserFeedback());
         
     }
 

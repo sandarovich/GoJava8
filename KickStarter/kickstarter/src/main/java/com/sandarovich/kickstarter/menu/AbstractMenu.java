@@ -13,6 +13,16 @@ public abstract class AbstractMenu {
     protected int menuId;
     protected Output output;
     protected MenuReader menuReader;
+ 
+    public void show() {
+        output.print("-----------");
+        output.print(headerLabel);
+        output.print("-----------");
+        for (int index = 0; index < menuElements.length; index++) {
+            output.print(menuElements[index].toString());
+        }
+        output.print("---");
+    }
 
     public int readUserFeedback() {
         int result = menuReader.read();
@@ -21,14 +31,13 @@ public abstract class AbstractMenu {
 
     private int validateMenuElement(int checkedNumber) {
         int result = checkedNumber;
-        while (result < 0 || result > menuElements.length - 1) {
+        while (result < 0 || result > menuElements.length) {
             output.print(">> Option is not found. Please try again");
             result = menuReader.read();
         }
         return result;
     }
 
-    public abstract void show();
     public abstract void doAction(int choise);
 
 }
