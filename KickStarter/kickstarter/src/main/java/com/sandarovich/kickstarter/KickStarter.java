@@ -1,11 +1,12 @@
 package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.menu.MainMenu;
-import com.sandarovich.kickstarter.menu.Menu;
+import com.sandarovich.kickstarter.menu.Menuable;
 
 /**
  * @author Olexander Kolodiazhny 2016
- *
+ *  KickStrter annalog.
+ *  
  */
 
 public class KickStarter {
@@ -19,9 +20,9 @@ public class KickStarter {
     public void start() {
         Output output = new ConsoleOutput();
         
-        new Intro(output, APP_VERSION).start();
+        new Intro(output, APP_VERSION).show();
         
-        Menu menu = new MainMenu(output);
+        Menuable menu = new MainMenu(output);
         menu.show();
     }
 

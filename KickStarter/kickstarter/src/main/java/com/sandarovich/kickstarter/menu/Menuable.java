@@ -5,6 +5,7 @@ package com.sandarovich.kickstarter.menu;
  *
  */
 
-public interface Menu {
+public interface Menuable {
     void show();
+    void exit();
 }

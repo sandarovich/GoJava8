@@ -13,13 +13,8 @@ public class Intro  {
         this.output = output;
         this.appVersion = appVersion;
     }
-    
 
-    public void start() {
-        show();
-    }
-
-    private void show() {
+    public void show() {
         showAuthor();
         showQuote();
     }
