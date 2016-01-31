@@ -1,15 +1,17 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.menu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import com.sandarovich.kickstarter.ConsoleOutput;
 
 /**
  * @author Olexander Kolodiazhny 2016
  *
  */
 
-public class ConsoleReader implements Reader {
+public class ConsoleMenuReader implements MenuReader {
 
     @Override
     public int read() {
@@ -20,7 +22,7 @@ public class ConsoleReader implements Reader {
             resultStr = reader.readLine();
         }
         catch (IOException e) {
-            new ConsoleOutput().print("Sorry.Unable to read");
+            new ConsoleOutput().print(">Exception.Unable to read input");
         }
         
         return parse(resultStr);
@@ -31,8 +33,9 @@ public class ConsoleReader implements Reader {
        try {
            result = Integer.parseInt(inputStr);
        } catch(Exception e) {
-           new ConsoleOutput().print("Sorry. Numbers is allowed");
+           new ConsoleOutput().print(">Only numbers is allowed");
        }
+       
        return result;     
    }
     

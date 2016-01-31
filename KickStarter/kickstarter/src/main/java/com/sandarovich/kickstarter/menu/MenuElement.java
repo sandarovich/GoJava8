@@ -8,14 +8,25 @@ package com.sandarovich.kickstarter.menu;
 public class MenuElement {
     
     private String nameLabel;
+    private int id;
     
-    public MenuElement(String nameLabel) {
+    public String getNameLabel() {
+        return nameLabel;
+    }
+
+    public int getId() {
+        return id;
+    }
+       
+    public MenuElement(String nameLabel, int id) {
         this.nameLabel = nameLabel;
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return nameLabel;
+        String result =  id + " -  " + nameLabel;
+        return result;
     }
     
     

@@ -1,7 +1,9 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.menu.AbstractMenu;
+import com.sandarovich.kickstarter.menu.ConsoleMenuReader;
 import com.sandarovich.kickstarter.menu.MainMenu;
-import com.sandarovich.kickstarter.menu.Menuable;
+import com.sandarovich.kickstarter.menu.MenuReader;
 
 /**
  * @author Olexander Kolodiazhny 2016
@@ -18,12 +20,17 @@ public class KickStarter {
     }
     
     public void start() {
+        
         Output output = new ConsoleOutput();
-        
         new Intro(output, APP_VERSION).show();
+       
+        MenuReader menuReader = new ConsoleMenuReader();
         
-        Menuable menu = new MainMenu(output);
+        AbstractMenu menu = new MainMenu(output, menuReader);
         menu.show();
+        int choice = menu.readUserFeedback();
+        menu.doAction(choice);
+        
     }
 
 }

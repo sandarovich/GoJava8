@@ -8,31 +8,41 @@ import com.sandarovich.kickstarter.Output;
  *
  */
 
-public class MainMenu extends AbstractMenu implements Menuable {
+public class MainMenu extends AbstractMenu{
 
-    private Output output;
-
-    public MainMenu(Output output) {
+    public MainMenu(Output output, MenuReader menuReader) {
         this.output = output;
-        menuId = 1;
+        this.menuReader = menuReader;
+        menuId = 0;
         headerLabel = "Main Menu:";
         menuElements = new MenuElement[2];
-        menuElements[0] = new MenuElement("1 - Show categories");
-        menuElements[1] = new MenuElement("2 - Exit");
+        menuElements[0] = new MenuElement("Exit", 0);
+        menuElements[1] = new MenuElement("Show categories", 1);
     }
 
     @Override
     public void show() {
+        output.print("-----------");
         output.print(headerLabel);
+        output.print("-----------");
         for (int index = 0; index < menuElements.length; index++) {
             output.print(menuElements[index].toString());
+        }
+        output.print("---");
+    }
+
+    @Override
+    public void doAction(int choise) {
+        
+        if (choise == 0) {
+            output.print(">> Bye");
+            System.exit(0);
+        } 
+        
+        if (choise == 1) {
+            System.out.println(">> Categories");
         }
         
     }
     
-    @Override
-    public void exit() {
-        System.exit(0); 
-    }
-
 }
