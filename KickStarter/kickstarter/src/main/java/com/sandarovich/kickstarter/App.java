@@ -7,6 +7,9 @@ package com.sandarovich.kickstarter;
 
 public class App {
     
+    App() {
+        
+    }
     public static void main(String[] args) {
         new KickStarter().run();
     }
