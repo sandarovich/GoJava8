@@ -16,17 +16,17 @@ public class Projects {
 	public Projects() {
 		projectList = new ArrayList<Project>();
 		projectList.add(new Project.Builder(1,Categories.IT)
-						.description("USB Lighter")
+						.description("USB Lighter   ")
 		        		.shortDescription("Lighter")
-		        		.goalAmount(10000)
-		        		.collectedAmount(200)	
+		        		.goalAmount(7000)
+		        		.collectedAmount(100)	
 						.build()
 					);
 		projectList.add(new Project.Builder(2,Categories.IT)
-				.description("USB Toy")
-        		.shortDescription("Toy")
+				.description("USB Toy & Joy ")
+        		.shortDescription("Toy     ")
         		.goalAmount(100)
-        		.collectedAmount(200)	
+        		.collectedAmount(300)	
 				.build()
 			);
 		projectList.add(new Project.Builder(3,Categories.IT)
@@ -41,6 +41,35 @@ public class Projects {
         		.shortDescription("Water waste device")
         		.goalAmount(500)
         		.collectedAmount(5)	
+				.build()
+			);
+		projectList.add(new Project.Builder(4,Categories.ECOLOGY)
+				.description("Heat waste device")
+        		.shortDescription("Heat  waste device")
+        		.goalAmount(700)
+        		.collectedAmount(1)	
+				.build()
+			);
+		projectList.add(new Project.Builder(5,Categories.SPORT)
+				.description("Football shoes")
+        		.shortDescription("Sportswear")
+        		.goalAmount(900)
+        		.collectedAmount(950)	
+				.build()
+			);
+		projectList.add(new Project.Builder(5, Categories.SPORT)
+				.description("Basketball shoes")
+        		.shortDescription("Sportswear")
+        		.goalAmount(1000)
+        		.collectedAmount(850)	
+				.build()
+			);
+		
+		projectList.add(new Project.Builder(5, Categories.SOCIETY)
+				.description("Positive poems")
+        		.shortDescription("Poems")
+        		.goalAmount(300)
+        		.collectedAmount(450)	
 				.build()
 			);
 		
@@ -58,11 +87,4 @@ public class Projects {
 		
 	}
 	
-	
-//	public void show(Categories category) {
-//		ArrayList<Project> projects = getProjects(category);
-//		for (int index = 0; index < projects.size(); index++) {
-//			projects.get(index).toString();
-//		}
-//	}
 }

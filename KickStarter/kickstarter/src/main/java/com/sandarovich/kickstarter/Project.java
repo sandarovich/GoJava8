@@ -1,6 +1,9 @@
 package com.sandarovich.kickstarter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * @author Olexamder Kolodiazhny 2016 Describes Project entitity.
@@ -15,7 +18,7 @@ public class Project {
 	private final String shortDesription;
 	private final double goalAmount;
 	private final double collectedAmount;
-	private final Date goalDate;
+	private final Calendar goalDate;
 	private final String videoLink;
 	private final String history;
 	private final String questionsAnswers;
@@ -30,7 +33,8 @@ public class Project {
 		private String shortDesription = "";
 		private double goalAmount = 0d;
 		private double collectedAmount = 0d;
-		private Date goalDate = new Date();
+		private Calendar goalDate = new GregorianCalendar(2016, 2, 1);
+		
 		private String videoLink = "http:\\";
 		private String history = "No history";
 		private String questionsAnswers = "No Q&A";
@@ -60,7 +64,7 @@ public class Project {
 			return this;
 		}
 		
-		public Builder goalDate(Date goalDate) {
+		public Builder goalDate(Calendar goalDate) {
 			this.goalDate = goalDate;
 			return this;
 		}
@@ -96,6 +100,29 @@ public class Project {
 		return this.shortDesription;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	
+	public double getGoalAmount() {
+		return goalAmount;
+	}
+	
+	public double getcollectedAmount() {
+		return collectedAmount;
+	}
+	
+	public int getGoalDateDays(){
+		int result = 0;
+		
+		Calendar now = Calendar.getInstance();
+		
+		result = (int) ((goalDate.getTimeInMillis() - now.getTimeInMillis())/ (24 * 60 * 60 * 1000));;
+	
+		return result;
+	}
+	
+	
 	private Project(Builder builder) {
 		// Required parameters
 		id = builder.id;
@@ -111,5 +138,7 @@ public class Project {
 		questionsAnswers = builder.questionsAnswers;
 
 	}
+
+	
 
 }
