@@ -35,7 +35,7 @@ public abstract class AbstractMenu {
 
 	public int readUserFeedback() {
 		int result = menuReader.read();
-		if (isvalidMenuElement(result)) {
+		if (isValidMenuElement(result)) {
 			return result;
 		} else {
 			output.print(">> Option is not found. Please try again");
@@ -43,7 +43,7 @@ public abstract class AbstractMenu {
 		}
 	}
 
-	protected boolean isvalidMenuElement(int checkedNumber) {
+	protected boolean isValidMenuElement(int checkedNumber) {
 		boolean result = true;
 		if (checkedNumber < 0 || checkedNumber > menuElements.length - 1) {
 			return false;

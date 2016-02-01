@@ -113,11 +113,13 @@ public class Project {
 	}
 	
 	public int getGoalDateDays(){
+		final long MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
+		
 		int result = 0;
 		
 		Calendar now = Calendar.getInstance();
 		
-		result = (int) ((goalDate.getTimeInMillis() - now.getTimeInMillis())/ (24 * 60 * 60 * 1000));;
+		result = (int) ((goalDate.getTimeInMillis() - now.getTimeInMillis())/ MILLISECONDS_IN_DAY );;
 	
 		return result;
 	}

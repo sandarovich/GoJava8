@@ -24,7 +24,7 @@ public class CategoryMenu extends AbstractMenu {
 
     @Override
     public void doAction(int choise) {
-		if (isvalidMenuElement(choise)) {
+		if (isValidMenuElement(choise)) {
 			Actions action = menuElements[choise].getAction();
 			if (action == Actions.EXIT) {
 				
