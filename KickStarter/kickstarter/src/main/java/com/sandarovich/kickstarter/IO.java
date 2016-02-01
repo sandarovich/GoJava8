@@ -5,6 +5,7 @@ package com.sandarovich.kickstarter;
  * Describe common text output
  */
 
-public interface Output {
-    void print(String message);
+public interface IO {
+    void write(String message);
+    String read();
 }

@@ -6,11 +6,11 @@ package com.sandarovich.kickstarter;
  *         Show Application name, author and quote.
  */
 public class Intro  {
-    private Output output;
+    private IO console;
     private String appVersion;
 
-    public Intro(Output output, String appVersion) {
-        this.output = output;
+    public Intro(IO output, String appVersion) {
+        this.console = output;
         this.appVersion = appVersion;
     }
 
@@ -20,14 +20,14 @@ public class Intro  {
     }
 
     private void showAuthor() {
-        output.print("=======================================");
-        output.print("     Kickstarter emulator v." + appVersion);
-        output.print("     by O.Kolodiazhny 2016      ");
-        output.print("=======================================");
+        console.write("=======================================");
+        console.write("     Kickstarter emulator v." + appVersion);
+        console.write("     by O.Kolodiazhny 2016      ");
+        console.write("=======================================");
     }
 
     private void showQuote() {
-        output.print("\"Every big journey begins with a small step\"\n");
+        console.write("\"Every big journey begins with a small step\"\n");
     }
 
 }

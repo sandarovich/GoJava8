@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.Output;
+import com.sandarovich.kickstarter.IO;
 
 /**
  * @author Olexander Kolodiazhny 2016
@@ -9,8 +9,8 @@ import com.sandarovich.kickstarter.Output;
 
 public class MainMenu extends AbstractMenu{
 
-    public MainMenu(Output output, MenuReader menuReader) {
-    	super(output,menuReader);
+    public MainMenu(IO console) {
+    	super(console);
         menuId = 0;
         headerLabel = "Main Menu:";
         menuElements = new MenuElement[2];
@@ -24,12 +24,12 @@ public class MainMenu extends AbstractMenu{
         Actions action = menuElements[choise].getAction();
         
         if (action == Actions.EXIT) {
-            output.print(">> Bye");
-            System.exit(0);
+            console.write(">> Bye");
+            return;
         } 
         
         if (action == Actions.SHOW_ALL_CATEGORIES) {
-            AbstractMenu menu = new CategoryMenu(output, menuReader);
+            AbstractMenu menu = new CategoryMenu(console);
             menu.show();
             menu.doAction(menu.readUserFeedback());
         }

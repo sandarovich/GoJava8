@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.Output;
+import com.sandarovich.kickstarter.IO;
 
 /**
  * @author Olexander Kolodiazhny 2016 Describes common stuff for all menu
@@ -8,49 +8,58 @@ import com.sandarovich.kickstarter.Output;
 
 public abstract class AbstractMenu {
 
-	public AbstractMenu(Output output, MenuReader menuReader) {
-		this.output = output;
-		this.menuReader = menuReader;
-	}
+    public AbstractMenu(IO console) {
+        this.console = console;
+    }
 
-	protected MenuElement[] menuElements;
-	protected String headerLabel;
-	protected int menuId;
-	protected Output output;
-	protected MenuReader menuReader;
+    protected MenuElement[] menuElements;
+    protected String headerLabel;
+    protected int menuId;
+    protected IO console;
 
-	public void show() {
-		output.print("-----------");
-		output.print("{" + menuId + "} " + headerLabel);
-		output.print("-----------");
-		if (menuElements.length > 1) {
-			for (int index = 0; index < menuElements.length; index++) {
-				output.print(menuElements[index].toString());
-			}
-		} else {
-			output.print("<< Is empty >>");
-		}
-		output.print("---");
-	}
+    public void show() {
+        console.write("-----------");
+        console.write("{" + menuId + "} " + headerLabel);
+        console.write("-----------");
+        if (menuElements.length < 1) {
+            console.write("<< Is empty >>");
+            return;
+        }
+        for (int index = 0; index < menuElements.length; index++) {
+            console.write(menuElements[index].toString());
+        }
+        console.write("---");
+    }
 
-	public int readUserFeedback() {
-		int result = menuReader.read();
-		if (isValidMenuElement(result)) {
-			return result;
-		} else {
-			output.print(">> Option is not found. Please try again");
-			return readUserFeedback();
-		}
-	}
+    public int readUserFeedback() {
+        String result = console.read();
+        if (isValidMenuElement(result)) {
+            return Integer.parseInt(result);
+        } else {
+            console.write(">> Option is not found. Please try again");
+            return readUserFeedback();
+        }
+    }
 
-	protected boolean isValidMenuElement(int checkedNumber) {
-		boolean result = true;
-		if (checkedNumber < 0 || checkedNumber > menuElements.length - 1) {
-			return false;
-		}
-		return result;
-	}
+    private boolean isValidMenuElement(String checkedNumber) {
+        int number = -1;
+        try {
+            number = Integer.parseInt(checkedNumber);
+        } catch (NumberFormatException e) {
+            return false;
+        }
 
-	public abstract void doAction(int choise);
+        return isValidMenuElement(number);
+    }
+
+    protected boolean isValidMenuElement(int number) {
+        boolean result = true;
+        if (number < 0 || number > menuElements.length - 1) {
+            return false;
+        }
+        return result;
+    }
+
+    public abstract void doAction(int choise);
 
 }

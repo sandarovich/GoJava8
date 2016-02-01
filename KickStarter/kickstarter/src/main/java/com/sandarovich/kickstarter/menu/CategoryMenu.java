@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.Category;
-import com.sandarovich.kickstarter.Output;
+import com.sandarovich.kickstarter.IO;
 
 /**
  * @author Olexander Kolodiazhny 2016
@@ -10,8 +10,8 @@ import com.sandarovich.kickstarter.Output;
 
 public class CategoryMenu extends AbstractMenu {
 
-    public CategoryMenu(Output output, MenuReader menuReader) {
-        super(output,menuReader);
+    public CategoryMenu(IO console) {
+        super(console);
         menuId = 1;
         headerLabel = "Сategories:";
         menuElements = new MenuElement[5];
@@ -24,24 +24,24 @@ public class CategoryMenu extends AbstractMenu {
 
     @Override
     public void doAction(int choise) {
-		if (isValidMenuElement(choise)) {
-			Actions action = menuElements[choise].getAction();
-			if (action == Actions.EXIT) {
-				
-				AbstractMenu menu = new MainMenu(output, menuReader);
-				menu.show();
-				menu.doAction(menu.readUserFeedback());
-			}
+        if (isValidMenuElement(choise)) {
+            Actions action = menuElements[choise].getAction();
+            if (action == Actions.EXIT) {
 
-			if (action == Actions.SHOW_CATEGORY) {
-				output.print(">> " + menuElements[choise].toString());
-				Category s = Category.valueOf(menuElements[choise].getNameLabel());
-				System.out.println(s);
-				AbstractMenu menu = new ProjectMenu(output, menuReader, s);
-				menu.show();
-				output.print(">> Bye");
-			}
-		}
+                AbstractMenu menu = new MainMenu(console);
+                menu.show();
+                menu.doAction(menu.readUserFeedback());
+            }
+
+            if (action == Actions.SHOW_CATEGORY) {
+                console.write(">> " + menuElements[choise].toString());
+                Category s = Category.valueOf(menuElements[choise].getNameLabel());
+                System.out.println(s);
+                AbstractMenu menu = new ProjectMenu(console, s);
+                menu.show();
+                console.write(">> Bye");
+            }
+        }
 
     }
 
