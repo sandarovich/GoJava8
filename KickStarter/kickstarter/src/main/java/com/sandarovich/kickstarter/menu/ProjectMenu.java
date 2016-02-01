@@ -1,9 +1,9 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.Categories;
+import com.sandarovich.kickstarter.Category;
 import com.sandarovich.kickstarter.Output;
 import com.sandarovich.kickstarter.Project;
-import com.sandarovich.kickstarter.Projects;
+import com.sandarovich.kickstarter.ProjectsDB;
 
 /**
  * @author Olexamder Kolodiazhny 2016
@@ -14,11 +14,11 @@ public class ProjectMenu extends AbstractMenu {
 	
 	private Project[] projects;
 
-	public ProjectMenu(Output output, MenuReader menuReader, Categories category) {
+	public ProjectMenu(Output output, MenuReader menuReader, Category category) {
 		super(output, menuReader);
 		menuId = 3;
 		headerLabel = "Projects:";
-		projects = new Projects().getByCategory(category);
+		projects = new ProjectsDB().getByCategory(category);
 		int projectCount = projects.length;
 		menuElements = new MenuElement[projectCount + 1];
 		

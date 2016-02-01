@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 public class Project {
 
 	private final int id;
-	private final Categories category;
+	private final Category category;
 	private final String description;
 	private final String shortDesription;
 	private final double goalAmount;
@@ -26,7 +26,7 @@ public class Project {
 	public static class Builder {
 		// Required fields
 		private final int id;
-		private final Categories category;
+		private final Category category;
 		
 		// Optional fields
 		private String description = "";
@@ -39,7 +39,7 @@ public class Project {
 		private String history = "No history";
 		private String questionsAnswers = "No Q&A";
 
-		public Builder(int id, Categories category) {
+		public Builder(int id, Category category) {
 			this.id = id;
 			this.category = category;
 		}
@@ -92,7 +92,7 @@ public class Project {
 
 	}
 	
-	public Categories getCategory() {
+	public Category getCategory() {
 		return this.category;
 	}
 	

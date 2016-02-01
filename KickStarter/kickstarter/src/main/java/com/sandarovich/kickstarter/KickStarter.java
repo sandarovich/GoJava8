@@ -28,7 +28,7 @@ public class KickStarter {
         AbstractMenu menu = new MainMenu(output, menuReader);
         menu.show();
         menu.doAction(menu.readUserFeedback());   
-        Project p = new Project.Builder(1, Categories.IT)
+        Project p = new Project.Builder(1, Category.IT)
         		.description("USB Lighter")
         		.shortDescription("USB Lighter")
         		.goalAmount(10000)
