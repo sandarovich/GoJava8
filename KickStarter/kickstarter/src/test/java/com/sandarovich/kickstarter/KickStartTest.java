@@ -12,7 +12,6 @@ import static org.mockito.Mockito.*;
 
 public class KickStartTest {
 
-
     @Test
     public void testMainMenu() {
         //given
@@ -42,8 +41,6 @@ public class KickStartTest {
                         "---, " +
                         ">> Bye]"
                 , captor.getAllValues().toString());
-
-
     }
 
 }
