@@ -10,7 +10,7 @@ import com.sandarovich.kickstarter.menu.MainMenu;
 
 public class KickStarter {
 
-    public static final String APP_VERSION = "0.0.4";
+    public static final String APP_VERSION = "0.0.5";
 
     private IO console;
 
