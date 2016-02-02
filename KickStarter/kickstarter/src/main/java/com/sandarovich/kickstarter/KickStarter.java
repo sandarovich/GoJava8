@@ -5,7 +5,7 @@ import com.sandarovich.kickstarter.menu.MainMenu;
 
 /**
  * @author Olexander Kolodiazhny 2016
- *         KickStrter annalog.
+ *         KickStarter annalog.
  */
 
 public class KickStarter {
