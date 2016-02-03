@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 /**
  * Created Olexander Kolodiazhny 2016
  */
+
 public class ProjectBuilder {
 
     private Project project;
@@ -21,7 +22,6 @@ public class ProjectBuilder {
     private double goalAmount = 0d;
     private double collectedAmount = 0d;
     private Calendar goalDate = new GregorianCalendar(2016, 2, 1);
-
     private String videoLink = "http:\\";
     private String history = "No history";
     private String questionsAnswers = "No Q&A";
