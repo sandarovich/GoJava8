@@ -1,4 +1,6 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.project;
+
+import com.sandarovich.kickstarter.category.Category;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -15,10 +17,10 @@ public class ProjectBuilder {
     // Required fields
     private int id;
     private Category category;
-    private String shortDesription;
+    private String name;
 
     // Optional fields
-    private String description = "";
+    private String shortDesription = "<<Empty>>";
     private double goalAmount = 0d;
     private double collectedAmount = 0d;
     private Calendar goalDate = new GregorianCalendar(2016, 2, 1);
@@ -42,19 +44,20 @@ public class ProjectBuilder {
         return this;
     }
 
-    public ProjectBuilder andDescription(String description) {
-        this.description = description;
+    public ProjectBuilder andName(String description) {
+        this.name = description;
         return this;
     }
 
-    public ProjectBuilder makeProject() {
-        this.project = new Project(id, category, description, shortDesription,
+    public ProjectBuilder build() {
+        this.project = new Project(id, category, name, shortDesription,
                 goalAmount, collectedAmount, goalDate, videoLink,
                 history, questionsAnswers);
+        this.add();
         return this;
     }
 
-    public ProjectBuilder add() {
+    private ProjectBuilder add() {
         projects.add(this.project);
         return this;
     }
@@ -68,12 +71,12 @@ public class ProjectBuilder {
         return this.projects;
     }
 
-    public ProjectBuilder add(int id, Category category, String description, String shortDesription,
+    public ProjectBuilder add(int id, Category category, String name, String shortDesription,
                               double goalAmount, double collectedAmount, Calendar goalDate, String videoLink,
                               String history, String questionsAnswers) {
         this.id = id;
         this.category = category;
-        this.description = description;
+        this.name = name;
         this.shortDesription = shortDesription;
         this.goalAmount = goalAmount;
         this.collectedAmount = collectedAmount;
@@ -81,7 +84,7 @@ public class ProjectBuilder {
         this.videoLink = videoLink;
         this.history = history;
         this.questionsAnswers = questionsAnswers;
-        projects.add(project);
+        this.add();
         return this;
     }
 

@@ -1,5 +1,8 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.project;
 
+import com.sandarovich.kickstarter.category.Category;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -10,7 +13,7 @@ public class Project {
 
     private final int id;
     private final Category category;
-    private final String description;
+    private final String name;
     private final String shortDesription;
     private final double goalAmount;
     private final double collectedAmount;
@@ -19,12 +22,12 @@ public class Project {
     private final String history;
     private final String questionsAnswers;
 
-    public Project(int id, Category category, String description, String shortDesription,
+    public Project(int id, Category category, String name, String shortDesription,
                    double goalAmount, double collectedAmount, Calendar goalDate, String videoLink,
                    String history, String questionsAnswers) {
         this.id = id;
         this.category = category;
-        this.description = description;
+        this.name = name;
         this.shortDesription = shortDesription;
         this.goalAmount = goalAmount;
         this.collectedAmount = collectedAmount;
@@ -42,8 +45,12 @@ public class Project {
         return this.shortDesription;
     }
 
-    public String getDescription() {
-        return description;
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public double getGoalAmount() {
@@ -74,6 +81,10 @@ public class Project {
         return questionsAnswers;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 
 
 }

@@ -1,21 +1,28 @@
 package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.IO;
+import com.sandarovich.kickstarter.category.Categories;
+import com.sandarovich.kickstarter.project.Projects;
 
 /**
  * @author Olexander Kolodiazhny 2016 Describes common stuff for all menu
  */
 
 public abstract class AbstractMenu {
+    protected static final int MENU_SHIFT = 1;
 
-    public AbstractMenu(IO console) {
+    public AbstractMenu(IO console, Categories categories, Projects projects) {
         this.console = console;
+        this.projects = projects;
+        this.categories = categories;
     }
 
     protected MenuElement[] menuElements;
     protected String headerLabel;
     protected int menuId;
     protected IO console;
+    protected Projects projects;
+    protected Categories categories;
 
     public void show() {
         console.write("-----------");
@@ -25,9 +32,10 @@ public abstract class AbstractMenu {
             console.write("<< Is empty >>");
             return;
         }
-        for (int index = 0; index < menuElements.length; index++) {
+        for (int index = 1; index < menuElements.length; index++) {
             console.write(menuElements[index].toString());
         }
+        console.write(menuElements[0].toString());
         console.write("---");
     }
 
