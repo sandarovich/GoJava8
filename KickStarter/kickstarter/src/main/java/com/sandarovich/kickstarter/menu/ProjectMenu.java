@@ -2,29 +2,30 @@ package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.Category;
 import com.sandarovich.kickstarter.IO;
-import com.sandarovich.kickstarter.Project;
-import com.sandarovich.kickstarter.ProjectsDB;
+import com.sandarovich.kickstarter.Projects;
 
 /**
  * @author Olexamder Kolodiazhny 2016
- *
  */
+
+//TODO Fix Project
 
 public class ProjectMenu extends AbstractMenu {
 
-    private Project[] projects;
+    private Projects projects;
 
-    public ProjectMenu(IO console, Category category) {
+    public ProjectMenu(IO console, Projects projects) {
         super(console);
+        this.projects = projects;
         menuId = 3;
         headerLabel = "Projects:";
-        projects = new ProjectsDB().getByCategory(category);
-        int projectCount = projects.length;
+        //projects = new Projects().getByCategory(category);
+        int projectCount = projects.count();
         menuElements = new MenuElement[projectCount + 1];
 
         if (projectCount != 0) {
-            for (int index = 0; index < projects.length; index++) {
-                menuElements[index] = new MenuElement(projects[index].getShortDescription(), Actions.SHOW_PROJECT,
+            for (int index = 0; index < projectCount; index++) {
+                menuElements[index] = new MenuElement(projects.get(index).getShortDescription(), Actions.SHOW_PROJECT,
                         index);
             }
         }
@@ -41,11 +42,11 @@ public class ProjectMenu extends AbstractMenu {
         console.write("Project | Description | ShortDescription | Goal Amount| Collected Amount| Days Remain ");
         console.write("------------------------------------------------------------------------------------");
         if (menuElements.length > 1) {
-            for (int index = 0; index < projects.length; index++) {
-                console.write(index + "           " + projects[index].getDescription() + "        "
-                        + projects[index].getShortDescription() + "        " + projects[index].getGoalAmount()
-                        + "        " + projects[index].getcollectedAmount() + "        "
-                        + projects[index].getGoalDateDays());
+            for (int index = 0; index < projects.count(); index++) {
+                console.write(index + "           " + projects.get(index).getDescription() + "        "
+                        + projects.get(index).getShortDescription() + "        " + projects.get(index).getGoalAmount()
+                        + "        " + projects.get(index).getcollectedAmount() + "        "
+                        + projects.get(index).getGoalDateDays());
             }
 
         } else {
@@ -59,7 +60,7 @@ public class ProjectMenu extends AbstractMenu {
 
     @Override
     public void doAction(int choise) {
-        // TODO IMPLEMENT IN USERCASE 4
+        // TODO Impement in Usere Case 4.
 
     }
 

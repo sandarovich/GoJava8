@@ -5,7 +5,7 @@ import com.sandarovich.kickstarter.menu.MainMenu;
 
 /**
  * @author Olexander Kolodiazhny 2016
- *         KickStarter annalog.
+ *         KickStarter analog.
  */
 
 public class KickStarter {
@@ -26,7 +26,20 @@ public class KickStarter {
     public void start() {
         new Intro(console, APP_VERSION).show();
         AbstractMenu menu = new MainMenu(console);
+        Projects projects = setupProjects().getProjects();
         menu.show();
         menu.doAction(menu.readUserFeedback());
+
+
+    }
+
+    public ProjectBuilder setupProjects() {
+        ProjectBuilder builder = new ProjectBuilder();
+        builder.forId(1)
+                .andCategory(Category.IT)
+                .andDescription("USB TOY")
+                .makeProject()
+                .add();
+        return builder;
     }
 }

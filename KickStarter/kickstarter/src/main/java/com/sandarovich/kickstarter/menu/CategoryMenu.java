@@ -37,7 +37,8 @@ public class CategoryMenu extends AbstractMenu {
                 console.write(">> " + menuElements[choise].toString());
                 Category s = Category.valueOf(menuElements[choise].getNameLabel());
                 System.out.println(s);
-                AbstractMenu menu = new ProjectMenu(console, s);
+                //TODO Implement
+                AbstractMenu menu = new ProjectMenu(console);
                 menu.show();
                 console.write(">> Bye");
             }
