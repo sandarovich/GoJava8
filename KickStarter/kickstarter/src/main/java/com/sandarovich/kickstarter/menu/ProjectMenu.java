@@ -19,6 +19,7 @@ public class ProjectMenu extends AbstractMenu {
         headerLabel = "Projects:";
         int projectCount = projects.count();
         menuElements = new MenuElement[projects.count() + 1];
+        console.write("M: " + menuElements.length);
 
         if (projectCount != 0) {
             for (int index = 0; index < projectCount; index++) {
@@ -28,9 +29,7 @@ public class ProjectMenu extends AbstractMenu {
             }
 
         }
-
         menuElements[0] = new MenuElement("Exit", Actions.EXIT, 0);
-
     }
 
     @Override
@@ -39,26 +38,29 @@ public class ProjectMenu extends AbstractMenu {
         console.write("-----------");
         console.write("{" + menuId + "} " + headerLabel);
 
-        if (menuElements.length < 1) {
+        createBriefProjectTable();
+        if (menuElements.length == 1) {
             console.write("<< Is empty >>");
-            return;
         }
-        createProjectTable();
         console.write("---");
         console.write(menuElements[0].toString());
         console.write("---");
 
+//        for (int i = 0; i < menuElements.length; i++) {
+//            console.write(menuElements[i].toString());
+//        }
+
     }
 
-    private void createProjectTable() {
+    private void createBriefProjectTable() {
         final int COLUMN_COUNT = 6;
 
         String[] columnNames = new String[COLUMN_COUNT];
         columnNames[0] = "Id";
         columnNames[1] = "Name";
         columnNames[2] = "Short Description";
-        columnNames[3] = "Goal Ammount";
-        columnNames[4] = "Collected Ammount";
+        columnNames[3] = "Goal Amount";
+        columnNames[4] = "Collected Amount";
         columnNames[5] = "Days remain";
 
         Object[][] data = new Object[projects.count()][COLUMN_COUNT];
@@ -74,8 +76,17 @@ public class ProjectMenu extends AbstractMenu {
 
     @Override
     public void doAction(int choice) {
-        // TODO Impement in Usere Case 4.
+        Actions action = getAction(choice);
+
+        if (action != null && action == Actions.EXIT) {
+            showCategoriesMenu();
+        }
+
+        if (action != null && action == Actions.SHOW_PROJECT) {
+            showProjectDetailsMenu(choice);
+        }
 
     }
+
 
 }

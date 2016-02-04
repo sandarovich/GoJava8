@@ -6,7 +6,7 @@ package com.sandarovich.kickstarter;
  *         Show Application name, author and quote.
  */
 public class Intro  {
-    private IO console;
+    private final IO console;
 
     public Intro(IO output) {
         this.console = output;

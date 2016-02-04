@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.IO;
 import com.sandarovich.kickstarter.category.Categories;
+import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
 
 /**
@@ -22,8 +23,8 @@ public abstract class AbstractMenu {
     protected String headerLabel;
     protected int menuId;
     protected final IO console;
-    protected Projects projects;
-    protected Categories categories;
+    protected final Projects projects;
+    protected final Categories categories;
 
     public void show() {
         console.write("-----------");
@@ -60,9 +61,45 @@ public abstract class AbstractMenu {
     }
 
     protected boolean isValidMenuElement(int number) {
-        return (number >= 0 && number <= menuElements.length - 1);
+//        console.write("L:" + menuElements.length);
+//        for (int i = 0; i < menuElements.length; i++) {
+//            console.write(menuElements[i].toString());
+//        }
+        return (number >= 0 && number < menuElements.length);
+    }
+
+    protected Actions getAction(int choice) {
+        return isValidMenuElement(choice) ? menuElements[choice].getAction() : null;
     }
 
     public abstract void doAction(int choice);
 
+    protected void showMainMenu() {
+        AbstractMenu menu = new MainMenu(console, categories, projects);
+        menu.show();
+        menu.doAction(menu.readUserFeedback());
+    }
+
+    protected void showProjectsMenu(int choice) {
+        console.write(">> " + menuElements[choice].toString());
+        AbstractMenu menu = new ProjectMenu(console, this.categories,
+                this.projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
+
+        menu.show();
+        menu.doAction(readUserFeedback());
+    }
+
+    protected void showCategoriesMenu() {
+        AbstractMenu menu = new CategoryMenu(console, categories, projects);
+        menu.show();
+        menu.doAction(menu.readUserFeedback());
+    }
+
+    protected void showProjectDetailsMenu(int choice) {
+        console.write(">> " + menuElements[choice].toString());
+        Project project = this.projects.get(choice);
+        AbstractMenu menu = new ProjectDetailsMenu(console, categories, projects, project);
+        menu.show();
+        menu.doAction(menu.readUserFeedback());
+    }
 }

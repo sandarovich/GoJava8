@@ -39,7 +39,7 @@ public class KickStarter {
 
     }
 
-    public Projects setupProjects(Categories categories) {
+    private Projects setupProjects(Categories categories) {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(1)
                 .andCategory(categories.get(0))
@@ -59,7 +59,7 @@ public class KickStarter {
         return builder.getProjects();
     }
 
-    public Categories setupCategories() {
+    private Categories setupCategories() {
 
         final List<String> categories = new ArrayList<String>() {{
             add("IT");
