@@ -5,11 +5,12 @@ import com.sandarovich.kickstarter.category.Categories;
 import com.sandarovich.kickstarter.project.Projects;
 
 /**
- * @author Olexander Kolodiazhny 2016 Describes common stuff for all menu
+ * @author Olexander Kolodiazhny 2016
+ * Describes common functionality for all menu existed in Project
  */
 
 public abstract class AbstractMenu {
-    protected static final int MENU_SHIFT = 1;
+    static final int MENU_SHIFT = 1;
 
     public AbstractMenu(IO console, Categories categories, Projects projects) {
         this.console = console;
@@ -20,7 +21,7 @@ public abstract class AbstractMenu {
     protected MenuElement[] menuElements;
     protected String headerLabel;
     protected int menuId;
-    protected IO console;
+    protected final IO console;
     protected Projects projects;
     protected Categories categories;
 
@@ -50,24 +51,18 @@ public abstract class AbstractMenu {
     }
 
     private boolean isValidMenuElement(String checkedNumber) {
-        int number = -1;
         try {
-            number = Integer.parseInt(checkedNumber);
+            int number = Integer.parseInt(checkedNumber);
+            return isValidMenuElement(number);
         } catch (NumberFormatException e) {
             return false;
         }
-
-        return isValidMenuElement(number);
     }
 
     protected boolean isValidMenuElement(int number) {
-        boolean result = true;
-        if (number < 0 || number > menuElements.length - 1) {
-            return false;
-        }
-        return result;
+        return (number >= 0 && number <= menuElements.length - 1);
     }
 
-    public abstract void doAction(int choise);
+    public abstract void doAction(int choice);
 
 }

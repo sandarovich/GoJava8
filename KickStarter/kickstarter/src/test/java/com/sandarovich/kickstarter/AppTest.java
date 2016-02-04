@@ -13,8 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class AppTest {
 
-    private IO io = new ConsoleIO();
-    ConsoleMock console = new ConsoleMock();
+    private final IO io = new ConsoleIO();
+    private ConsoleMock console = new ConsoleMock();
 
     @Test
     public void testMainMenu() {

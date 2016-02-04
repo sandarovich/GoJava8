@@ -6,10 +6,10 @@ package com.sandarovich.kickstarter.menu;
  */
 
 public class MenuElement {
-    
-    private String nameLabel;
-    private Actions action;
-    private int id;
+
+    private final String nameLabel;
+    private final Actions action;
+    private final int id;
        
     public MenuElement(String nameLabel, Actions action, int id) {
         this.nameLabel = nameLabel;
@@ -24,8 +24,7 @@ public class MenuElement {
 
     @Override
     public String toString() {
-        String result =  this.id + " - " + nameLabel;
-        return result;
+        return this.id + " - " + nameLabel;
     }
     
     

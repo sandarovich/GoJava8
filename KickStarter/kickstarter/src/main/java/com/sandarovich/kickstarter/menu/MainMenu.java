@@ -22,8 +22,8 @@ public class MainMenu extends AbstractMenu{
     }
  
     @Override
-    public void doAction(int choise) {
-        Actions action = menuElements[choise].getAction();
+    public void doAction(int choice) {
+        Actions action = menuElements[choice].getAction();
         
         if (action == Actions.EXIT) {
             console.write(">> Bye");

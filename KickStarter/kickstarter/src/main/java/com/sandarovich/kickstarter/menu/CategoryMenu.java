@@ -23,9 +23,9 @@ public class CategoryMenu extends AbstractMenu {
     }
 
     @Override
-    public void doAction(int choise) {
-        if (isValidMenuElement(choise)) {
-            Actions action = menuElements[choise].getAction();
+    public void doAction(int choice) {
+        if (isValidMenuElement(choice)) {
+            Actions action = menuElements[choice].getAction();
             if (action == Actions.EXIT) {
                 AbstractMenu menu = new MainMenu(console, categories, projects);
                 menu.show();
@@ -33,9 +33,9 @@ public class CategoryMenu extends AbstractMenu {
             }
 
             if (action == Actions.SHOW_CATEGORY) {
-                console.write(">> " + menuElements[choise].toString());
+                console.write(">> " + menuElements[choice].toString());
                 AbstractMenu menu = new ProjectMenu(console, this.categories,
-                        this.projects.getByCategory(this.categories.get(choise - MENU_SHIFT)));
+                        this.projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
 
                 menu.show();
                 console.write(">> Bye");

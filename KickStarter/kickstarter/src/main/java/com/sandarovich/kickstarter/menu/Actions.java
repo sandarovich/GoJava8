@@ -6,7 +6,7 @@ package com.sandarovich.kickstarter.menu;
  */
 
 public enum Actions {
-    
-    EXIT, SHOW_ALL_CATEGORIES, SHOW_CATEGORY, SHOW_PROJECT;
+
+    EXIT, SHOW_ALL_CATEGORIES, SHOW_CATEGORY, SHOW_PROJECT
 
 }

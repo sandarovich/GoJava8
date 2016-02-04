@@ -44,8 +44,13 @@ public class ProjectBuilder {
         return this;
     }
 
-    public ProjectBuilder andName(String description) {
-        this.name = description;
+    public ProjectBuilder andName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ProjectBuilder andDesription(String shortDesription) {
+        this.shortDesription = shortDesription;
         return this;
     }
 

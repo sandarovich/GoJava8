@@ -1,9 +1,9 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.menu.AbstractMenu;
-import com.sandarovich.kickstarter.menu.MainMenu;
 import com.sandarovich.kickstarter.category.Categories;
 import com.sandarovich.kickstarter.category.CategoriesBuilder;
+import com.sandarovich.kickstarter.menu.AbstractMenu;
+import com.sandarovich.kickstarter.menu.MainMenu;
 import com.sandarovich.kickstarter.project.ProjectBuilder;
 import com.sandarovich.kickstarter.project.Projects;
 
@@ -32,7 +32,7 @@ public class KickStarter {
     }
 
     public void start() {
-        new Intro(console, APP_VERSION).show();
+        new Intro(console).show();
         Categories categories = setupCategories();
         Projects projects = setupProjects(categories);
         AbstractMenu menu = new MainMenu(console, categories, projects);
@@ -46,14 +46,17 @@ public class KickStarter {
         builder.forId(1)
                 .andCategory(categories.get(0))
                 .andName("USB TOY   ")
+                .andDesription("Not Ordinary gameplay ")
                 .build();
         builder.forId(2)
                 .andCategory(categories.get(0))
                 .andName("Power Bank")
+                .andDesription("Unique technology ")
                 .build();
         builder.forId(3)
                 .andCategory(categories.get(0))
                 .andName("Robot Frodo")
+                .andDesription("Fast and Smart")
                 .build();
         return builder.getProjects();
     }

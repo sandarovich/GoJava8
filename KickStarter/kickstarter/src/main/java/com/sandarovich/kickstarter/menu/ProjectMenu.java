@@ -3,12 +3,8 @@ package com.sandarovich.kickstarter.menu;
 import com.sandarovich.kickstarter.ConsoleIO;
 import com.sandarovich.kickstarter.IO;
 import com.sandarovich.kickstarter.category.Categories;
-import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
 import dnl.utils.text.table.TextTable;
-
-import java.io.PrintStream;
-import java.util.Objects;
 
 /**
  * @author Olexamder Kolodiazhny 2016
@@ -77,7 +73,7 @@ public class ProjectMenu extends AbstractMenu {
     }
 
     @Override
-    public void doAction(int choise) {
+    public void doAction(int choice) {
         // TODO Impement in Usere Case 4.
 
     }

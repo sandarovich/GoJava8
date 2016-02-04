@@ -7,11 +7,9 @@ package com.sandarovich.kickstarter;
  */
 public class Intro  {
     private IO console;
-    private String appVersion;
 
-    public Intro(IO output, String appVersion) {
+    public Intro(IO output) {
         this.console = output;
-        this.appVersion = appVersion;
     }
 
     public void show() {
@@ -21,7 +19,7 @@ public class Intro  {
 
     private void showAuthor() {
         console.write("=======================================");
-        console.write("     Kickstarter emulator v." + appVersion);
+        console.write("     Kickstarter emulator v." + KickStarter.APP_VERSION);
         console.write("     by O.Kolodiazhny 2016      ");
         console.write("=======================================");
     }
