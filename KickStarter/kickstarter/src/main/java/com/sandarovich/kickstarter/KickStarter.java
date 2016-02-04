@@ -17,9 +17,7 @@ import java.util.List;
 
 public class KickStarter {
 
-    public static final String APP_VERSION = "0.0.5";
-
-
+    public static final String APPLICATION_VERSION = "0.0.5";
     private IO console;
 
     public KickStarter(IO console) {

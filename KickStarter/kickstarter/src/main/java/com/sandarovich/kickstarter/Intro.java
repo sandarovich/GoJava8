@@ -19,7 +19,7 @@ public class Intro  {
 
     private void showAuthor() {
         console.write("=======================================");
-        console.write("     Kickstarter emulator v." + KickStarter.APP_VERSION);
+        console.write("     Kickstarter emulator v." + KickStarter.APPLICATION_VERSION);
         console.write("     by O.Kolodiazhny 2016      ");
         console.write("=======================================");
     }
