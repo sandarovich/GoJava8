@@ -60,14 +60,15 @@ public class KickStarter {
     }
 
     public Categories setupCategories() {
-        final List<String> CATEGORIES = new ArrayList<String>() {{
+
+        final List<String> categories = new ArrayList<String>() {{
             add("IT");
             add("Tourism");
             add("Garden");
         }};
 
         CategoriesBuilder builder = new CategoriesBuilder();
-        builder.createAll(CATEGORIES);
+        builder.createAll(categories);
         return builder.get();
     }
 }
