@@ -34,6 +34,7 @@ public class ConsoleIO implements IO {
         return resultStr;
     }
 
+    @Override
     public void writeTable(Tableable object) {
         ConsoleTable consoleTable = new ConsoleTable(object);
         TextTable textTable = new TextTable(consoleTable.getColumnNames(), consoleTable.getData());

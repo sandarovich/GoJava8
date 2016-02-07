@@ -56,13 +56,10 @@ public class KickStarter {
     }
 
     private Categories setupCategories() {
-
-        final List<String> categories = new ArrayList<String>() {{
-            add("IT");
-            add("Tourism");
-            add("Garden");
-        }};
-
+        List<String> categories = new ArrayList<String>();
+        categories.add("IT");
+        categories.add("Tourism");
+        categories.add("Garden");
         CategoriesBuilder builder = new CategoriesBuilder();
         builder.createAll(categories);
         return builder.get();

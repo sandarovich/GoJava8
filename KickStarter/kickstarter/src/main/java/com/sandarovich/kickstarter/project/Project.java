@@ -9,7 +9,7 @@ import java.util.Calendar;
  */
 
 public class Project {
-
+    private static final long MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
     private final int id;
     private final Category category;
     private final String name;
@@ -61,7 +61,6 @@ public class Project {
     }
 
     public int getGoalDateDays() {
-        final long MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
         int result;
         Calendar now = Calendar.getInstance();
         result = (int) ((goalDate.getTimeInMillis() - now.getTimeInMillis()) / MILLISECONDS_IN_DAY);

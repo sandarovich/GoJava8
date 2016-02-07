@@ -13,12 +13,12 @@ import com.sandarovich.kickstarter.project.Projects;
 public abstract class AbstractMenu {
     static final int MENU_SHIFT = 1;
 
-    protected MenuElement[] menuElements;
-    protected String headerLabel;
-    protected int menuId;
     protected final IO console;
     protected final Projects projects;
     protected final Categories categories;
+    protected MenuElement[] menuElements;
+    protected String headerLabel;
+    protected int menuId;
 
     public AbstractMenu(IO console, Categories categories, Projects projects) {
         this.console = console;
