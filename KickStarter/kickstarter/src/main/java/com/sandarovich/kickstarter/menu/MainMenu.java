@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.IO;
 import com.sandarovich.kickstarter.category.Categories;
+import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.project.Projects;
 
 /**

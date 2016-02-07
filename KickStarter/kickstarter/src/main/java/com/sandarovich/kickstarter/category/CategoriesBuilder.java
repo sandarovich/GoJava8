@@ -8,13 +8,12 @@ import java.util.List;
 public class CategoriesBuilder {
 
     private final Categories categories;
+    private int id;
+    private String name;
 
     public CategoriesBuilder() {
         this.categories = new Categories();
     }
-
-    private int id;
-    private String name;
 
     public CategoriesBuilder forInt(int id) {
         this.id = id;

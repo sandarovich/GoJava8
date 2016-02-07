@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.io.IO;
+
 /**
  * @author Olexander Kolodiazhny 2016
  *

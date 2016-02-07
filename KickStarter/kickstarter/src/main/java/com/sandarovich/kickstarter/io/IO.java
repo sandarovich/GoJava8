@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.io;
 
 /**
  * @author Olexander Kolodiazhny 2016 
@@ -8,4 +8,6 @@ package com.sandarovich.kickstarter;
 public interface IO {
     void write(String message);
     String read();
+
+    void writeTable(Tableable object);
 }

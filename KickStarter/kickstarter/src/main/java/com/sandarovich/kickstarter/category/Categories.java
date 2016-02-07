@@ -8,14 +8,10 @@ import java.util.List;
  */
 public class Categories {
 
-    private List<Category> categories = new ArrayList<Category>();
+    private final List<Category> categories = new ArrayList<Category>();
 
     public Category get(int index) {
         return categories.get(index);
-    }
-
-    public List<Category> getAll() {
-        return categories;
     }
 
     public void add(Category category) {

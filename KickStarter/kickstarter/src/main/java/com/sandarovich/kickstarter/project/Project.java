@@ -56,7 +56,7 @@ public class Project {
         return goalAmount;
     }
 
-    public double getcollectedAmount() {
+    public double getCollectedAmount() {
         return collectedAmount;
     }
 

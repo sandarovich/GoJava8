@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.io.ConsoleIO;
+import com.sandarovich.kickstarter.io.IO;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

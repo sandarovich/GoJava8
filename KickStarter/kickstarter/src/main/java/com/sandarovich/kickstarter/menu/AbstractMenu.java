@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.IO;
 import com.sandarovich.kickstarter.category.Categories;
+import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
 
@@ -13,12 +13,6 @@ import com.sandarovich.kickstarter.project.Projects;
 public abstract class AbstractMenu {
     static final int MENU_SHIFT = 1;
 
-    public AbstractMenu(IO console, Categories categories, Projects projects) {
-        this.console = console;
-        this.projects = projects;
-        this.categories = categories;
-    }
-
     protected MenuElement[] menuElements;
     protected String headerLabel;
     protected int menuId;
@@ -26,17 +20,38 @@ public abstract class AbstractMenu {
     protected final Projects projects;
     protected final Categories categories;
 
+    public AbstractMenu(IO console, Categories categories, Projects projects) {
+        this.console = console;
+        this.projects = projects;
+        this.categories = categories;
+    }
+
     public void show() {
-        console.write("-----------");
+        showMenuHeader();
+        showMenuElements();
+        showMenuFooter();
+    }
+
+    protected void showMenuHeader() {
+        console.write("=====================");
         console.write("{" + menuId + "} " + headerLabel);
-        console.write("-----------");
-        if (menuElements.length < 1) {
+        console.write("=====================");
+    }
+
+    protected void showMenuElements() {
+        if (menuElements.length == 1) {
             console.write("<< Is empty >>");
             return;
         }
+
+        console.write("\u2193 Options:");
         for (int index = 1; index < menuElements.length; index++) {
             console.write(menuElements[index].toString());
         }
+    }
+
+    protected void showMenuFooter() {
+        console.write("---");
         console.write(menuElements[0].toString());
         console.write("---");
     }
@@ -61,11 +76,7 @@ public abstract class AbstractMenu {
     }
 
     protected boolean isValidMenuElement(int number) {
-//        console.write("L:" + menuElements.length);
-//        for (int i = 0; i < menuElements.length; i++) {
-//            console.write(menuElements[i].toString());
-//        }
-        return (number >= 0 && number < menuElements.length);
+        return number >= 0 && number < menuElements.length;
     }
 
     protected Actions getAction(int choice) {
@@ -80,26 +91,30 @@ public abstract class AbstractMenu {
         menu.doAction(menu.readUserFeedback());
     }
 
-    protected void showProjectsMenu(int choice) {
-        console.write(">> " + menuElements[choice].toString());
-        AbstractMenu menu = new ProjectMenu(console, this.categories,
-                this.projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
-
-        menu.show();
-        menu.doAction(readUserFeedback());
-    }
-
     protected void showCategoriesMenu() {
         AbstractMenu menu = new CategoryMenu(console, categories, projects);
         menu.show();
         menu.doAction(menu.readUserFeedback());
     }
 
+    protected void showProjectsMenu(int choice) {
+        showInput(menuElements[choice]);
+        AbstractMenu projectMenu = new ProjectMenu(console, this.categories, this.projects,
+                projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
+        projectMenu.show();
+        projectMenu.doAction(projectMenu.readUserFeedback());
+    }
+
+
     protected void showProjectDetailsMenu(int choice) {
-        console.write(">> " + menuElements[choice].toString());
-        Project project = this.projects.get(choice);
-        AbstractMenu menu = new ProjectDetailsMenu(console, categories, projects, project);
-        menu.show();
-        menu.doAction(menu.readUserFeedback());
+        showInput(menuElements[choice]);
+        Project project = this.projects.get(choice - MENU_SHIFT);
+        AbstractMenu projectDetailsMenu = new ProjectDetailsMenu(console, categories, projects, project);
+        projectDetailsMenu.show();
+        projectDetailsMenu.doAction(projectDetailsMenu.readUserFeedback());
+    }
+
+    private void showInput(MenuElement menuElement) {
+        console.write(">> " + menuElement.toString());
     }
 }

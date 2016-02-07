@@ -1,5 +1,6 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.io.IO;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 

@@ -1,4 +1,6 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.io;
+
+import dnl.utils.text.table.TextTable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,8 +31,13 @@ public class ConsoleIO implements IO {
         catch (IOException e) {
             new ConsoleIO().write(">> Exception.Unable to read input");
         }
-        
         return resultStr;
+    }
+
+    public void writeTable(Tableable object) {
+        ConsoleTable consoleTable = new ConsoleTable(object);
+        TextTable textTable = new TextTable(consoleTable.getColumnNames(), consoleTable.getData());
+        textTable.printTable();
     }
 
 }

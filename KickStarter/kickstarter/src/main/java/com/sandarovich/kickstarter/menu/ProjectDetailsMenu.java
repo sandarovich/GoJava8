@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.IO;
 import com.sandarovich.kickstarter.category.Categories;
+import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
 
@@ -19,8 +19,8 @@ public class ProjectDetailsMenu extends AbstractMenu {
         menuId = 4;
         headerLabel = "Project Details:";
         menuElements = new MenuElement[2];
-        menuElements[0] = new MenuElement("Return -> Category List", Actions.SHOW_ALL_CATEGORIES, 0);
-        menuElements[1] = new MenuElement("Return -> Projects List ", Actions.SHOW_CATEGORY, 1);
+        menuElements[0] = new MenuElement("Categories", Actions.SHOW_ALL_CATEGORIES, 0);
+        menuElements[1] = new MenuElement("Projects ", Actions.SHOW_CATEGORY, 1);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ProjectDetailsMenu extends AbstractMenu {
         console.write("Name: " + project.getName());
         console.write("Short Description: " + project.getShortDescription());
         console.write("Goal Amount: " + project.getGoalAmount());
-        console.write("Collected Amount: " + project.getcollectedAmount());
+        console.write("Collected Amount: " + project.getCollectedAmount());
         console.write("Days remain: " + project.getGoalDateDays());
         console.write("Video Link: " + project.getVideoLink());
         console.write("History: " + project.getHistory());
