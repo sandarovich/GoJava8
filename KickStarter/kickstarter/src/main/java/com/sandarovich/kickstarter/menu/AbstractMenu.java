@@ -41,7 +41,6 @@ public abstract class AbstractMenu {
     protected void showMenuElements() {
         if (menuElements.length == 1) {
             console.write("<< Is empty >>");
-            return;
         }
 
         console.write("\u2193 Options:");
