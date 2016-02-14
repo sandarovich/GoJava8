@@ -79,8 +79,20 @@ public class AnagramaTest {
         String inputText = "A#brave#new#world!!!";
         String expectedText = "A#evarb#wen#!!!dlrow";
         //then
-        assertEquals("Test for two words which is separated by deltimer", expectedText, annagrama.get(inputText));
+        assertEquals("Test for sentence which is separated by other" +
+                " deltimer", expectedText, annagrama.get(inputText));
     }
+
+    @Test
+    public void testMoreThanOneDeltimer() {
+        //given
+        String inputText = "A brave   new    world!!!";
+        String expectedText = "A evarb   wen    !!!dlrow";
+        assertEquals("Test for using more then one deltimer in sentence",
+                expectedText, annagrama.get(inputText));
+
+    }
+
 
 
 }

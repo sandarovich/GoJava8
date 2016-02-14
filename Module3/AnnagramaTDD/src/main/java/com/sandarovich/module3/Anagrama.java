@@ -15,14 +15,16 @@ public class Anagrama {
     public String get(String inputText) {
 
         String[] words = inputText.split(deltimer);
-        return (words.length == 1) ? reverseOneWord(inputText) : reverseWords(words);
+        return (words.length == 1) ?
+                reverseOneWord(inputText) : reverseSentence(words);
     }
 
     private String reverseOneWord(String inputText) {
-        return (inputText.length() == 0 || inputText.length() == 1) ? inputText : reverseWord(inputText);
+        return (inputText.length() == 0 || inputText.length() == 1) ?
+                inputText : reverseWord(inputText);
     }
 
-    private String reverseWords(String[] words) {
+    private String reverseSentence(String[] words) {
         String[] resultArray = new String[words.length];
         for (int wordIndex = 0; wordIndex < words.length; wordIndex++) {
             resultArray[wordIndex] = reverseWord(words[wordIndex]);
