@@ -27,7 +27,7 @@ public class Formatter {
 
     public List<String> getCalculationDeatils(int depth, int dividen, int diff) {
 
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
         result.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
         result.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.SPACE.toString() + (int) dividen);
         result.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_MINUS.toString() + diff);
@@ -36,7 +36,7 @@ public class Formatter {
 
     public List<String> getFooter(int remain, int depth) {
 
-        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<String>();
         result.add(StringUtils.repeat(Strings.TAB.toString(), depth) + Strings.OPERATION_DIVIDER.toString());
         result.add(StringUtils.repeat(Strings.TAB.toString(), depth) + String.valueOf(remain));
         return result;
