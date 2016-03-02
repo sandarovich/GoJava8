@@ -17,8 +17,8 @@ import java.util.List;
  */
 
 public class KickStarter {
-
     public static final String APPLICATION_VERSION = "0.0.5";
+
     private IO console;
 
     public KickStarter(IO console) {
@@ -32,7 +32,6 @@ public class KickStarter {
         AbstractMenu menu = new MainMenu(console, categories, projects);
         menu.show();
         menu.performAction(menu.getChoice());
-
     }
 
     private Projects setupProjects(Categories categories) {
