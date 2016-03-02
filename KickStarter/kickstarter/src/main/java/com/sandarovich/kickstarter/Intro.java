@@ -13,20 +13,16 @@ public class Intro {
         this.console = output;
     }
 
-    public void show() {
-        showAuthor();
-        showQuote();
-    }
 
-    private void showAuthor() {
+    public void showAuthor() {
         console.write("=======================================");
         console.write("     Kickstarter emulator v." + KickStarter.APPLICATION_VERSION);
         console.write("     by O.Kolodiazhny 2016      ");
         console.write("=======================================");
     }
 
-    private void showQuote() {
-        console.write("\"Every big journey begins with a small step\"\n");
+    public void showQuote() {
+        console.write(new QuotaGenerator().getQuota());
     }
 
 }

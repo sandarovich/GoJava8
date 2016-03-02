@@ -1,11 +1,11 @@
-package com.sandarovich.kickstarter.project;
+package com.sandarovich.kickstarter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Quata Generator.
+ * Quota Generator.
  */
 
 public class QuotaGenerator {
@@ -15,10 +15,10 @@ public class QuotaGenerator {
         QUOATES = new ArrayList<String>();
         QUOATES.add("\"Every big journey begins with a small step\"");
         QUOATES.add("\"No pain, no gain\"");
-        QUOATES.add("\"Excellence accross the board \"");
+        QUOATES.add("\"Excellence across the board \"");
     }
 
-    public String getQuota(int quotaIndex) {
+    String getQuota(int quotaIndex) {
         return (quotaIndex <= QUOATES.size()) ? QUOATES.get(quotaIndex) : QUOATES.get(0);
     }
 

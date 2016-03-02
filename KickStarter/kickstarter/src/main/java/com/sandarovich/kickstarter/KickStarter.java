@@ -26,7 +26,9 @@ public class KickStarter {
     }
 
     public void start() {
-        new Intro(console).show();
+        Intro intro = new Intro(console);
+        intro.showAuthor();
+        intro.showQuote();
         Categories categories = setupCategories();
         Projects projects = setupProjects(categories);
         AbstractMenu menu = new MainMenu(console, categories, projects);
