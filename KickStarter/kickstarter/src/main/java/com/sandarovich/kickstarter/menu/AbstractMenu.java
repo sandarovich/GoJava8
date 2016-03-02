@@ -6,8 +6,7 @@ import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
 
 /**
- * @author Olexander Kolodiazhny 2016
- * Describes common functionality for all menu existed in Project
+ *  Describes common functionality for all menu existed in Project
  */
 
 public abstract class AbstractMenu {
