@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.io;
+package com.sandarovich.kickstarter.project;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import java.util.Map;
  *         <p/>
  *         Interface marker
  */
-public interface Tableable {
+public interface ProjectSerializable {
     Map<String, Object> getRowData(int index);
 
     String[] getColumns();

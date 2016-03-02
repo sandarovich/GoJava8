@@ -1,5 +1,6 @@
 package com.sandarovich.kickstarter.io;
 
+import com.sandarovich.kickstarter.project.ProjectSerializable;
 import dnl.utils.text.table.TextTable;
 
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void writeTable(Tableable object) {
+    public void writeTable(ProjectSerializable object) {
         ConsoleTable consoleTable = new ConsoleTable(object);
         TextTable textTable = new TextTable(consoleTable.getColumnNames(), consoleTable.getData());
         textTable.printTable();

@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.io;
 
+import com.sandarovich.kickstarter.project.ProjectSerializable;
+
 import java.util.Map;
 
 /**
@@ -11,16 +13,16 @@ class ConsoleTable {
     private final String[] columnNames;
     private final Object[][] data;
 
-    public ConsoleTable(Tableable object) {
+    public ConsoleTable(ProjectSerializable object) {
         columnNames = generateColumnNames(object);
         data = generateData(object);
     }
 
-    private String[] generateColumnNames(Tableable object) {
+    private String[] generateColumnNames(ProjectSerializable object) {
         return object.getColumns();
     }
 
-    private Object[][] generateData(Tableable object) {
+    private Object[][] generateData(ProjectSerializable object) {
         Object[][] result = new Object[object.count()][columnNames.length];
         for (int rowIndex = 0; rowIndex < object.count(); rowIndex++) {
             Map<String, Object> row = object.getRowData(rowIndex);

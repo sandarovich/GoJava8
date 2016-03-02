@@ -1,7 +1,6 @@
 package com.sandarovich.kickstarter.project;
 
 import com.sandarovich.kickstarter.category.Category;
-import com.sandarovich.kickstarter.io.Tableable;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -12,7 +11,7 @@ import java.util.Map;
  * Olexander Kolodiazhny 2016
  */
 
-public class Projects implements Tableable {
+public class Projects implements ProjectSerializable {
     private final List<Project> projects;
 
     public Projects() {
