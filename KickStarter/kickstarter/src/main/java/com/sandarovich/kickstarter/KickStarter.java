@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Olexander Kolodiazhny 2016
- *         KickStarter analog.
+ *    KickStarter analog.
+ *
  */
 
 public class KickStarter {
@@ -31,7 +31,7 @@ public class KickStarter {
         Projects projects = setupProjects(categories);
         AbstractMenu menu = new MainMenu(console, categories, projects);
         menu.show();
-        menu.doAction(menu.readUserFeedback());
+        menu.performAction(menu.getChoice());
 
     }
 

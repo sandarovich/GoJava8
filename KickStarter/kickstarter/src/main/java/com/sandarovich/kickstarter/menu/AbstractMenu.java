@@ -55,13 +55,13 @@ public abstract class AbstractMenu {
         console.write("---");
     }
 
-    public int readUserFeedback() {
+    public int getChoice() {
         String result = console.read();
         if (isValidMenuElement(result)) {
             return Integer.parseInt(result);
         } else {
             console.write(">> Option is not found. Please try again");
-            return readUserFeedback();
+            return getChoice();
         }
     }
 
@@ -82,18 +82,18 @@ public abstract class AbstractMenu {
         return isValidMenuElement(choice) ? menuElements[choice].getAction() : null;
     }
 
-    public abstract void doAction(int choice);
+    public abstract void performAction(int choice);
 
     protected void showMainMenu() {
         AbstractMenu menu = new MainMenu(console, categories, projects);
         menu.show();
-        menu.doAction(menu.readUserFeedback());
+        menu.performAction(menu.getChoice());
     }
 
     protected void showCategoriesMenu() {
         AbstractMenu menu = new CategoryMenu(console, categories, projects);
         menu.show();
-        menu.doAction(menu.readUserFeedback());
+        menu.performAction(menu.getChoice());
     }
 
     protected void showProjectsMenu(int choice) {
@@ -101,7 +101,7 @@ public abstract class AbstractMenu {
         AbstractMenu projectMenu = new ProjectMenu(console, this.categories, this.projects,
                 projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
         projectMenu.show();
-        projectMenu.doAction(projectMenu.readUserFeedback());
+        projectMenu.performAction(projectMenu.getChoice());
     }
 
 
@@ -110,7 +110,7 @@ public abstract class AbstractMenu {
         Project project = this.projects.get(choice - MENU_SHIFT);
         AbstractMenu projectDetailsMenu = new ProjectDetailsMenu(console, categories, projects, project);
         projectDetailsMenu.show();
-        projectDetailsMenu.doAction(projectDetailsMenu.readUserFeedback());
+        projectDetailsMenu.performAction(projectDetailsMenu.getChoice());
     }
 
     private void showInput(MenuElement menuElement) {

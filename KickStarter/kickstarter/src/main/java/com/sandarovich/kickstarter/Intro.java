@@ -3,11 +3,10 @@ package com.sandarovich.kickstarter;
 import com.sandarovich.kickstarter.io.IO;
 
 /**
- * @author Olexander Kolodiazhny 2016
- *
- *         Show Application name, author and quote.
+ * Show Application name, author and quote.
  */
-public class Intro  {
+
+public class Intro {
     private final IO console;
 
     public Intro(IO output) {

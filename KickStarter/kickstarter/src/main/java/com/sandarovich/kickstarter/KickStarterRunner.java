@@ -4,7 +4,7 @@ import com.sandarovich.kickstarter.io.ConsoleIO;
 import com.sandarovich.kickstarter.io.IO;
 
 /**
- * @author Olexander Kolodiazhny 2016
+ *  Kick starter starting tool
  */
 
 public class KickStarterRunner {

@@ -24,7 +24,7 @@ public class CategoryMenu extends AbstractMenu {
     }
 
     @Override
-    public void doAction(int choice) {
+    public void performAction(int choice) {
         Actions action = getAction(choice);
         if (action != null && action == Actions.EXIT) {
             showMainMenu();
