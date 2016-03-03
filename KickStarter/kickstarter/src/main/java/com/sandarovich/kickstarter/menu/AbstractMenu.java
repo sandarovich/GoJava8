@@ -100,7 +100,7 @@ public abstract class AbstractMenu {
     }
 
     protected void showProjectsMenu(int choice) {
-        showInput(menuElements[choice]);
+        showUserInputed(menuElements[choice]);
         AbstractMenu projectMenu = new ProjectMenu(console, this.categories, this.projects,
                 projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
         projectMenu.show();
@@ -109,14 +109,14 @@ public abstract class AbstractMenu {
 
 
     protected void showProjectDetailsMenu(int choice) {
-        showInput(menuElements[getMenuIndex(choice)]);
+        showUserInputed(menuElements[getMenuIndex(choice)]);
         Project project = projects.search(menuElements[getMenuIndex(choice)].getId());
         AbstractMenu projectDetailsMenu = new ProjectDetailsMenu(console, categories, projects, project);
         projectDetailsMenu.show();
         projectDetailsMenu.performAction(projectDetailsMenu.getUserChoice());
     }
 
-    private void showInput(MenuElement menuElement) {
+    private void showUserInputed(MenuElement menuElement) {
         console.write(">> " + menuElement.toString());
     }
 
