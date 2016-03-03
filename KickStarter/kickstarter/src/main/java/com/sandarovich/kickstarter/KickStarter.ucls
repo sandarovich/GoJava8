@@ -110,7 +110,7 @@
   <class id="12" language="java" name="com.sandarovich.kickstarter.menu.AbstractMenu" project="kickstarter" 
     file="/kickstarter/src/main/java/com/sandarovich/kickstarter/menu/AbstractMenu.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="428" width="204" x="639" y="463"/>    
+    <position height="444" width="210" x="642" y="452"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
