@@ -23,7 +23,7 @@
   <class id="3" language="java" name="com.sandarovich.kickstarter.QuotaGenerator" project="kickstarter" 
     file="/kickstarter/src/main/java/com/sandarovich/kickstarter/QuotaGenerator.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="153" width="138" x="656" y="22"/>    
+    <position height="153" width="138" x="657" y="8"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -208,7 +208,7 @@
   </class>  
   <class id="22" language="java" name="com.sandarovich.kickstarter.Quota" project="kickstarter" 
     file="/kickstarter/src/main/java/com/sandarovich/kickstarter/Quota.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="969" y="97"/>    
+    <position height="-1" width="-1" x="968" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
