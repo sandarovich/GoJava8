@@ -9,17 +9,18 @@ import java.util.Random;
  */
 
 public class QuotaGenerator {
-    private static final List<String> QUOATES;
+    private static final List<Quota> QUOATES;
 
     static {
-        QUOATES = new ArrayList<String>();
-        QUOATES.add("\"Every big journey begins with a small step\"");
-        QUOATES.add("\"No pain, no gain\"");
-        QUOATES.add("\"Excellence across the board \"");
+        QUOATES = new ArrayList<Quota>();
+        QUOATES.add(new Quota("Mr X", "Every big journey begins with a small step"));
+        QUOATES.add(new Quota("Mr X", "No pain, no gain"));
+        QUOATES.add(new Quota("Mr X", "Excellence across the board"));
     }
 
     String getQuota(int quotaIndex) {
-        return (quotaIndex <= QUOATES.size()) ? QUOATES.get(quotaIndex) : QUOATES.get(0);
+        return (quotaIndex <= QUOATES.size()) ? QUOATES.get(quotaIndex).toString()
+                : QUOATES.get(0).toString();
     }
 
     public String getQuota() {

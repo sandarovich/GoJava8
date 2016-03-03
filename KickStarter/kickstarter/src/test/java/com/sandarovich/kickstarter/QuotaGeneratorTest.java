@@ -14,13 +14,15 @@ public class QuotaGeneratorTest {
     @Test
     public void testGetQuotaInListByIndex() {
         QuotaGenerator qr = new QuotaGenerator();
-        assertThat("Quota test", qr.getQuota(1), is("\"No pain, no gain\""));
+        Quota quota = new Quota("Mr X", "No pain, no gain");
+        assertThat("Quota test", qr.getQuota(1), is(quota.toString()));
     }
 
     @Test
     public void testWrongQuotaIndex() {
         QuotaGenerator qr = new QuotaGenerator();
-        assertThat("Wrong Quota index test", qr.getQuota(7), is("\"Every big journey begins with a small step\""));
+        Quota quota = new Quota("Mr X", "Every big journey begins with a small step");
+        assertThat("Wrong Quota index test", qr.getQuota(7), is(quota.toString()));
     }
 
     @Test

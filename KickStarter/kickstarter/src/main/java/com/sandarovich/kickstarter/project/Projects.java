@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Olexander Kolodiazhny 2016
+ * Projects container
  */
 
 public class Projects implements ProjectSerializable {
