@@ -40,6 +40,7 @@ public class ConsoleIO implements IO {
         ConsoleTable consoleTable = new ConsoleTable(object);
         TextTable textTable = new TextTable(consoleTable.getColumnNames(), consoleTable.getData());
         textTable.printTable();
+        write("----");
     }
 
 }

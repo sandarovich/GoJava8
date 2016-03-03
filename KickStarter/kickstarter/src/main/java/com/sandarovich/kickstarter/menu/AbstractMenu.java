@@ -1,6 +1,7 @@
 package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.category.Categories;
+import com.sandarovich.kickstarter.category.Category;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
@@ -100,9 +101,10 @@ public abstract class AbstractMenu {
     }
 
     protected void showProjectsMenu(int choice) {
-        showUserInputed(menuElements[choice]);
-        AbstractMenu projectMenu = new ProjectMenu(console, this.categories, this.projects,
-                projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
+        showUserInputed(menuElements[getMenuIndex(choice)]);
+        Category category = categories.search(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
+        AbstractMenu projectMenu = new ProjectMenu(console, categories, projects,
+                projects.getByCategory(category));
         projectMenu.show();
         projectMenu.performAction(projectMenu.getUserChoice());
     }

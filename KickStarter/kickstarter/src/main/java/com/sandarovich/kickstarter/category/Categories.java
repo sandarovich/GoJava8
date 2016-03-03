@@ -14,6 +14,15 @@ public class Categories {
         return categories.get(index);
     }
 
+    public Category search(int index) {
+        for (Category category : categories) {
+            if (category.getId() == index) {
+                return category;
+            }
+        }
+        return null;
+    }
+
     public void add(Category category) {
         categories.add(category);
     }

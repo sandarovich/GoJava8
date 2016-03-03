@@ -17,7 +17,7 @@ public class CategoryMenu extends AbstractMenu {
         menuElements = new MenuElement[categories.size() + 1];
         for (int index = 0; index < categories.size(); index++) {
             menuElements[index + MENU_SHIFT] = new MenuElement(categories.get(index).toString()
-                    , Actions.SHOW_CATEGORY, index + MENU_SHIFT);
+                    , Actions.SHOW_CATEGORY, categories.get(index).getId() + MENU_SHIFT);
         }
         menuElements[0] = new MenuElement("Exit", Actions.EXIT, 0);
 
