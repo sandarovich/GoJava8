@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Projects container
+ * P
  */
 
 public class Projects implements ProjectSerializable {
@@ -44,6 +44,16 @@ public class Projects implements ProjectSerializable {
     public Project get(int index) {
         return projects.get(index);
     }
+
+    public Project search(int index) {
+        for (Project project : projects) {
+            if (project.getId() == index) {
+                return project;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public Map<String, Object> getRowData(int index) {

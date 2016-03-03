@@ -14,7 +14,7 @@ public class Intro {
     }
 
 
-    public void showAuthor() {
+    public void showApplicationAuthor() {
         console.write("=======================================");
         console.write("     Kickstarter emulator v." + KickStarter.APPLICATION_VERSION);
         console.write("     by O.Kolodiazhny 2016      ");

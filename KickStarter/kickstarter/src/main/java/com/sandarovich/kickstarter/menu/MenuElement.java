@@ -21,6 +21,10 @@ public class MenuElement {
         return this.action;
     }
 
+    public int getId() {
+        return id;
+    }
+
 
     @Override
     public String toString() {

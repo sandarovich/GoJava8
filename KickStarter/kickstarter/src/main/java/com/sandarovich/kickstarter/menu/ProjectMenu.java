@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.category.Categories;
 import com.sandarovich.kickstarter.io.IO;
+import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.Projects;
 
 /**
@@ -23,9 +24,10 @@ public class ProjectMenu extends AbstractMenu {
 
         if (projectCount != 0) {
             for (int index = 0; index < projectCount; index++) {
-                menuElements[index + MENU_SHIFT] = new MenuElement(fileredProjects.get(index).toString(),
+                Project fp = fileredProjects.get(index);
+                menuElements[index + MENU_SHIFT] = new MenuElement(fp.toString(),
                         Actions.SHOW_PROJECT,
-                        index + MENU_SHIFT);
+                        fp.getId());
             }
 
         }

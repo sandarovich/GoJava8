@@ -41,8 +41,8 @@ public abstract class AbstractMenu {
         if (menuElements.length == 1) {
             console.write("<< Is empty >>");
         }
-
         console.write("\u2193 Options:");
+        console.write("----------------------");
         for (int index = 1; index < menuElements.length; index++) {
             console.write(menuElements[index].toString());
         }
@@ -54,13 +54,13 @@ public abstract class AbstractMenu {
         console.write("---");
     }
 
-    public int getChoice() {
+    public int getUserChoice() {
         String result = console.read();
         if (isValidMenuElement(result)) {
             return Integer.parseInt(result);
         } else {
             console.write(">> Option is not found. Please try again");
-            return getChoice();
+            return getUserChoice();
         }
     }
 
@@ -74,11 +74,15 @@ public abstract class AbstractMenu {
     }
 
     protected boolean isValidMenuElement(int number) {
-        return number >= 0 && number < menuElements.length;
+        for (MenuElement menuElement : menuElements) {
+            if (menuElement.getId() == number)
+                return true;
+        }
+        return false;
     }
 
     protected Actions getAction(int choice) {
-        return isValidMenuElement(choice) ? menuElements[choice].getAction() : null;
+        return menuElements[getMenuIndex(choice)].getAction();
     }
 
     public abstract void performAction(int choice);
@@ -86,13 +90,13 @@ public abstract class AbstractMenu {
     protected void showMainMenu() {
         AbstractMenu menu = new MainMenu(console, categories, projects);
         menu.show();
-        menu.performAction(menu.getChoice());
+        menu.performAction(menu.getUserChoice());
     }
 
     protected void showCategoriesMenu() {
         AbstractMenu menu = new CategoryMenu(console, categories, projects);
         menu.show();
-        menu.performAction(menu.getChoice());
+        menu.performAction(menu.getUserChoice());
     }
 
     protected void showProjectsMenu(int choice) {
@@ -100,19 +104,28 @@ public abstract class AbstractMenu {
         AbstractMenu projectMenu = new ProjectMenu(console, this.categories, this.projects,
                 projects.getByCategory(this.categories.get(choice - MENU_SHIFT)));
         projectMenu.show();
-        projectMenu.performAction(projectMenu.getChoice());
+        projectMenu.performAction(projectMenu.getUserChoice());
     }
 
 
     protected void showProjectDetailsMenu(int choice) {
-        showInput(menuElements[choice]);
-        Project project = this.projects.get(choice - MENU_SHIFT);
+        showInput(menuElements[getMenuIndex(choice)]);
+        Project project = projects.search(menuElements[getMenuIndex(choice)].getId());
         AbstractMenu projectDetailsMenu = new ProjectDetailsMenu(console, categories, projects, project);
         projectDetailsMenu.show();
-        projectDetailsMenu.performAction(projectDetailsMenu.getChoice());
+        projectDetailsMenu.performAction(projectDetailsMenu.getUserChoice());
     }
 
     private void showInput(MenuElement menuElement) {
         console.write(">> " + menuElement.toString());
+    }
+
+    private int getMenuIndex(int choice) {
+        for (int i = 0; i < menuElements.length; i++) {
+            if (menuElements[i].getId() == choice) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

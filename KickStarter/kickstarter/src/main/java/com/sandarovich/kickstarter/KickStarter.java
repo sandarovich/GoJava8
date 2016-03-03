@@ -28,23 +28,23 @@ public class KickStarter {
 
     public void start() {
         Intro intro = new Intro(console);
-        intro.showAuthor();
+        intro.showApplicationAuthor();
         intro.showQuote();
-        Categories categories = setupCategories();
-        Projects projects = setupProjects(categories);
+        Categories categories = setupAllCategories();
+        Projects projects = setupAllProjects(categories);
         AbstractMenu menu = new MainMenu(console, categories, projects);
         menu.show();
-        menu.performAction(menu.getChoice());
+        menu.performAction(menu.getUserChoice());
     }
 
-    private Projects setupProjects(Categories categories) {
+    private Projects setupAllProjects(Categories categories) {
         ProjectBuilder builder = new ProjectBuilder();
-        builder.forId(1)
+        builder.forId(101)
                 .andCategory(categories.get(0))
                 .andName("USB TOY   ")
                 .andDescription("Not Ordinary gameplay ")
                 .build();
-        builder.forId(2)
+        builder.forId(102)
                 .andCategory(categories.get(0))
                 .andName("Power Bank")
                 .andDescription("Unique technology ")
@@ -54,10 +54,20 @@ public class KickStarter {
                 .andName("Robot Frodo")
                 .andDescription("Fast and Smart")
                 .build();
+        builder.forId(97)
+                .andCategory(categories.get(2))
+                .andName("Bison grass")
+                .andDescription("Power energy from sun")
+                .build();
+        builder.forId(77)
+                .andCategory(categories.get(2))
+                .andName("Garfield grass")
+                .andDescription("Feel exotic")
+                .build();
         return builder.getProjects();
     }
 
-    private Categories setupCategories() {
+    private Categories setupAllCategories() {
         List<String> categories = new ArrayList<String>();
         categories.add("IT");
         categories.add("Tourism");
