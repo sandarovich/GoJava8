@@ -99,10 +99,18 @@ public abstract class AbstractMenu {
         menu.show();
         menu.performAction(menu.getUserChoice());
     }
-
     protected void showProjectsMenu(int choice) {
         showUserInputed(menuElements[getMenuIndex(choice)]);
         Category category = categories.search(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
+        buildProjectMenu(category);
+    }
+
+    protected void showProjectsMenu(Category category) {
+        buildProjectMenu(category);
+    }
+
+
+    private void buildProjectMenu(Category category) {
         AbstractMenu projectMenu = new ProjectMenu(console, categories, projects,
                 projects.getByCategory(category));
         projectMenu.show();

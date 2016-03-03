@@ -54,7 +54,7 @@ public class ProjectDetailsMenu extends AbstractMenu {
         }
 
         if (action != null && action == Actions.SHOW_CATEGORY) {
-            showProjectsMenu(choice);
+            showProjectsMenu(project.getCategory());
         }
 
 
