@@ -99,6 +99,7 @@ public abstract class AbstractMenu {
         menu.show();
         menu.performAction(menu.getUserChoice());
     }
+
     protected void showProjectsMenu(int choice) {
         showUserInputed(menuElements[getMenuIndex(choice)]);
         Category category = categories.search(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
