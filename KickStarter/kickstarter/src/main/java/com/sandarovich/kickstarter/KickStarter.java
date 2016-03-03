@@ -64,6 +64,11 @@ public class KickStarter {
                 .andName("Garfield grass")
                 .andDescription("Feel exotic")
                 .build();
+        builder.forId(5)
+                .andCategory(categories.get(1))
+                .andName("Super Bag")
+                .andDescription("Auto resizable")
+                .build();
         return builder.getProjects();
     }
 
