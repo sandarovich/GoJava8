@@ -39,7 +39,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.sandarovich.kickstarter.category.Categories" project="kickstarter" 
+  <class id="5" language="java" name="com.sandarovich.kickstarter.category.CategorySource" project="kickstarter"
     file="/kickstarter/src/main/java/com/sandarovich/kickstarter/category/Categories.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="391" y="1159"/>    
@@ -196,7 +196,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="com.sandarovich.kickstarter.project.Projects" project="kickstarter" 
+  <class id="21" language="java" name="com.sandarovich.kickstarter.project.ProjectSource" project="kickstarter"
     file="/kickstarter/src/main/java/com/sandarovich/kickstarter/project/Projects.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="970" y="1117"/>    

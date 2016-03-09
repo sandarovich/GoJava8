@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Olexander Kolodiazhny
  */
-public class Categories {
+public class CategorySource {
 
     private final List<Category> categories = new ArrayList<Category>();
 

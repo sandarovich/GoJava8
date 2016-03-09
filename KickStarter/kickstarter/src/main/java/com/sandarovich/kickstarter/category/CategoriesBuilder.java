@@ -7,12 +7,12 @@ import java.util.List;
  */
 public class CategoriesBuilder {
 
-    private final Categories categories;
+    private final CategorySource categories;
     private int id;
     private String name;
 
     public CategoriesBuilder() {
-        this.categories = new Categories();
+        this.categories = new CategorySource();
     }
 
     public CategoriesBuilder forInt(int id) {
@@ -37,7 +37,7 @@ public class CategoriesBuilder {
 
     }
 
-    public Categories get() {
+    public CategorySource get() {
         return this.categories;
     }
 }

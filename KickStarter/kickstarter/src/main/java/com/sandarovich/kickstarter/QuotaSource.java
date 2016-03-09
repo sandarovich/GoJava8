@@ -14,8 +14,8 @@ public class QuotaSource {
     public void init() {
         quotas = new ArrayList<Quota>();
         quotas.add(new Quota("Mr X", "Every big journey begins with a small step"));
-        quotas.add(new Quota("Mr X", "No pain, no gain"));
-        quotas.add(new Quota("Mr X", "Excellence across the board"));
+        quotas.add(new Quota("Mr Y", "No pain, no gain"));
+        quotas.add(new Quota("Mr Z", "Excellence across the board"));
     }
 
     String getQuota(int quotaIndex) {

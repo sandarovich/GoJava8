@@ -15,7 +15,7 @@ public class QuotaSourceTest {
     public void testGetQuotaInListByIndex() {
         QuotaSource qr = new QuotaSource();
         qr.init();
-        Quota quota = new Quota("Mr X", "No pain, no gain");
+        Quota quota = new Quota("Mr Y", "No pain, no gain");
         assertThat("Quota test", qr.getQuota(1), is(quota.toString()));
     }
 

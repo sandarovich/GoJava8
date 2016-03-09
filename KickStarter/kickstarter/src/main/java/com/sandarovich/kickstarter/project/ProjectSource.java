@@ -11,14 +11,14 @@ import java.util.Map;
  * P
  */
 
-public class Projects implements ProjectSerializable {
+public class ProjectSource implements ProjectSerializable {
     private final List<Project> projects;
 
-    public Projects() {
+    public ProjectSource() {
         projects = new ArrayList<Project>();
     }
 
-    private Projects(List<Project> projects) {
+    private ProjectSource(List<Project> projects) {
         this.projects = projects;
     }
 
@@ -26,14 +26,14 @@ public class Projects implements ProjectSerializable {
         projects.add(project);
     }
 
-    public Projects getByCategory(Category category) {
+    public ProjectSource getByCategory(Category category) {
         ArrayList<Project> result = new ArrayList<Project>();
 
         for (Project project : projects)
             if (project.getCategory() == category) {
                 result.add(project);
             }
-        return new Projects(result);
+        return new ProjectSource(result);
     }
 
     @Override
