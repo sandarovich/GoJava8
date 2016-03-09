@@ -21,7 +21,7 @@ public class KickStarterConsole {
 
 
     private void init() {
-        this.quotaSource = new QuotaSource();
+        quotaSource = new QuotaSource();
         quotaSource.init();
     }
 
