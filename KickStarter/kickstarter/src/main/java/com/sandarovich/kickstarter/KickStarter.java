@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.category.CategoriesBuilder;
 import com.sandarovich.kickstarter.category.CategorySource;
+import com.sandarovich.kickstarter.category.CategorySourceBuilder;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.menu.AbstractMenu;
 import com.sandarovich.kickstarter.menu.MainMenu;
@@ -76,7 +76,7 @@ public class KickStarter {
         categories.add("IT");
         categories.add("Tourism");
         categories.add("Garden");
-        CategoriesBuilder builder = new CategoriesBuilder();
+        CategorySourceBuilder builder = new CategorySourceBuilder();
         builder.createAll(categories);
         return builder.get();
     }

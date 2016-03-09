@@ -5,27 +5,27 @@ import java.util.List;
 /**
  * @author Olexander Kolodiazhny 2016
  */
-public class CategoriesBuilder {
+public class CategorySourceBuilder {
 
     private final CategorySource categories;
     private int id;
     private String name;
 
-    public CategoriesBuilder() {
+    public CategorySourceBuilder() {
         this.categories = new CategorySource();
     }
 
-    public CategoriesBuilder forInt(int id) {
+    public CategorySourceBuilder forInt(int id) {
         this.id = id;
         return this;
     }
 
-    public CategoriesBuilder andName(String name) {
+    public CategorySourceBuilder andName(String name) {
         this.name = name;
         return this;
     }
 
-    public CategoriesBuilder build() {
+    public CategorySourceBuilder build() {
         categories.add(new Category(id, name));
         return this;
     }
