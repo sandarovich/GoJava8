@@ -30,4 +30,8 @@ public class CategorySource {
     public int size() {
         return categories.size();
     }
+
+    public void init() {
+
+    }
 }
