@@ -10,6 +10,6 @@ import com.sandarovich.kickstarter.io.IO;
 public class KickStarterRunner {
     public static void main(String[] args) {
         IO console = new ConsoleIO();
-        new KickStarterConsole(console).start();
+        new KickStarterNew(console).start();
     }
 }
