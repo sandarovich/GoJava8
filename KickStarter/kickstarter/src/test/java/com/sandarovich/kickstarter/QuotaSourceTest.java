@@ -9,31 +9,31 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-public class QuotaGeneratorTest {
+public class QuotaSourceTest {
 
     @Test
     public void testGetQuotaInListByIndex() {
-        QuotaGenerator qr = new QuotaGenerator();
+        QuotaSource qr = new QuotaSource();
         Quota quota = new Quota("Mr X", "No pain, no gain");
-        assertThat("Quota test", qr.getQuota(1), is(quota.toString()));
+        assertThat("Quota test", qr.getRandomQuota(1), is(quota.toString()));
     }
 
     @Test
     public void testWrongQuotaIndex() {
-        QuotaGenerator qr = new QuotaGenerator();
+        QuotaSource qr = new QuotaSource();
         Quota quota = new Quota("Mr X", "Every big journey begins with a small step");
-        assertThat("Wrong Quota index test", qr.getQuota(7), is(quota.toString()));
+        assertThat("Wrong Quota index test", qr.getRandomQuota(7), is(quota.toString()));
     }
 
     @Test
     public void testRandomQuota() {
         //given
-        QuotaGenerator qr = mock(QuotaGenerator.class);
-        when(qr.getQuota()).thenReturn(("\"No pain, no gain\""));
+        QuotaSource qr = mock(QuotaSource.class);
+        when(qr.getRandomQuota()).thenReturn(("\"No pain, no gain\""));
         //when
         new Intro(new ConsoleIO()).showQuote();
         //then
-        assertThat("Quota test", qr.getQuota(), is("\"No pain, no gain\""));
+        assertThat("Quota test", qr.getRandomQuota(), is("\"No pain, no gain\""));
     }
 
 }

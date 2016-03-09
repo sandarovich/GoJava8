@@ -22,7 +22,7 @@ public class Intro {
     }
 
     public void showQuote() {
-        console.write(new QuotaGenerator().getQuota());
+        console.write(new QuotaSource().getRandomQuota());
     }
 
 }

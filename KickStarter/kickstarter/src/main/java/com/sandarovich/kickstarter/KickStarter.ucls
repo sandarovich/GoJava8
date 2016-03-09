@@ -20,7 +20,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.sandarovich.kickstarter.QuotaGenerator" project="kickstarter" 
+  <class id="3" language="java" name="com.sandarovich.kickstarter.QuotaSource" project="kickstarter"
     file="/kickstarter/src/main/java/com/sandarovich/kickstarter/QuotaGenerator.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="153" width="138" x="657" y="8"/>    
