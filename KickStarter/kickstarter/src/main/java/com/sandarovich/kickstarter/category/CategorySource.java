@@ -24,9 +24,9 @@ public class CategorySource {
     }
 
     public void init() {
-        categories.add(new Category(1, "IT"));
-        categories.add(new Category(2, "Tourism"));
-        categories.add(new Category(3, "Garden"));
+        add(new Category(1, "IT"));
+        add(new Category(2, "Tourism"));
+        add(new Category(3, "Garden"));
     }
 
     public String getAllCategories() {
@@ -56,7 +56,6 @@ public class CategorySource {
         if (getCategoryById(categoryId) == null) {
             return false;
         }
-
         return true;
     }
 

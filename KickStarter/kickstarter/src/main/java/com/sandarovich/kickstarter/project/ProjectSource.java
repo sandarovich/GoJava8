@@ -63,7 +63,7 @@ public class ProjectSource implements ProjectSerializable {
         data.put(columns[0], project.getId());
         data.put(columns[1], project.getName());
         data.put(columns[2], project.getShortDescription());
-        data.put(columns[3], project.getGoalAmount());
+        data.put(columns[3], project.getRequiredBudget());
         data.put(columns[4], project.getCollectedAmount());
         data.put(columns[5], project.getGoalDateDays());
         return data;
