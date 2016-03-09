@@ -27,9 +27,8 @@ public class KickStarter {
     }
 
     public void start() {
-        Intro intro = new Intro(console);
-        intro.showApplicationAuthor();
-        intro.showQuote();
+        showApplicationAuthor();
+        showQuote();
         Categories categories = setupAllCategories();
         Projects projects = setupAllProjects(categories);
         AbstractMenu menu = new MainMenu(console, categories, projects);
@@ -80,5 +79,18 @@ public class KickStarter {
         CategoriesBuilder builder = new CategoriesBuilder();
         builder.createAll(categories);
         return builder.get();
+    }
+
+    public void showApplicationAuthor() {
+        console.write("=======================================");
+        console.write("     Kickstarter emulator v." + KickStarter.APPLICATION_VERSION);
+        console.write("     by O.Kolodiazhny 2016      ");
+        console.write("=======================================");
+    }
+
+    public void showQuote() {
+        QuotaSource quotaSource = new QuotaSource();
+        quotaSource.init();
+        console.write(quotaSource.getRandomQuota());
     }
 }
