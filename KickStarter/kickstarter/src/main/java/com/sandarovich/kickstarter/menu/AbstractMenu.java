@@ -102,7 +102,7 @@ public abstract class AbstractMenu {
 
     protected void showProjectsMenu(int choice) {
         showUserInputed(menuElements[getMenuIndex(choice)]);
-        Category category = categories.search(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
+        Category category = categories.getCategoryById(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
         buildProjectMenu(category);
     }
 

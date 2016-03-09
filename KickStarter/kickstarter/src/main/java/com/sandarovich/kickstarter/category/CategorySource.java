@@ -14,9 +14,9 @@ public class CategorySource {
         return categories.get(index);
     }
 
-    public Category search(int index) {
+    public Category getCategoryById(int categoryId) {
         for (Category category : categories) {
-            if (category.getId() == index) {
+            if (category.getId() == categoryId) {
                 return category;
             }
         }
