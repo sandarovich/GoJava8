@@ -23,5 +23,6 @@ public class ApplicationModeReader {
             throw new FileNotFoundException("Property file " + fileName + " was not found");
         }
 
+
     }
 }
