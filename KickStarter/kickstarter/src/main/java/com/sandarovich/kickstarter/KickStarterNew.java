@@ -17,7 +17,7 @@ public class KickStarterNew {
         this.console = console;
     }
 
-    public void start() {
+    public void run() {
         init();
         showApplicationTitle();
         showQuota();
