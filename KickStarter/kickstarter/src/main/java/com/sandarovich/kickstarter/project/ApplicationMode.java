@@ -5,4 +5,7 @@ package com.sandarovich.kickstarter.project;
  */
 
 public enum ApplicationMode {
+    MEMORY,
+    FILE,
+    DB
 }
