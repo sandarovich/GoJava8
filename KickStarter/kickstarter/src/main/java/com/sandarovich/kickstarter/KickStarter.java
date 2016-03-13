@@ -89,8 +89,8 @@ public class KickStarter {
     }
 
     public void showQuote() {
-        QuotaSource quotaSource = new QuotaSource();
-        quotaSource.init();
-        console.write(quotaSource.getRandomQuota());
+        QuotaDaoMemoryImpl quotaDaoMemoryImpl = new QuotaDaoMemoryImpl();
+        quotaDaoMemoryImpl.fillQuotas();
+        console.write(quotaDaoMemoryImpl.getRandomQuota());
     }
 }

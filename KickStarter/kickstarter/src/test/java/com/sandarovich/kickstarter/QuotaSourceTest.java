@@ -13,16 +13,16 @@ public class QuotaSourceTest {
 
     @Test
     public void testGetQuotaInListByIndex() {
-        QuotaSource qr = new QuotaSource();
-        qr.init();
+        QuotaDaoMemoryImpl qr = new QuotaDaoMemoryImpl();
+        qr.fillQuotas();
         Quota quota = new Quota("Mr Y", "No pain, no gain");
         assertThat("Quota test", qr.getQuota(1), is(quota.toString()));
     }
 
     @Test
     public void testWrongQuotaIndex() {
-        QuotaSource qr = new QuotaSource();
-        qr.init();
+        QuotaDaoMemoryImpl qr = new QuotaDaoMemoryImpl();
+        qr.fillQuotas();
         Quota quota = new Quota("Mr X", "Every big journey begins with a small step");
         assertThat("Wrong Quota index test", qr.getQuota(7), is(quota.toString()));
     }
@@ -30,8 +30,8 @@ public class QuotaSourceTest {
     @Test
     public void testRandomQuota() {
         //given
-        QuotaSource qr = mock(QuotaSource.class);
-        qr.init();
+        QuotaDaoMemoryImpl qr = mock(QuotaDaoMemoryImpl.class);
+        qr.fillQuotas();
         when(qr.getRandomQuota()).thenReturn(("\"No pain, no gain\""));
         //when
         new KickStarter(new ConsoleIO()).showQuote();

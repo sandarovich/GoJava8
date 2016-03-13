@@ -10,7 +10,7 @@ import com.sandarovich.kickstarter.io.IO;
 
 public class KickStarterNew {
     private IO console;
-    private QuotaSource quotaSource;
+    private QuotaDaoMemoryImpl quotaDaoMemoryImpl;
     private CategorySource categorySource;
 
     KickStarterNew(IO console) {
@@ -40,8 +40,8 @@ public class KickStarterNew {
     }
 
     private void init() {
-        quotaSource = new QuotaSource();
-        quotaSource.init();
+        quotaDaoMemoryImpl = new QuotaDaoMemoryImpl();
+        quotaDaoMemoryImpl.fillQuotas();
         categorySource = new CategorySource();
         categorySource.init();
     }
@@ -51,7 +51,7 @@ public class KickStarterNew {
     }
 
     private void showQuota() {
-        console.write(quotaSource.getRandomQuota());
+        console.write(quotaDaoMemoryImpl.getRandomQuota());
     }
 
     private void showApplicationTitle() {
