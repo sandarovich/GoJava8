@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.ConsoleIO;
@@ -16,7 +18,8 @@ public class KickStarterRunner {
         IO io = new ConsoleIO();
         ApplicationMode mode = getApplicationMode(io);
         QuotaDao quotaDao = new QuotaDaoFactory().getQuotaDao(mode);
-        new KickStarterNew(io, quotaDao).run();
+        CategoryDao categoryDao = new CategoryDaoFactory().getCategoryDao(mode);
+        new KickStarterNew(io, quotaDao, categoryDao).run();
     }
 
     private static ApplicationMode getApplicationMode(IO console) {

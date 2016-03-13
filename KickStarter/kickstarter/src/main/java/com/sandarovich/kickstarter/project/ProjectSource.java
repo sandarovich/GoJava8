@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.project;
 
-import com.sandarovich.kickstarter.category.Category;
+import com.sandarovich.kickstarter.dao.category.Category;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

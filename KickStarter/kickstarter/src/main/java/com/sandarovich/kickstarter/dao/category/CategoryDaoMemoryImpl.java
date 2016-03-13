@@ -1,12 +1,12 @@
-package com.sandarovich.kickstarter.category;
+package com.sandarovich.kickstarter.dao.category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Olexander Kolodiazhny
+ * Category Dao Memory Implementation
  */
-public class CategorySource {
+public class CategoryDaoMemoryImpl implements CategoryDao {
 
     private final List<Category> categories = new ArrayList<Category>();
 
@@ -23,7 +23,7 @@ public class CategorySource {
         return categories.size();
     }
 
-    public void init() {
+    public void fillCategories() {
         add(new Category(1, "IT"));
         add(new Category(2, "Tourism"));
         add(new Category(3, "Garden"));
@@ -35,6 +35,11 @@ public class CategorySource {
             result.append(category.toString() + "\n");
         }
         return result.toString();
+    }
+
+    @Override
+    public List<Category> getCategories() {
+        return null;
     }
 
     public Category getCategoryById(int categoryId) {
@@ -53,10 +58,7 @@ public class CategorySource {
         } catch (Exception e) {
             return false;
         }
-        if (getCategoryById(categoryId) == null) {
-            return false;
-        }
-        return true;
+        return getCategoryById(categoryId) != null;
     }
 
 }

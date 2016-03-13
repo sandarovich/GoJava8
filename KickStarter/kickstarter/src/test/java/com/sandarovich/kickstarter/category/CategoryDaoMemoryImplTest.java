@@ -4,16 +4,18 @@ package com.sandarovich.kickstarter.category;
  * Tests for Category Source
  */
 
+import com.sandarovich.kickstarter.dao.category.Category;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-public class CategorySourceTest {
+public class CategoryDaoMemoryImplTest {
 
     @Test
     public void testGetAllCategories() {
-        CategorySource cs = new CategorySource();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
         cs.add(new Category(1, "IT"));
         cs.add(new Category(2, "Tourism"));
 
@@ -24,14 +26,14 @@ public class CategorySourceTest {
 
     @Test
     public void testGetCategoryByIdNotFoundValue() {
-        CategorySource cs = new CategorySource();
-        cs.init();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
+        cs.fillCategories();
         assertNull(cs.getCategoryById(-1));
     }
 
     @Test
     public void testGetCategoryByIdValueExist() {
-        CategorySource cs = new CategorySource();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
         Category category = new Category(777, "IT");
         cs.add(category);
         cs.add(new Category(2, "Garden"));
@@ -41,7 +43,7 @@ public class CategorySourceTest {
 
     @Test
     public void testIsValidCategoryValid() {
-        CategorySource cs = new CategorySource();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
         cs.add(new Category(1, "IT"));
         cs.add(new Category(2, "Tourism"));
 
@@ -50,7 +52,7 @@ public class CategorySourceTest {
 
     @Test
     public void testIsValidCategoryLetters() {
-        CategorySource cs = new CategorySource();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
         cs.add(new Category(1, "IT"));
         cs.add(new Category(2, "Tourism"));
 
@@ -59,7 +61,7 @@ public class CategorySourceTest {
 
     @Test
     public void testIsValidCategoryNotValid() {
-        CategorySource cs = new CategorySource();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
         cs.add(new Category(1, "IT"));
         cs.add(new Category(2, "Tourism"));
 
@@ -68,7 +70,7 @@ public class CategorySourceTest {
 
     @Test
     public void testSize() {
-        CategorySource cs = new CategorySource();
+        CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
         cs.add(new Category(1, "IT"));
         cs.add(new Category(2, "Tourism"));
 

@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.category.CategorySource;
 import com.sandarovich.kickstarter.category.CategorySourceBuilder;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import com.sandarovich.kickstarter.dao.quota.QuotaDaoMemoryImpl;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.menu.AbstractMenu;
@@ -30,14 +30,14 @@ public class KickStarter {
     public void start() {
         showApplicationAuthor();
         showQuote();
-        CategorySource categories = setupAllCategories();
+        CategoryDaoMemoryImpl categories = setupAllCategories();
         ProjectSource projects = setupAllProjects(categories);
         AbstractMenu menu = new MainMenu(console, categories, projects);
         menu.show();
         menu.performAction(menu.getUserChoice());
     }
 
-    private ProjectSource setupAllProjects(CategorySource categories) {
+    private ProjectSource setupAllProjects(CategoryDaoMemoryImpl categories) {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(101)
                 .andCategory(categories.get(0))
@@ -72,7 +72,7 @@ public class KickStarter {
         return builder.getProjects();
     }
 
-    private CategorySource setupAllCategories() {
+    private CategoryDaoMemoryImpl setupAllCategories() {
         List<String> categories = new ArrayList<String>();
         categories.add("IT");
         categories.add("Tourism");
