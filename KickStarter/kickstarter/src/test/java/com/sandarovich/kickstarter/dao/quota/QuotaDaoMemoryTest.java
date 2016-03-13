@@ -17,7 +17,7 @@ public class QuotaDaoMemoryTest {
         QuotaDaoMemoryImpl qr = new QuotaDaoMemoryImpl();
         qr.fillQuotas();
         Quota quota = new Quota("Mr Y", "No pain, no gain");
-        assertThat("Quota test", qr.getQuota(1), is(quota.toString()));
+        assertThat("Quota test", qr.getQuotaById(1), is(quota.toString()));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class QuotaDaoMemoryTest {
         QuotaDaoMemoryImpl qr = new QuotaDaoMemoryImpl();
         qr.fillQuotas();
         Quota quota = new Quota("Mr X", "Every big journey begins with a small step");
-        assertThat("Wrong Quota index test", qr.getQuota(7), is(quota.toString()));
+        assertThat("Wrong Quota index test", qr.getQuotaById(7), is(quota.toString()));
     }
 
     @Test

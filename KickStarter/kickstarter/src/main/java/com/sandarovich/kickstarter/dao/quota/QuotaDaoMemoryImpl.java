@@ -19,7 +19,7 @@ public class QuotaDaoMemoryImpl implements QuotaDao {
         quotas.add(new Quota("Mr Z", "Excellence across the board"));
     }
 
-    public String getQuota(int quotaIndex) {
+    String getQuotaById(int quotaIndex) {
         return (quotaIndex >= 0 && quotaIndex <= quotas.size()) ?
                 quotas.get(quotaIndex).toString() :
                 quotas.get(0).toString();
@@ -27,6 +27,6 @@ public class QuotaDaoMemoryImpl implements QuotaDao {
 
     public String getRandomQuota() {
         int quotaIndex = new Random().nextInt(quotas.size());
-        return getQuota(quotaIndex);
+        return getQuotaById(quotaIndex);
     }
 }

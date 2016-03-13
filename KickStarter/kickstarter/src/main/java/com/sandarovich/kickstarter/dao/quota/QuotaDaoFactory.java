@@ -14,6 +14,11 @@ public class QuotaDaoFactory {
         if (mode == ApplicationMode.MEMORY) {
             return new QuotaDaoMemoryImpl();
         }
+
+        if (mode == ApplicationMode.FILE) {
+            return new QuotaDaoFileImpl();
+        }
+
         return null;
     }
 }
