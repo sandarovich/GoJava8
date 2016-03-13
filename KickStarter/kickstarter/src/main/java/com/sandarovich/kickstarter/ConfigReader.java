@@ -23,7 +23,7 @@ public class ConfigReader {
                 result.load(input);
                 return result;
             } else {
-                throw new FileNotFoundException(">> Property file: " + fileName + " was not found!!!");
+                throw new FileNotFoundException("<<Err>> Property file: " + fileName + " was not found!!!");
             }
         } finally {
             try {

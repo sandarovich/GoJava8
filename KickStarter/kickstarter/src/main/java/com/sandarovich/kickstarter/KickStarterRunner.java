@@ -19,8 +19,9 @@ public class KickStarterRunner {
             mode = configReader.getMode(configReader.readConfig("config.properties"));
         } catch (IOException e) {
             console.write(e.getMessage());
-            console.write(">> Failover is on place. Active mode is: ");
+            console.write("<<Fix>> Failover plan is taking place.");
             mode = ApplicationMode.MEMORY;
+
         }
         console.write(">> Application is running in : " + mode.toString() + " mode");
         new KickStarterNew(console).run();
