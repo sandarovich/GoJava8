@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.project;
+package com.sandarovich.kickstarter;
 
 /**
  * Application mode enum

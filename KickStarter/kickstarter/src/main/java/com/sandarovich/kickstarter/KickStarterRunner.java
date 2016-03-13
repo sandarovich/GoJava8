@@ -2,7 +2,6 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import com.sandarovich.kickstarter.io.IO;
-import com.sandarovich.kickstarter.project.ApplicationMode;
 
 import java.io.IOException;
 

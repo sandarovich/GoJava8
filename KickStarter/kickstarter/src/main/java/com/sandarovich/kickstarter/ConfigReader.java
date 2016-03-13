@@ -1,7 +1,5 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.project.ApplicationMode;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

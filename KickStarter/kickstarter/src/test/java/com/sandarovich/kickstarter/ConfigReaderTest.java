@@ -4,7 +4,6 @@ package com.sandarovich.kickstarter;
  * Application Mode reader Test
  */
 
-import com.sandarovich.kickstarter.project.ApplicationMode;
 import org.junit.Before;
 import org.junit.Test;
 
