@@ -91,7 +91,6 @@ public class KickStarter {
 
     public void showQuote() {
         QuotaDaoMemoryImpl quotaDaoMemoryImpl = new QuotaDaoMemoryImpl();
-        quotaDaoMemoryImpl.fillQuotas();
         console.write(quotaDaoMemoryImpl.getRandomQuota());
     }
 }

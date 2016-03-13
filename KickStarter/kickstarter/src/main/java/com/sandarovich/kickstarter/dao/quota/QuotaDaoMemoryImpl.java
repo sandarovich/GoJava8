@@ -10,13 +10,17 @@ import java.util.Random;
 
 public class QuotaDaoMemoryImpl implements QuotaDao {
 
-    private List<Quota> quotas;
+    protected List<Quota> quotas;
 
-    public void fillQuotas() {
+    public QuotaDaoMemoryImpl() {
+        fillQuotas();
+    }
+
+    void fillQuotas() {
         quotas = new ArrayList<Quota>();
-        quotas.add(new Quota("Mr X", "Every big journey begins with a small step"));
-        quotas.add(new Quota("Mr Y", "No pain, no gain"));
-        quotas.add(new Quota("Mr Z", "Excellence across the board"));
+        quotas.add(new Quota("Mr SS", "Every big journey begins with a small step"));
+        quotas.add(new Quota("Mr SS", "No pain, no gain"));
+        quotas.add(new Quota("Mr SS", "Excellence across the board"));
     }
 
     String getQuotaById(int quotaIndex) {

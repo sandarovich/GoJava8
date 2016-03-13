@@ -2,7 +2,7 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.category.Category;
 import com.sandarovich.kickstarter.category.CategorySource;
-import com.sandarovich.kickstarter.dao.quota.QuotaDaoMemoryImpl;
+import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.io.IO;
 
 /**
@@ -10,16 +10,19 @@ import com.sandarovich.kickstarter.io.IO;
  */
 
 public class KickStarterNew {
-    private IO console;
-    private QuotaDaoMemoryImpl quotaDaoMemoryImpl;
+    private IO io;
+    private QuotaDao quotaDao;
     private CategorySource categorySource;
 
-    KickStarterNew(IO console) {
-        this.console = console;
+
+    public KickStarterNew(IO io, QuotaDao quotaDao) {
+        this.io = io;
+        this.quotaDao = quotaDao;
     }
 
+
     public void run() {
-        init();
+        configureDao();
         showApplicationTitle();
         showQuota();
         showAllCategories();
@@ -28,35 +31,33 @@ public class KickStarterNew {
     }
 
     private void showCategory(Category category) {
-        console.write(category.toString());
+        io.write(category.toString());
     }
 
     private Category readCategory() {
-        String readed = console.read();
+        String readed = io.read();
         if (!categorySource.isValidCategory(readed)) {
-            console.write(">> Option is not found. Please try again");
+            io.write(">> Option is not found. Please try again");
             return readCategory();
         }
         return categorySource.getCategoryById(Integer.parseInt(readed));
     }
 
-    private void init() {
-        quotaDaoMemoryImpl = new QuotaDaoMemoryImpl();
-        quotaDaoMemoryImpl.fillQuotas();
+    private void configureDao() {
         categorySource = new CategorySource();
         categorySource.init();
     }
 
     private void showAllCategories() {
-        console.write(categorySource.getAllCategories());
+        io.write(categorySource.getAllCategories());
     }
 
     private void showQuota() {
-        console.write(quotaDaoMemoryImpl.getRandomQuota());
+        io.write(quotaDao.getRandomQuota());
     }
 
     private void showApplicationTitle() {
-        console.write(getApplicationTitle());
+        io.write(getApplicationTitle());
     }
 
     private String getApplicationTitle() {

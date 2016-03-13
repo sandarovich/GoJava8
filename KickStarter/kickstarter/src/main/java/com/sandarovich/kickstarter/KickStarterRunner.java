@@ -8,7 +8,7 @@ import com.sandarovich.kickstarter.io.IO;
 import java.io.IOException;
 
 /**
- *  Kick starter starting tool
+ * Kick starter starting tool
  */
 
 public class KickStarterRunner {
@@ -16,7 +16,7 @@ public class KickStarterRunner {
         IO io = new ConsoleIO();
         ApplicationMode mode = getApplicationMode(io);
         QuotaDao quotaDao = new QuotaDaoFactory().getQuotaDao(mode);
-        new KickStarterNew(io).run();
+        new KickStarterNew(io, quotaDao).run();
     }
 
     private static ApplicationMode getApplicationMode(IO console) {
