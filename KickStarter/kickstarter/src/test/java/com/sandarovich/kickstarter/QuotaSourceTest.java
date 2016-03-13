@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.dao.quota.Quota;
+import com.sandarovich.kickstarter.dao.quota.QuotaDaoMemoryImpl;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import org.junit.Test;
 

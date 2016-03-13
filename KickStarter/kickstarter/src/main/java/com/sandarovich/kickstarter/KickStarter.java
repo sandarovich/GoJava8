@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.category.CategorySource;
 import com.sandarovich.kickstarter.category.CategorySourceBuilder;
+import com.sandarovich.kickstarter.dao.quota.QuotaDaoMemoryImpl;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.menu.AbstractMenu;
 import com.sandarovich.kickstarter.menu.MainMenu;

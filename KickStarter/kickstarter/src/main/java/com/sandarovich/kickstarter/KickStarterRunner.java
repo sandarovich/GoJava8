@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.dao.quota.QuotaDao;
+import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import com.sandarovich.kickstarter.io.IO;
 
