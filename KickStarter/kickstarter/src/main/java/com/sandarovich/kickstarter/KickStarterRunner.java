@@ -28,6 +28,7 @@ public class KickStarterRunner {
             mode = ApplicationMode.MEMORY;
 
         }
+        console.write("=======================================");
         console.write(">> Application is running in : " + mode.toString() + " mode");
         return mode;
     }
