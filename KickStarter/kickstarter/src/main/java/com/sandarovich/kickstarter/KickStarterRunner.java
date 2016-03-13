@@ -11,7 +11,13 @@ import java.io.IOException;
 
 public class KickStarterRunner {
     public static void main(String[] args) {
-        IO console = new ConsoleIO();
+        IO io = new ConsoleIO();
+        ApplicationMode mode = getApplicationMode(io);
+        QuotaDao quotaDao = new QuotaDaoFactory().getQuotaDao(mode);
+        new KickStarterNew(io).run();
+    }
+
+    private static ApplicationMode getApplicationMode(IO console) {
         ConfigReader configReader = new ConfigReader();
         ApplicationMode mode;
         try {
@@ -23,6 +29,6 @@ public class KickStarterRunner {
 
         }
         console.write(">> Application is running in : " + mode.toString() + " mode");
-        new KickStarterNew(console).run();
+        return mode;
     }
 }
