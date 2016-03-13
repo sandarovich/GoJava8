@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.category.CategorySource;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.project.ProjectSource;
 
@@ -10,16 +10,16 @@ import com.sandarovich.kickstarter.project.ProjectSource;
 
 public class CategoryMenu extends AbstractMenu {
 
-    public CategoryMenu(IO console, CategorySource categories, ProjectSource projects) {
+    public CategoryMenu(IO console, CategoryDaoMemoryImpl categories, ProjectSource projects) {
         super(console, categories, projects);
-        menuId = 1;
-        headerLabel = "Сategories:";
-        menuElements = new MenuElement[categories.size() + 1];
-        for (int index = 0; index < categories.size(); index++) {
-            menuElements[index + MENU_SHIFT] = new MenuElement(categories.get(index).toString()
-                    , Actions.SHOW_CATEGORY, categories.get(index).getId() + MENU_SHIFT);
-        }
-        menuElements[0] = new MenuElement("Exit", Actions.EXIT, 0);
+//        menuId = 1;
+//        headerLabel = "Сategories:";
+//        menuElements = new MenuElement[categories.size() + 1];
+//        for (int index = 0; index < categories.size(); index++) {
+//            menuElements[index + MENU_SHIFT] = new MenuElement(categories.get(index).toString()
+//                    , Actions.SHOW_CATEGORY, categories.get(index).getId() + MENU_SHIFT);
+//        }
+//        menuElements[0] = new MenuElement("Exit", Actions.EXIT, 0);
 
     }
 

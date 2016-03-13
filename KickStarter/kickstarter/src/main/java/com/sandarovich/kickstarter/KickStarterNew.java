@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.category.Category;
-import com.sandarovich.kickstarter.category.CategorySource;
+import com.sandarovich.kickstarter.dao.category.Category;
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.io.IO;
 
@@ -10,19 +10,20 @@ import com.sandarovich.kickstarter.io.IO;
  */
 
 public class KickStarterNew {
+
     private IO io;
     private QuotaDao quotaDao;
-    private CategorySource categorySource;
+    private CategoryDao categoryDao;
 
 
-    public KickStarterNew(IO io, QuotaDao quotaDao) {
+    public KickStarterNew(IO io, QuotaDao quotaDao, CategoryDao categoryDao) {
         this.io = io;
         this.quotaDao = quotaDao;
+        this.categoryDao = categoryDao;
     }
 
 
     public void run() {
-        configureDao();
         showApplicationTitle();
         showQuota();
         showAllCategories();
@@ -35,21 +36,20 @@ public class KickStarterNew {
     }
 
     private Category readCategory() {
-        String readed = io.read();
-        if (!categorySource.isValidCategory(readed)) {
+        String readedCategory = io.read();
+
+        if (!categoryDao.isValidCategory(readedCategory)) {
             io.write(">> Option is not found. Please try again");
             return readCategory();
         }
-        return categorySource.getCategoryById(Integer.parseInt(readed));
+        return categoryDao.findCategoryById(Integer.parseInt(readedCategory));
     }
 
-    private void configureDao() {
-        categorySource = new CategorySource();
-        categorySource.init();
-    }
 
     private void showAllCategories() {
-        io.write(categorySource.getAllCategories());
+        for (Category category : categoryDao.getCategories()) {
+            io.write(category.toString());
+        }
     }
 
     private void showQuota() {

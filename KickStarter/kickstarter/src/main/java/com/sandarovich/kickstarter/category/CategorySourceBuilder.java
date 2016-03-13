@@ -1,5 +1,8 @@
 package com.sandarovich.kickstarter.category;
 
+import com.sandarovich.kickstarter.dao.category.Category;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
+
 import java.util.List;
 
 /**
@@ -7,12 +10,12 @@ import java.util.List;
  */
 public class CategorySourceBuilder {
 
-    private final CategorySource categories;
+    private final CategoryDaoMemoryImpl categories;
     private int id;
     private String name;
 
     public CategorySourceBuilder() {
-        this.categories = new CategorySource();
+        this.categories = new CategoryDaoMemoryImpl();
     }
 
     public CategorySourceBuilder forInt(int id) {
@@ -37,7 +40,7 @@ public class CategorySourceBuilder {
 
     }
 
-    public CategorySource get() {
+    public CategoryDaoMemoryImpl get() {
         return this.categories;
     }
 }

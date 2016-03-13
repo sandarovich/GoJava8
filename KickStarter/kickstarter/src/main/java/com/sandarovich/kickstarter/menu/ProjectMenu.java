@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.menu;
 
-import com.sandarovich.kickstarter.category.CategorySource;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.project.Project;
 import com.sandarovich.kickstarter.project.ProjectSource;
@@ -14,7 +14,7 @@ public class ProjectMenu extends AbstractMenu {
 
     private ProjectSource fileredProjects;
 
-    public ProjectMenu(IO console, CategorySource categories, ProjectSource projects, ProjectSource filteredProjects) {
+    public ProjectMenu(IO console, CategoryDaoMemoryImpl categories, ProjectSource projects, ProjectSource filteredProjects) {
         super(console, categories, projects);
         this.fileredProjects = filteredProjects;
         menuId = 3;
