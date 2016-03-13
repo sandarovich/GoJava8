@@ -1,7 +1,6 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.dao.quota;
 
-import com.sandarovich.kickstarter.dao.quota.Quota;
-import com.sandarovich.kickstarter.dao.quota.QuotaDaoMemoryImpl;
+import com.sandarovich.kickstarter.KickStarter;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import org.junit.Test;
 
@@ -11,7 +10,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-public class QuotaSourceTest {
+public class QuotaDaoMemoryTest {
 
     @Test
     public void testGetQuotaInListByIndex() {
