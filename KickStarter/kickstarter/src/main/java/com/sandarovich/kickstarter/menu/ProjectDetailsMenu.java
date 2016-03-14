@@ -25,18 +25,18 @@ public class ProjectDetailsMenu extends AbstractMenu {
     @Override
     public void show() {
 
-        console.write("-----------");
-        console.write("{" + menuId + "} " + headerLabel);
-        console.write("-----------");
-        console.write("Id: " + project.getId());
-        console.write("Name: " + project.getName());
-        console.write("Short Description: " + project.getShortDescription());
-        console.write("Goal Amount: " + project.getRequiredBudget());
-        console.write("Collected Amount: " + project.getGatherdBudget());
-        console.write("Days remain: " + project.getDaysLeft());
-        console.write("Video Link: " + project.getVideoLink());
-        console.write("History: " + project.getHistory());
-        console.write("Q&A: " + project.getQuestionsAnswers());
+//        console.write("-----------");
+//        console.write("{" + menuId + "} " + headerLabel);
+//        console.write("-----------");
+//        console.write("Id: " + project.getId());
+//        console.write("Name: " + project.getName());
+//        console.write("Short Description: " + project.getShortDescription());
+//        console.write("Goal Amount: " + project.getRequiredBudget());
+//        console.write("Collected Amount: " + project.getGatherdBudget());
+//        console.write("Days remain: " + project.getDaysLeft());
+//        console.write("Video Link: " + project.getVideoLink());
+//        console.write("History: " + project.getHistory());
+//        console.write("Q&A: " + project.getQuestionsAnswers());
 
         console.write("---");
         console.write(menuElements[0].toString());

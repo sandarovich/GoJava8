@@ -1,11 +1,13 @@
 package com.sandarovich.kickstarter.dao.category;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Olexander Koldoiazhnhy 2016
  */
 
 public class Project {
-    private static final long MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
     private final int id;
     private final String name;
     private final String shortDesription;
@@ -30,41 +32,6 @@ public class Project {
         this.questionsAnswers = questionsAnswers;
     }
 
-    public String getShortDescription() {
-        return this.shortDesription;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getRequiredBudget() {
-        return requiredBudget;
-    }
-
-    public double getGatherdBudget() {
-        return gatherdBudget;
-    }
-
-    public int getDaysLeft() {
-        return daysLeft;
-    }
-
-    public String getVideoLink() {
-        return videoLink;
-    }
-
-    public String getHistory() {
-        return history;
-    }
-
-    public String getQuestionsAnswers() {
-        return questionsAnswers;
-    }
 
     @Override
     public String toString() {
@@ -72,8 +39,22 @@ public class Project {
                 name + " " +
                 shortDesription + " "
                 + requiredBudget + " "
-                + gatherdBudget;
+                + gatherdBudget + " "
+                + daysLeft;
     }
+
+    public List<Object> getAsRow() {
+        List<Object> result = new ArrayList<Object>();
+        result.add(id);
+        result.add(name);
+        result.add(shortDesription);
+        result.add(requiredBudget);
+        result.add(gatherdBudget);
+        result.add(daysLeft);
+        return result;
+    }
+
+
 
 
 }

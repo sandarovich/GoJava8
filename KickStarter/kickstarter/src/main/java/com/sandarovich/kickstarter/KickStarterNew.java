@@ -34,7 +34,7 @@ public class KickStarterNew {
 
     private void showProjects(Category category) {
         showViewTitle("<<Projects>> ");
-        io.writeTable(category.getProject());
+        io.writeProjectTable(category.getProject());
     }
 
     private void showCategory(Category category) {
