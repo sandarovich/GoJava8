@@ -1,11 +1,9 @@
-package com.sandarovich.kickstarter.category;
+package com.sandarovich.kickstarter.dao.category;
 
 /**
  * Tests for Category Source
  */
 
-import com.sandarovich.kickstarter.dao.category.Category;
-import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
