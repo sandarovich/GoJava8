@@ -2,7 +2,6 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.category.Category;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
-import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.io.IO;
 
@@ -34,22 +33,16 @@ public class KickStarterNew {
     }
 
     private void showProjects(Category category) {
-        io.write("============");
-        io.write("<<Projects>> ");
-        io.write("============");
-        for (Project project : category.getProject()) {
-            io.write(project.toString());
-        }
+        showViewTitle("<<Projects>> ");
+        io.writeTable(category.getProject());
     }
 
     private void showCategory(Category category) {
-
         io.write(category.toString());
     }
 
     private Category readCategory() {
         String readedCategory = io.read();
-
         if (!categoryDao.isValidCategory(readedCategory)) {
             io.write(">> Option is not found. Please try again");
             return readCategory();
@@ -59,12 +52,16 @@ public class KickStarterNew {
 
 
     private void showAllCategories() {
-        io.write("============");
-        io.write("<<Category>> ");
-        io.write("============");
+        showViewTitle("<<Category>> ");
         for (Category category : categoryDao.getCategories()) {
             io.write(category.toString());
         }
+    }
+
+    private void showViewTitle(String titleName) {
+        io.write("============");
+        io.write(titleName);
+        io.write("============");
     }
 
     private void showQuota() {

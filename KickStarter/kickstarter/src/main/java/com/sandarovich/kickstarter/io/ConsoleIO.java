@@ -37,8 +37,8 @@ public class ConsoleIO implements IO {
 
     @Override
     public void writeTable(ProjectSerializable object) {
-        ConsoleTable consoleTable = new ConsoleTable(object);
-        TextTable textTable = new TextTable(consoleTable.getColumnNames(), consoleTable.getData());
+        ProjectTableView projectTableView = new ProjectTableView(object);
+        TextTable textTable = new TextTable(projectTableView.getColumnNames(), projectTableView.getData());
         textTable.printTable();
         write("----");
     }
