@@ -22,7 +22,6 @@ public class KickStarterNew {
         this.categoryDao = categoryDao;
     }
 
-
     public void run() {
         showApplicationTitle();
         showQuota();
@@ -34,7 +33,7 @@ public class KickStarterNew {
 
     private void showProjects(Category category) {
         showViewTitle("<<Projects>> ");
-        io.writeProjectTable(category.getProject());
+        io.writeProjectasTable(category.getProject());
     }
 
     private void showCategory(Category category) {

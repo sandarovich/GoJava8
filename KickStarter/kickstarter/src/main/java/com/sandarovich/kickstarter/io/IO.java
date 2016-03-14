@@ -13,5 +13,5 @@ public interface IO {
     void write(String message);
     String read();
 
-    void writeProjectTable(List<Project> projects);
+    void writeProjectasTable(List<Project> projects);
 }

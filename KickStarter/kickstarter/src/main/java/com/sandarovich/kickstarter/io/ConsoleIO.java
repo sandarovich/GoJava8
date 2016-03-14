@@ -35,7 +35,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void writeProjectTable(List<Project> object) {
+    public void writeProjectasTable(List<Project> object) {
         ProjectTableView projectTableView = new ProjectTableView(object);
         TextTable textTable = new TextTable(projectTableView.getColumnNames(), projectTableView.getData());
         textTable.printTable();
