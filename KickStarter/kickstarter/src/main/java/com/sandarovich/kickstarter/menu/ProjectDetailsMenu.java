@@ -1,9 +1,8 @@
 package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
+import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.io.IO;
-import com.sandarovich.kickstarter.project.Project;
-import com.sandarovich.kickstarter.project.ProjectSource;
 
 /**
  * Created Olexander Kolodiazhny 2016
@@ -13,8 +12,8 @@ public class ProjectDetailsMenu extends AbstractMenu {
 
     private final Project project;
 
-    public ProjectDetailsMenu(IO console, CategoryDaoMemoryImpl categories, ProjectSource projects, Project project) {
-        super(console, categories, projects);
+    public ProjectDetailsMenu(IO console, CategoryDaoMemoryImpl categories, Project project) {
+        super(console, categories);
         this.project = project;
         menuId = 4;
         headerLabel = "Project Details:";
@@ -54,7 +53,7 @@ public class ProjectDetailsMenu extends AbstractMenu {
         }
 
         if (action != null && action == Actions.SHOW_CATEGORY) {
-            showProjectsMenu(project.getCategory());
+//            showProjectsMenu(project.getCategory());
         }
 
 

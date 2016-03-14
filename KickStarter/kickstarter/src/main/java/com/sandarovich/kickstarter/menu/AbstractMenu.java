@@ -3,8 +3,7 @@ package com.sandarovich.kickstarter.menu;
 import com.sandarovich.kickstarter.dao.category.Category;
 import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import com.sandarovich.kickstarter.io.IO;
-import com.sandarovich.kickstarter.project.Project;
-import com.sandarovich.kickstarter.project.ProjectSource;
+
 
 /**
  *  Describes common functionality for all menu existed in Project
@@ -14,15 +13,13 @@ public abstract class AbstractMenu {
     static final int MENU_SHIFT = 1;
 
     protected final IO console;
-    protected final ProjectSource projects;
     protected final CategoryDaoMemoryImpl categories;
     protected MenuElement[] menuElements;
     protected String headerLabel;
     protected int menuId;
 
-    public AbstractMenu(IO console, CategoryDaoMemoryImpl categories, ProjectSource projects) {
+    public AbstractMenu(IO console, CategoryDaoMemoryImpl categories) {
         this.console = console;
-        this.projects = projects;
         this.categories = categories;
     }
 
@@ -89,21 +86,21 @@ public abstract class AbstractMenu {
     public abstract void performAction(int choice);
 
     protected void showMainMenu() {
-        AbstractMenu menu = new MainMenu(console, categories, projects);
-        menu.show();
-        menu.performAction(menu.getUserChoice());
+//        AbstractMenu menu = new MainMenu(console, categories, projects);
+//        menu.show();
+//        menu.performAction(menu.getUserChoice());
     }
 
     protected void showCategoriesMenu() {
-        AbstractMenu menu = new CategoryMenu(console, categories, projects);
-        menu.show();
-        menu.performAction(menu.getUserChoice());
+//        AbstractMenu menu = new CategoryMenu(console, categories, projects);
+//        menu.show();
+//        menu.performAction(menu.getUserChoice());
     }
 
     protected void showProjectsMenu(int choice) {
-        showUserInputed(menuElements[getMenuIndex(choice)]);
-        Category category = categories.findCategoryById(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
-        buildProjectMenu(category);
+//        showUserInputed(menuElements[getMenuIndex(choice)]);
+//        Category category = categories.findCategoryById(menuElements[getMenuIndex(choice)].getId() - MENU_SHIFT);
+//        buildProjectMenu(category);
     }
 
     protected void showProjectsMenu(Category category) {
@@ -112,19 +109,19 @@ public abstract class AbstractMenu {
 
 
     private void buildProjectMenu(Category category) {
-        AbstractMenu projectMenu = new ProjectMenu(console, categories, projects,
-                projects.getByCategory(category));
-        projectMenu.show();
-        projectMenu.performAction(projectMenu.getUserChoice());
+//        AbstractMenu projectMenu = new ProjectMenu(console, categories, projects,
+//                projects.getByCategory(category));
+//        projectMenu.show();
+//        projectMenu.performAction(projectMenu.getUserChoice());
     }
 
 
     protected void showProjectDetailsMenu(int choice) {
-        showUserInputed(menuElements[getMenuIndex(choice)]);
-        Project project = projects.search(menuElements[getMenuIndex(choice)].getId());
-        AbstractMenu projectDetailsMenu = new ProjectDetailsMenu(console, categories, projects, project);
-        projectDetailsMenu.show();
-        projectDetailsMenu.performAction(projectDetailsMenu.getUserChoice());
+//        showUserInputed(menuElements[getMenuIndex(choice)]);
+//        Project project = projects.search(menuElements[getMenuIndex(choice)].getId());
+//        AbstractMenu projectDetailsMenu = new ProjectDetailsMenu(console, categories, projects, project);
+//        projectDetailsMenu.show();
+//        projectDetailsMenu.performAction(projectDetailsMenu.getUserChoice());
     }
 
     private void showUserInputed(MenuElement menuElement) {

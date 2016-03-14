@@ -1,9 +1,9 @@
-package com.sandarovich.kickstarter.project;
+package com.sandarovich.kickstarter.dao.category;
 
-import com.sandarovich.kickstarter.dao.category.Category;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created Olexander Kolodiazhny 2016
@@ -11,11 +11,11 @@ import java.util.GregorianCalendar;
 
 public class ProjectBuilder {
 
-    private final ProjectSource projects;
+    private List<Project> projects;
     private Project project;
     // Required fields
     private int id;
-    private Category category;
+    //    private Category category;
     private String name;
 
     // Optional fields
@@ -29,7 +29,7 @@ public class ProjectBuilder {
 
 
     public ProjectBuilder() {
-        this.projects = new ProjectSource();
+        this.projects = new ArrayList<Project>();
     }
 
 
@@ -38,10 +38,6 @@ public class ProjectBuilder {
         return this;
     }
 
-    public ProjectBuilder andCategory(Category category) {
-        this.category = category;
-        return this;
-    }
 
     public ProjectBuilder andName(String name) {
         this.name = name;
@@ -54,7 +50,7 @@ public class ProjectBuilder {
     }
 
     public ProjectBuilder build() {
-        this.project = new Project(id, category, name, shortDescription,
+        this.project = new Project(id, name, shortDescription,
                 goalAmount, collectedAmount, goalDate, videoLink,
                 history, questionsAnswers);
         this.add();
@@ -67,26 +63,26 @@ public class ProjectBuilder {
     }
 
 
-    public ProjectSource getProjects() {
+    public List<Project> getProjects() {
         return this.projects;
     }
 
-    public ProjectBuilder add(int id, Category category, String name, String shortDesription,
-                              double goalAmount, double collectedAmount, Calendar goalDate, String videoLink,
-                              String history, String questionsAnswers) {
-        this.id = id;
-        this.category = category;
-        this.name = name;
-        this.shortDescription = shortDesription;
-        this.goalAmount = goalAmount;
-        this.collectedAmount = collectedAmount;
-        this.goalDate = goalDate;
-        this.videoLink = videoLink;
-        this.history = history;
-        this.questionsAnswers = questionsAnswers;
-        this.add();
-        return this;
-    }
+//    public ProjectBuilder add(int id, Category category, String name, String shortDesription,
+//                              double goalAmount, double collectedAmount, Calendar goalDate, String videoLink,
+//                              String history, String questionsAnswers) {
+//        this.id = id;
+//        this.category = category;
+//        this.name = name;
+//        this.shortDescription = shortDesription;
+//        this.goalAmount = goalAmount;
+//        this.collectedAmount = collectedAmount;
+//        this.goalDate = goalDate;
+//        this.videoLink = videoLink;
+//        this.history = history;
+//        this.questionsAnswers = questionsAnswers;
+//        this.add();
+//        return this;
+//    }
 
 
 }

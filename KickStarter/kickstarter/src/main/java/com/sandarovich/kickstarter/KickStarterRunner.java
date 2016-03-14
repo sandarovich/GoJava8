@@ -34,7 +34,7 @@ public class KickStarterRunner {
 
         }
         console.write("=======================================");
-        console.write(">> Application is running in : " + mode.toString() + " mode");
+        console.write(">> Application mode : " + mode.toString());
         return mode;
     }
 }
