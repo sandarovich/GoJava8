@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.category.Category;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.io.IO;
 
@@ -29,9 +30,18 @@ public class KickStarterNew {
         showAllCategories();
         Category category = readCategory();
         showCategory(category);
+        showProjects(category);
+    }
+
+    private void showProjects(Category category) {
+        io.write("Projects: ");
+        for (Project project : category.getProject()) {
+            io.write("\t" + project.toString());
+        }
     }
 
     private void showCategory(Category category) {
+        io.write("<<Category:>> ");
         io.write(category.toString());
     }
 

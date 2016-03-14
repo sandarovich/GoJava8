@@ -22,6 +22,10 @@ public class Category {
         return id;
     }
 
+    public List<Project> getProject() {
+        return projects;
+    }
+
 
     @Override
     public String toString() {

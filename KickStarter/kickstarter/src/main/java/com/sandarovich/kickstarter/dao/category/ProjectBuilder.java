@@ -1,8 +1,6 @@
 package com.sandarovich.kickstarter.dao.category;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -22,7 +20,7 @@ public class ProjectBuilder {
     private String shortDescription = "<<Empty>>";
     private double goalAmount = 0d;
     private double collectedAmount = 0d;
-    private Calendar goalDate = new GregorianCalendar(2016, 2, 1);
+    private int daysLeft = 1;
     private String videoLink = "http:\\\\www.google.com";
     private String history = "No history";
     private String questionsAnswers = "No Q&A";
@@ -51,7 +49,7 @@ public class ProjectBuilder {
 
     public ProjectBuilder build() {
         this.project = new Project(id, name, shortDescription,
-                goalAmount, collectedAmount, goalDate, videoLink,
+                goalAmount, collectedAmount, daysLeft, videoLink,
                 history, questionsAnswers);
         this.add();
         return this;

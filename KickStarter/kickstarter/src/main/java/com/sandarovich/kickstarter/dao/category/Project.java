@@ -1,7 +1,5 @@
 package com.sandarovich.kickstarter.dao.category;
 
-import java.util.Calendar;
-
 /**
  * Created by Olexander Koldoiazhnhy 2016
  */
@@ -13,20 +11,20 @@ public class Project {
     private final String shortDesription;
     private final double requiredBudget;
     private final double collectedAmount;
-    private final Calendar goalDate;
+    private final int daysLeft;
     private final String videoLink;
     private final String history;
     private final String questionsAnswers;
 
     public Project(int id, String name, String shortDesription,
-                   double requiredBudget, double collectedAmount, Calendar goalDate, String videoLink,
+                   double requiredBudget, double collectedAmount, int daysLeft, String videoLink,
                    String history, String questionsAnswers) {
         this.id = id;
         this.name = name;
         this.shortDesription = shortDesription;
         this.requiredBudget = requiredBudget;
         this.collectedAmount = collectedAmount;
-        this.goalDate = goalDate;
+        this.daysLeft = daysLeft;
         this.videoLink = videoLink;
         this.history = history;
         this.questionsAnswers = questionsAnswers;
@@ -52,11 +50,8 @@ public class Project {
         return collectedAmount;
     }
 
-    public int getGoalDateDays() {
-        int result;
-        Calendar now = Calendar.getInstance();
-        result = (int) ((goalDate.getTimeInMillis() - now.getTimeInMillis()) / MILLISECONDS_IN_DAY);
-        return result;
+    public int getDaysLeft() {
+        return daysLeft;
     }
 
     public String getVideoLink() {
@@ -73,7 +68,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return name;
+        return id + " -> " + name;
     }
 
 
