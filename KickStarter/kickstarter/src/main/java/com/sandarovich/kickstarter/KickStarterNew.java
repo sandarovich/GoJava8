@@ -34,14 +34,16 @@ public class KickStarterNew {
     }
 
     private void showProjects(Category category) {
-        io.write("Projects: ");
+        io.write("============");
+        io.write("<<Projects>> ");
+        io.write("============");
         for (Project project : category.getProject()) {
-            io.write("\t" + project.toString());
+            io.write(project.toString());
         }
     }
 
     private void showCategory(Category category) {
-        io.write("<<Category:>> ");
+
         io.write(category.toString());
     }
 
@@ -57,6 +59,9 @@ public class KickStarterNew {
 
 
     private void showAllCategories() {
+        io.write("============");
+        io.write("<<Category>> ");
+        io.write("============");
         for (Category category : categoryDao.getCategories()) {
             io.write(category.toString());
         }

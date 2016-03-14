@@ -9,8 +9,6 @@ import java.util.Map;
  */
 public interface ProjectSerializable {
     Map<String, Object> getRowData(int index);
-
     String[] getColumns();
-
     int count();
 }

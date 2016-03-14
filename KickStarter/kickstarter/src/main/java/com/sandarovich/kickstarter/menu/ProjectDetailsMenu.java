@@ -32,7 +32,7 @@ public class ProjectDetailsMenu extends AbstractMenu {
         console.write("Name: " + project.getName());
         console.write("Short Description: " + project.getShortDescription());
         console.write("Goal Amount: " + project.getRequiredBudget());
-        console.write("Collected Amount: " + project.getCollectedAmount());
+        console.write("Collected Amount: " + project.getGatherdBudget());
         console.write("Days remain: " + project.getDaysLeft());
         console.write("Video Link: " + project.getVideoLink());
         console.write("History: " + project.getHistory());
