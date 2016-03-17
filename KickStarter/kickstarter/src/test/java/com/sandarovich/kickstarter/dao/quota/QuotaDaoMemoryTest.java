@@ -1,6 +1,5 @@
 package com.sandarovich.kickstarter.dao.quota;
 
-import com.sandarovich.kickstarter.KickStarter;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import org.junit.Test;
 

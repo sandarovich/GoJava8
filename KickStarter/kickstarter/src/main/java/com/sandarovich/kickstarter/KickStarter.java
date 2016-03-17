@@ -1,92 +1,151 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
-import com.sandarovich.kickstarter.dao.quota.QuotaDaoMemoryImpl;
+import com.sandarovich.kickstarter.dao.category.Category;
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
+import com.sandarovich.kickstarter.dao.category.Project;
+import com.sandarovich.kickstarter.dao.quota.QuotaDao;
+import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.IO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- *    KickStarter analog.
- *
+ * Console Kick Starter
  */
 
 public class KickStarter {
 
-    public static final String APPLICATION_VERSION = "0.0.5";
+    private IO io;
+    private DaoMode daoMode;
+    private QuotaDao quotaDao;
+    private CategoryDao categoryDao;
+    private Category category;
 
-    private IO console;
 
-    public KickStarter(IO console) {
-        this.console = console;
+    public KickStarter(IO io, DaoMode daoMode) {
+        this.io = io;
+        this.daoMode = daoMode;
+        this.quotaDao = new QuotaDaoFactory().getQuotaDao(daoMode);
+        this.categoryDao = new CategoryDaoFactory().getCategoryDao(daoMode);
     }
 
-    public void start() {
-        showApplicationAuthor();
-        showQuote();
-        //CategoryDaoMemoryImpl categories = setupAllCategories();
-        // ProjectSource projects = setupAllProjects(categories);
-        // AbstractMenu menu = new MainMenu(console, categories, projects);
-        //menu.show();
-        //menu.performAction(menu.getUserChoice());
+    public void run() {
+        showDaoMode();
+        showMainMenu();
     }
 
-//    private ProjectSource setupAllProjects(CategoryDaoMemoryImpl categories) {
-//        ProjectBuilder builder = new ProjectBuilder();
-//        builder.forId(101)
-//
-//                .andName("USB TOY   ")
-//                .andDescription("Not Ordinary gameplay ")
-//                .build();
-//        builder.forId(102)
-//
-//                .andName("Power Bank")
-//                .andDescription("Unique technology ")
-//                .build();
-//        builder.forId(3)
-//
-//                .andName("Robot Frodo")
-//                .andDescription("Fast and Smart")
-//                .build();
-//        builder.forId(97)
-//
-//                .andName("Bison grass")
-//                .andDescription("Power energy from sun")
-//                .build();
-//        builder.forId(77)
-//
-//                .andName("Garfield grass")
-//                .andDescription("Feel exotic")
-//                .build();
-//        builder.forId(5)
-//
-//                .andName("Super Bag")
-//                .andDescription("Auto resizable")
-//                .build();
-//        return builder.getProjects();
-//    }
+    private void readProject() {
+        String readedValue = io.read();
+        if (readedValue.equals("0")) {
+            showMainMenu();
+        }
+        Project project = category.findProjectById(readedValue);
+        if (project == null) {
+            io.write(">> Option not found");
+            readProject();
+        }
+        showProjectsDetailsView(project);
 
-    private CategoryDaoMemoryImpl setupAllCategories() {
-        List<String> categories = new ArrayList<String>();
-//        categories.add("IT");
-//        categories.add("Tourism");
-//        categories.add("Garden");
-//        CategorySourceBuilder builder = new CategorySourceBuilder();
-//        builder.createAll(categories);
-//        return builder.get();
-        return (CategoryDaoMemoryImpl) categories;
     }
 
-    public void showApplicationAuthor() {
-        console.write("=======================================");
-        console.write("     Kickstarter emulator v." + KickStarter.APPLICATION_VERSION);
-        console.write("     by O.Kolodiazhny 2016      ");
-        console.write("=======================================");
+    private void showMainMenu() {
+        showApplicationTitle();
+        showQuota();
+        showCategoriesView();
+        category = readCategory();
+        showСhosenCategory();
+        showProjectsView();
+        readProject();
     }
 
-    public void showQuote() {
-        QuotaDaoMemoryImpl quotaDaoMemoryImpl = new QuotaDaoMemoryImpl();
-        console.write(quotaDaoMemoryImpl.getRandomQuota());
+    private void showProjectsDetailsView(Project project) {
+        showViewTitle("Project Details");
+        io.write(project.getFullDetails());
+        io.write("---");
+        io.write("0 - Projects");
+        io.write("1 - Category");
+        readProjectDetailsOptions();
     }
+
+    private void readProjectDetailsOptions() {
+        String readedValue = io.read();
+        if (readedValue.equals("0")) {
+            showProjectsView();
+            readProject();
+        } else if (readedValue.equals("1")) {
+            showMainMenu();
+        } else {
+            io.write(">> Option not found");
+            readProjectDetailsOptions();
+        }
+    }
+
+    private void exitKickstarter() {
+        io.write(">> Bye!");
+        System.exit(0);
+    }
+
+    private void showProjectsView() {
+        showViewTitle("<<Projects>> ");
+        io.writeProjectasTable(category.getProjects());
+        io.write("---");
+        for (Project project : category.getProjects()) {
+            io.write(project.toString());
+        }
+        io.write("---");
+        io.write("0 -> Exit");
+    }
+
+    private void showDaoMode() {
+        io.write(">> Application is running in : " + daoMode.toString() + " mode");
+    }
+
+    private void showСhosenCategory() {
+        io.write(category.toString());
+    }
+
+    private Category readCategory() {
+        String readedValue = io.read();
+        if (readedValue.equals("0")) {
+            exitKickstarter();
+        }
+        if (!categoryDao.isValidCategory(readedValue)) {
+            io.write(">> Option is not found. Please try again");
+            return readCategory();
+        }
+        return categoryDao.findCategoryById(Integer.parseInt(readedValue));
+    }
+
+
+    private void showCategoriesView() {
+        showViewTitle("<<Category>> ");
+        for (Category category : categoryDao.getCategories()) {
+            io.write(category.toString());
+        }
+        io.write("---");
+        io.write("0 -> Exit");
+    }
+
+    private void showViewTitle(String titleName) {
+        io.write("============");
+        io.write(titleName);
+        io.write("============");
+    }
+
+    private void showQuota() {
+        io.write(quotaDao.getRandomQuota());
+    }
+
+    private void showApplicationTitle() {
+        io.write(getApplicationTitle());
+    }
+
+    private String getApplicationTitle() {
+        StringBuilder result = new StringBuilder();
+        result.append("=======================================\n");
+        result.append("     Kickstarter emulator\n");
+        result.append("     by O.Kolodiazhny 2016\n");
+        result.append("=======================================");
+        return result.toString();
+    }
+
 }

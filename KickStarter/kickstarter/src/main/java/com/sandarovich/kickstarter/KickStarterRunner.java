@@ -11,6 +11,6 @@ public class KickStarterRunner {
     public static void main(String[] args) {
         IO io = new ConsoleIO();
         DaoMode daoMode = DaoMode.fromName(System.getProperty("mode"));
-        new KickStarterNew(io, daoMode).run();
+        new KickStarter(io, daoMode).run();
     }
 }
