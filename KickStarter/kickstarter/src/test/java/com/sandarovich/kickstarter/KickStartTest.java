@@ -17,11 +17,11 @@ public class KickStartTest {
     public void testMainMenu() {
         //given
         IO io = mock(IO.class);
-        KickStarter kickStarter = new KickStarter(io);
+        KickStarter kickStarter = new KickStarter(io, DaoMode.MEMORY);
         when(io.read()).thenReturn("1");
 
         //when
-        kickStarter.start();
+        kickStarter.run();
 
         //then
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);

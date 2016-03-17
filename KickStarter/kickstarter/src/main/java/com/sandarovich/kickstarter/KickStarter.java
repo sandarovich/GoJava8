@@ -131,7 +131,7 @@ public class KickStarter {
         io.write("============");
     }
 
-    private void showQuota() {
+    void showQuota() {
         io.write(quotaDao.getRandomQuota());
     }
 

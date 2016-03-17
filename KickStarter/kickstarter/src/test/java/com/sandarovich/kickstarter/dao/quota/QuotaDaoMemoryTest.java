@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.dao.quota;
 
+import com.sandarovich.kickstarter.DaoMode;
+import com.sandarovich.kickstarter.KickStarter;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import org.junit.Test;
 
@@ -34,7 +36,8 @@ public class QuotaDaoMemoryTest {
         qr.fillQuotas();
         when(qr.getRandomQuota()).thenReturn(("\"No pain, no gain\""));
         //when
-        new KickStarter(new ConsoleIO()).showQuote();
+        new KickStarter(new ConsoleIO(), DaoMode.MEMORY).run();
+
         //then
         assertThat("Quota test", qr.getRandomQuota(), is("\"No pain, no gain\""));
     }
