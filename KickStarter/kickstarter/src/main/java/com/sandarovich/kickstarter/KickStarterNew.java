@@ -24,7 +24,6 @@ public class KickStarterNew {
         this.categoryDao = categoryDao;
     }
 
-
     public void run() {
         showDaoMode();
         showApplicationTitle();
@@ -32,6 +31,12 @@ public class KickStarterNew {
         showAllCategories();
         Category category = readCategory();
         showCategory(category);
+        showProjects(category);
+    }
+
+    private void showProjects(Category category) {
+        showViewTitle("<<Projects>> ");
+        io.writeProjectasTable(category.getProject());
     }
 
     private void showDaoMode() {
@@ -44,7 +49,6 @@ public class KickStarterNew {
 
     private Category readCategory() {
         String readedCategory = io.read();
-
         if (!categoryDao.isValidCategory(readedCategory)) {
             io.write(">> Option is not found. Please try again");
             return readCategory();
@@ -54,9 +58,16 @@ public class KickStarterNew {
 
 
     private void showAllCategories() {
+        showViewTitle("<<Category>> ");
         for (Category category : categoryDao.getCategories()) {
             io.write(category.toString());
         }
+    }
+
+    private void showViewTitle(String titleName) {
+        io.write("============");
+        io.write(titleName);
+        io.write("============");
     }
 
     private void showQuota() {

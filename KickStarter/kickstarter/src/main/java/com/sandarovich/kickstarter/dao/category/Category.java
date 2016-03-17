@@ -1,7 +1,5 @@
 package com.sandarovich.kickstarter.dao.category;
 
-import com.sandarovich.kickstarter.project.Project;
-
 import java.util.List;
 
 /**
@@ -14,14 +12,21 @@ public class Category {
     private final String name;
     private List<Project> projects;
 
-    public Category(int id, String name) {
+    public Category(int id, String name, List<Project> projects) {
         this.id = id;
         this.name = name;
+        this.projects = projects;
     }
 
     public int getId() {
         return id;
     }
+
+    public List<Project> getProject() {
+        return projects;
+    }
+
+
     @Override
     public String toString() {
         return id + " -> " + name;

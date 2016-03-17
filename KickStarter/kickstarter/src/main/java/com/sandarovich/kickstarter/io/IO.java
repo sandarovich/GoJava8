@@ -1,6 +1,8 @@
 package com.sandarovich.kickstarter.io;
 
-import com.sandarovich.kickstarter.project.ProjectSerializable;
+import com.sandarovich.kickstarter.dao.category.Project;
+
+import java.util.List;
 
 /**
  * @author Olexander Kolodiazhny 2016 
@@ -10,5 +12,6 @@ import com.sandarovich.kickstarter.project.ProjectSerializable;
 public interface IO {
     void write(String message);
     String read();
-    void writeTable(ProjectSerializable object);
+
+    void writeProjectasTable(List<Project> projects);
 }

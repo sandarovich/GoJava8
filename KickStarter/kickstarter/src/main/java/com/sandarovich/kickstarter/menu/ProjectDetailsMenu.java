@@ -1,9 +1,8 @@
 package com.sandarovich.kickstarter.menu;
 
 import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
+import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.io.IO;
-import com.sandarovich.kickstarter.project.Project;
-import com.sandarovich.kickstarter.project.ProjectSource;
 
 /**
  * Created Olexander Kolodiazhny 2016
@@ -13,8 +12,8 @@ public class ProjectDetailsMenu extends AbstractMenu {
 
     private final Project project;
 
-    public ProjectDetailsMenu(IO console, CategoryDaoMemoryImpl categories, ProjectSource projects, Project project) {
-        super(console, categories, projects);
+    public ProjectDetailsMenu(IO console, CategoryDaoMemoryImpl categories, Project project) {
+        super(console, categories);
         this.project = project;
         menuId = 4;
         headerLabel = "Project Details:";
@@ -26,18 +25,18 @@ public class ProjectDetailsMenu extends AbstractMenu {
     @Override
     public void show() {
 
-        console.write("-----------");
-        console.write("{" + menuId + "} " + headerLabel);
-        console.write("-----------");
-        console.write("Id: " + project.getId());
-        console.write("Name: " + project.getName());
-        console.write("Short Description: " + project.getShortDescription());
-        console.write("Goal Amount: " + project.getRequiredBudget());
-        console.write("Collected Amount: " + project.getCollectedAmount());
-        console.write("Days remain: " + project.getGoalDateDays());
-        console.write("Video Link: " + project.getVideoLink());
-        console.write("History: " + project.getHistory());
-        console.write("Q&A: " + project.getQuestionsAnswers());
+//        console.write("-----------");
+//        console.write("{" + menuId + "} " + headerLabel);
+//        console.write("-----------");
+//        console.write("Id: " + project.getId());
+//        console.write("Name: " + project.getName());
+//        console.write("Short Description: " + project.getShortDescription());
+//        console.write("Goal Amount: " + project.getRequiredBudget());
+//        console.write("Collected Amount: " + project.getGatherdBudget());
+//        console.write("Days remain: " + project.getDaysLeft());
+//        console.write("Video Link: " + project.getVideoLink());
+//        console.write("History: " + project.getHistory());
+//        console.write("Q&A: " + project.getQuestionsAnswers());
 
         console.write("---");
         console.write(menuElements[0].toString());
@@ -54,7 +53,7 @@ public class ProjectDetailsMenu extends AbstractMenu {
         }
 
         if (action != null && action == Actions.SHOW_CATEGORY) {
-            showProjectsMenu(project.getCategory());
+//            showProjectsMenu(project.getCategory());
         }
 
 

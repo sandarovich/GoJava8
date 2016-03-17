@@ -1,17 +1,17 @@
 package com.sandarovich.kickstarter.io;
 
-import com.sandarovich.kickstarter.project.ProjectSerializable;
+import com.sandarovich.kickstarter.dao.category.Project;
 import dnl.utils.text.table.TextTable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * @author Olexander Kolodiazhny
- * 
+ *         <p/>
  *         Output\Read text to user console
- *
  */
 
 public class ConsoleIO implements IO {
@@ -25,22 +25,20 @@ public class ConsoleIO implements IO {
     public String read() {
         String resultStr = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        
+
         try {
             resultStr = reader.readLine();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             new ConsoleIO().write(">> Exception.Unable to read input");
         }
         return resultStr;
     }
 
     @Override
-    public void writeTable(ProjectSerializable object) {
-        ConsoleTable consoleTable = new ConsoleTable(object);
-        TextTable textTable = new TextTable(consoleTable.getColumnNames(), consoleTable.getData());
+    public void writeProjectasTable(List<Project> object) {
+        ProjectTableView projectTableView = new ProjectTableView(object);
+        TextTable textTable = new TextTable(projectTableView.getColumnNames(), projectTableView.getData());
         textTable.printTable();
-        write("----");
     }
 
 }

@@ -1,11 +1,9 @@
-package com.sandarovich.kickstarter.category;
+package com.sandarovich.kickstarter.dao.category;
 
 /**
  * Tests for Category Source
  */
 
-import com.sandarovich.kickstarter.dao.category.Category;
-import com.sandarovich.kickstarter.dao.category.CategoryDaoMemoryImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -23,9 +21,9 @@ public class CategoryDaoMemoryImplTest {
     @Test
     public void testGetCategoryByIdValueExist() {
         CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
-        Category category = new Category(777, "IT");
+        Category category = new Category(777, "IT", null);
         cs.add(category);
-        cs.add(new Category(2, "Garden"));
+        cs.add(new Category(2, "Garden", null));
         assertEquals(category, cs.findCategoryById(777));
 
     }
@@ -33,8 +31,8 @@ public class CategoryDaoMemoryImplTest {
     @Test
     public void testIsValidCategoryValid() {
         CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
-        cs.add(new Category(1, "IT"));
-        cs.add(new Category(2, "Tourism"));
+        cs.add(new Category(1, "IT", null));
+        cs.add(new Category(2, "Tourism", null));
 
         assertEquals(true, cs.isValidCategory("1"));
     }
@@ -42,8 +40,8 @@ public class CategoryDaoMemoryImplTest {
     @Test
     public void testIsValidCategoryLetters() {
         CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
-        cs.add(new Category(1, "IT"));
-        cs.add(new Category(2, "Tourism"));
+        cs.add(new Category(1, "IT", null));
+        cs.add(new Category(2, "Tourism", null));
 
         assertEquals(false, cs.isValidCategory("ZZZZ"));
     }
@@ -51,8 +49,8 @@ public class CategoryDaoMemoryImplTest {
     @Test
     public void testIsValidCategoryNotValid() {
         CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
-        cs.add(new Category(1, "IT"));
-        cs.add(new Category(2, "Tourism"));
+        cs.add(new Category(1, "IT", null));
+        cs.add(new Category(2, "Tourism", null));
 
         assertEquals(false, cs.isValidCategory("9"));
     }
@@ -60,8 +58,8 @@ public class CategoryDaoMemoryImplTest {
     @Test
     public void testSize() {
         CategoryDaoMemoryImpl cs = new CategoryDaoMemoryImpl();
-        cs.add(new Category(1, "IT"));
-        cs.add(new Category(2, "Tourism"));
+        cs.add(new Category(1, "IT", null));
+        cs.add(new Category(2, "Tourism", null));
         int size = 0;
         for (Category category : cs.getCategories()) {
             size++;

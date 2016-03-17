@@ -8,8 +8,7 @@ import java.util.List;
 
 public interface CategoryDao {
     List<Category> getCategories();
-
     Category findCategoryById(int id);
-
     boolean isValidCategory(String category);
+
 }
