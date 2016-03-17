@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.dao.category;
 
 /**
  * Application mode enum
