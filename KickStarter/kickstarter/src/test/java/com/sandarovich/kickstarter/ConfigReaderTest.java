@@ -39,7 +39,7 @@ public class ConfigReaderTest {
         //when
         Properties prop = new Properties();
         prop.setProperty("mode", "memory");
-        assertEquals("memory mode", configReader.getMode(prop), ApplicationMode.MEMORY);
+        assertEquals("memory mode", configReader.getMode(prop), DaoMode.MEMORY);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ConfigReaderTest {
         //when
         Properties prop = new Properties();
         prop.setProperty("mode", "zzzzzzz");
-        assertEquals("Not found mode", configReader.getMode(prop), ApplicationMode.MEMORY);
+        assertEquals("Not found mode", configReader.getMode(prop), DaoMode.MEMORY);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ConfigReaderTest {
         //when
         Properties prop = new Properties();
         prop.setProperty("mode", "file");
-        assertEquals("File mode", configReader.getMode(prop), ApplicationMode.FILE);
+        assertEquals("File mode", configReader.getMode(prop), DaoMode.FILE);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ConfigReaderTest {
         //when
         Properties prop = new Properties();
         prop.setProperty("mode", "db");
-        assertEquals("DB mode", configReader.getMode(prop), ApplicationMode.DB);
+        assertEquals("DB mode", configReader.getMode(prop), DaoMode.DB);
     }
 
 }

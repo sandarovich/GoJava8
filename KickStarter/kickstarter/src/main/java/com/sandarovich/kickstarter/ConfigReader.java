@@ -31,18 +31,18 @@ public class ConfigReader {
         }
     }
 
-    public ApplicationMode getMode(Properties prop) {
+    public DaoMode getMode(Properties prop) {
         if (prop == null) {
             return null;
         }
         String value = prop.getProperty("mode");
         if (value.equals("file")) {
-            return ApplicationMode.FILE;
+            return DaoMode.FILE;
         }
         if (value.equals("db")) {
-            return ApplicationMode.DB;
+            return DaoMode.DB;
         }
 
-        return ApplicationMode.MEMORY;
+        return DaoMode.MEMORY;
     }
 }

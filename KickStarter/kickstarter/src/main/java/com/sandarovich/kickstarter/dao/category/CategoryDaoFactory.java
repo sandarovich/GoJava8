@@ -1,21 +1,21 @@
 package com.sandarovich.kickstarter.dao.category;
 
-import com.sandarovich.kickstarter.ApplicationMode;
+import com.sandarovich.kickstarter.DaoMode;
 
 /**
  * Category Dao Factory
  */
 
 public class CategoryDaoFactory {
-    public CategoryDao getCategoryDao(ApplicationMode mode) {
+    public CategoryDao getCategoryDao(DaoMode mode) {
         if (mode == null) {
             return null;
         }
-        if (mode == ApplicationMode.MEMORY) {
+        if (mode == DaoMode.MEMORY) {
             return new CategoryDaoMemoryImpl();
         }
 
-        if (mode == ApplicationMode.FILE) {
+        if (mode == DaoMode.FILE) {
             return new CategoryDaoFileImpl();
         }
 

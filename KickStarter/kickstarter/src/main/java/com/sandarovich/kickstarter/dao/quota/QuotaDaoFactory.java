@@ -1,23 +1,25 @@
 package com.sandarovich.kickstarter.dao.quota;
 
-import com.sandarovich.kickstarter.ApplicationMode;
+import com.sandarovich.kickstarter.DaoMode;
 
 /**
  * Quota Dao Factory
  */
 public class QuotaDaoFactory {
 
-    public QuotaDao getQuotaDao(ApplicationMode mode) {
-        if (mode == null) {
-            return null;
-        }
-        if (mode == ApplicationMode.MEMORY) {
+    public QuotaDao getQuotaDao(DaoMode mode) {
+        if (mode == DaoMode.MEMORY) {
             return new QuotaDaoMemoryImpl();
         }
 
-        if (mode == ApplicationMode.FILE) {
+        if (mode == DaoMode.FILE) {
             return new QuotaDaoFileImpl();
         }
+
+        if (mode == DaoMode.DB) {
+            return new QuotaDaoDbImpl();
+        }
+
 
         return null;
     }

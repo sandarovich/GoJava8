@@ -12,23 +12,30 @@ import com.sandarovich.kickstarter.io.IO;
 public class KickStarterNew {
 
     private IO io;
+    private DaoMode daoMode;
     private QuotaDao quotaDao;
     private CategoryDao categoryDao;
 
 
-    public KickStarterNew(IO io, QuotaDao quotaDao, CategoryDao categoryDao) {
+    public KickStarterNew(IO io, DaoMode daoMode) {
         this.io = io;
+        this.daoMode = daoMode;
         this.quotaDao = quotaDao;
         this.categoryDao = categoryDao;
     }
 
 
     public void run() {
+        showDaoMode();
         showApplicationTitle();
         showQuota();
         showAllCategories();
         Category category = readCategory();
         showCategory(category);
+    }
+
+    private void showDaoMode() {
+        io.write(">> Application is running in : " + daoMode.toString() + " mode");
     }
 
     private void showCategory(Category category) {
