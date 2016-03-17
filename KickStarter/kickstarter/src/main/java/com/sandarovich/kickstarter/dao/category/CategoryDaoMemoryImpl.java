@@ -27,17 +27,20 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
     private List<Project> getITProjects() {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(101)
-                .andName("USB TOY   ")
-                .andDescription("Not Ordinary gameplay ")
-                .build();
+            .andName("USB TOY   ")
+            .andDescription("Not Ordinary gameplay ")
+            .andRequiredBudget(2000d)
+            .build();
         builder.forId(102)
-                .andName("Power Bank")
-                .andDescription("Unique technology ")
-                .build();
+            .andName("Power Bank")
+            .andDescription("Unique technology ")
+            .andRequiredBudget(1200d)
+            .build();
         builder.forId(3)
-                .andName("Robot Frodo")
-                .andDescription("Fast and Smart")
-                .build();
+            .andName("Robot Frodo")
+            .andDescription("Fast and Smart")
+            .andRequiredBudget(7000d)
+            .build();
         builder.forId(97);
         return builder.getProjects();
     }
@@ -45,22 +48,22 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
     private List<Project> getTourismProjects() {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(5)
-                .andName("Super Bag")
-                .andDescription("Auto resizable")
-                .build();
+            .andName("Super Bag")
+            .andDescription("Auto resizable")
+            .build();
         return builder.getProjects();
     }
 
     private List<Project> getGardenProjects() {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(97)
-                .andName("Bison grass")
-                .andDescription("Power energy from sun")
-                .build();
+            .andName("Bison grass")
+            .andDescription("Power energy from sun")
+            .build();
         builder.forId(77)
-                .andName("Garfield grass")
-                .andDescription("Feel exotic")
-                .build();
+            .andName("Garfield grass")
+            .andDescription("Feel exotic")
+            .build();
         return builder.getProjects();
     }
 
@@ -81,7 +84,7 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
 
     @Override
     public boolean isValidCategory(String category) {
-        int categoryId = 0;
+        int categoryId;
         try {
             categoryId = Integer.parseInt(category);
         } catch (Exception e) {

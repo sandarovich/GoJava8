@@ -22,10 +22,24 @@ public class Category {
         return id;
     }
 
-    public List<Project> getProject() {
+    public List<Project> getProjects() {
         return projects;
     }
 
+    public Project findProjectById(String id) {
+        Project result = null;
+        try {
+            Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        for (Project project : getProjects()) {
+            if (project.getId() == Integer.parseInt(id)) {
+                return project;
+            }
+        }
+        return result;
+    }
 
     @Override
     public String toString() {

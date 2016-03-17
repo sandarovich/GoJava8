@@ -36,11 +36,7 @@ public class Project {
     @Override
     public String toString() {
         return id + " -> " +
-                name + " " +
-                shortDesription + " "
-                + requiredBudget + " "
-                + gatherdBudget + " "
-                + daysLeft;
+            name;
     }
 
     public List<Object> getAsRow() {
@@ -55,6 +51,21 @@ public class Project {
     }
 
 
+    public int getId() {
+        return id;
+    }
 
-
+    public String getFullDetails() {
+        StringBuilder result = new StringBuilder();
+        result.append("Id: " + id + "\n");
+        result.append("Name: " + name + "\n");
+        result.append("Short Description: " + shortDesription + "\n");
+        result.append("Required Budget: " + requiredBudget + "\n");
+        result.append("Gathered Budget: " + gatherdBudget + "\n");
+        result.append("Days Left: " + daysLeft + "\n");
+        result.append("Video: " + videoLink + "\n");
+        result.append("Questions: " + questionsAnswers + "\n");
+        result.append(history);
+        return result.toString();
+    }
 }

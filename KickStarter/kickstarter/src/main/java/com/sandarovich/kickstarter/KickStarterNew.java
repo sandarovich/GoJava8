@@ -2,7 +2,10 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.category.Category;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
+import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
+import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.IO;
 
 /**
@@ -15,53 +18,111 @@ public class KickStarterNew {
     private DaoMode daoMode;
     private QuotaDao quotaDao;
     private CategoryDao categoryDao;
+    private Category category;
 
 
     public KickStarterNew(IO io, DaoMode daoMode) {
         this.io = io;
         this.daoMode = daoMode;
-        this.quotaDao = quotaDao;
-        this.categoryDao = categoryDao;
+        this.quotaDao = new QuotaDaoFactory().getQuotaDao(daoMode);
+        this.categoryDao = new CategoryDaoFactory().getCategoryDao(daoMode);
     }
 
     public void run() {
         showDaoMode();
-        showApplicationTitle();
-        showQuota();
-        showAllCategories();
-        Category category = readCategory();
-        showCategory(category);
-        showProjects(category);
+        showMainMenu();
     }
 
-    private void showProjects(Category category) {
+    private void readProject() {
+        String readedValue = io.read();
+        if (readedValue.equals("0")) {
+            showMainMenu();
+        }
+        Project project = category.findProjectById(readedValue);
+        if (project == null) {
+            io.write(">> Option not found");
+            readProject();
+        }
+        showProjectsDetailsView(project);
+
+    }
+
+    private void showMainMenu() {
+        showApplicationTitle();
+        showQuota();
+        showCategoriesView();
+        category = readCategory();
+        showСhosenCategory();
+        showProjectsView();
+        readProject();
+    }
+
+    private void showProjectsDetailsView(Project project) {
+        showViewTitle("Project Details");
+        io.write(project.getFullDetails());
+        io.write("---");
+        io.write("0 - Projects");
+        io.write("1 - Category");
+        readProjectDetailsOptions();
+    }
+
+    private void readProjectDetailsOptions() {
+        String readedValue = io.read();
+        if (readedValue.equals("0")) {
+            showProjectsView();
+            readProject();
+        } else if (readedValue.equals("1")) {
+            showMainMenu();
+        } else {
+            io.write(">> Option not found");
+            readProjectDetailsOptions();
+        }
+    }
+
+    private void exitKickstarter() {
+        io.write(">> Bye!");
+        System.exit(0);
+    }
+
+    private void showProjectsView() {
         showViewTitle("<<Projects>> ");
-        io.writeProjectasTable(category.getProject());
+        io.writeProjectasTable(category.getProjects());
+        io.write("---");
+        for (Project project : category.getProjects()) {
+            io.write(project.toString());
+        }
+        io.write("---");
+        io.write("0 -> Exit");
     }
 
     private void showDaoMode() {
         io.write(">> Application is running in : " + daoMode.toString() + " mode");
     }
 
-    private void showCategory(Category category) {
+    private void showСhosenCategory() {
         io.write(category.toString());
     }
 
     private Category readCategory() {
-        String readedCategory = io.read();
-        if (!categoryDao.isValidCategory(readedCategory)) {
+        String readedValue = io.read();
+        if (readedValue.equals("0")) {
+            exitKickstarter();
+        }
+        if (!categoryDao.isValidCategory(readedValue)) {
             io.write(">> Option is not found. Please try again");
             return readCategory();
         }
-        return categoryDao.findCategoryById(Integer.parseInt(readedCategory));
+        return categoryDao.findCategoryById(Integer.parseInt(readedValue));
     }
 
 
-    private void showAllCategories() {
+    private void showCategoriesView() {
         showViewTitle("<<Category>> ");
         for (Category category : categoryDao.getCategories()) {
             io.write(category.toString());
         }
+        io.write("---");
+        io.write("0 -> Exit");
     }
 
     private void showViewTitle(String titleName) {
