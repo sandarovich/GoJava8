@@ -12,11 +12,11 @@ public class Project {
     private final String name;
     private final String shortDesription;
     private final double requiredBudget;
-    private final double gatherdBudget;
     private final int daysLeft;
     private final String videoLink;
     private final String history;
     private final String questionsAnswers;
+    private double gatherdBudget;
 
     public Project(int id, String name, String shortDesription,
                    double requiredBudget, double gatherdBudget, int daysLeft, String videoLink,
@@ -67,5 +67,9 @@ public class Project {
         result.append("Questions: " + questionsAnswers + "\n");
         result.append(history);
         return result.toString();
+    }
+
+    public void invest(double ammount) {
+        gatherdBudget += ammount;
     }
 }

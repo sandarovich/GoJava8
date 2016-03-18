@@ -16,6 +16,7 @@ public class KickStarter {
     private QuotaDao quotaDao;
     private CategoryDao categoryDao;
     private Category category;
+    private Project project;
 
 
     public KickStarter(IO io, DaoMode daoMode) {
@@ -35,12 +36,12 @@ public class KickStarter {
         if (readedValue.equals("0")) {
             showMainMenu();
         }
-        Project project = category.findProjectById(readedValue);
+        project = category.findProjectById(readedValue);
         if (project == null) {
             io.write(">> Option not found");
             readProject();
         }
-        showProjectsDetailsView(project);
+        showProjectsDetailsView();
 
     }
 
@@ -54,12 +55,13 @@ public class KickStarter {
         readProject();
     }
 
-    private void showProjectsDetailsView(Project project) {
+    private void showProjectsDetailsView() {
         showViewTitle("Project Details");
         io.write(project.getFullDetails());
         io.write("---");
         io.write("0 - Projects");
         io.write("1 - Category");
+        io.write("2 - Invest");
         readProjectDetailsOptions();
     }
 
@@ -70,10 +72,25 @@ public class KickStarter {
             readProject();
         } else if (readedValue.equals("1")) {
             showMainMenu();
+        } else if (readedValue.equals("2")) {
+            showInvestView();
         } else {
             io.write(">> Option not found");
             readProjectDetailsOptions();
         }
+    }
+
+    private void showInvestView() {
+        showViewTitle("Invest:");
+        io.write("Please enter your name:");
+        String name = io.read();
+        io.write("Please enter your Card number:");
+        String cardNumber = io.read();
+        io.write("Please enter ammount:");
+        String ammount = io.read();
+        project.invest(Double.valueOf(ammount));
+
+        showProjectsDetailsView();
     }
 
     private void exitKickstarter() {
