@@ -62,6 +62,7 @@ public class KickStarter {
         io.write("0 - Projects");
         io.write("1 - Category");
         io.write("2 - Invest");
+        io.write("3 - Ask a question");
         readProjectDetailsOptions();
     }
 
@@ -74,10 +75,21 @@ public class KickStarter {
             showMainMenu();
         } else if (readedValue.equals("2")) {
             showInvestView();
+        } else if (readedValue.equals("3")) {
+            showAskQuestion();
         } else {
             io.write(">> Option not found");
             readProjectDetailsOptions();
         }
+    }
+
+    private void showAskQuestion() {
+        showViewTitle("Ask a question:");
+        io.write("You question: ");
+        String question = io.read();
+        project.addQuestion(question);
+
+        showProjectsDetailsView();
     }
 
     private void showInvestView() {

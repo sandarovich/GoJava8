@@ -15,7 +15,7 @@ public class Project {
     private final int daysLeft;
     private final String videoLink;
     private final String history;
-    private final String questionsAnswers;
+    private String questionsAnswers;
     private double gatherdBudget;
 
     public Project(int id, String name, String shortDesription,
@@ -71,5 +71,9 @@ public class Project {
 
     public void invest(double ammount) {
         gatherdBudget += ammount;
+    }
+
+    public void addQuestion(String question) {
+        questionsAnswers += question;
     }
 }
