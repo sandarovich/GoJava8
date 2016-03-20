@@ -14,10 +14,10 @@ public enum DaoMode {
             throw new IllegalStateException("Environment variable" + daoMode + " was not found");
         }
         daoMode = daoMode.toUpperCase().trim();
-        if (daoMode.equals(DaoMode.FILE.toString())) {
+        if (FILE.equals(daoMode)) {
             return FILE;
         }
-        if (daoMode.equals(DaoMode.DB.toString())) {
+        if (DB.equals(daoMode)) {
             return DB;
         }
         return MEMORY;
