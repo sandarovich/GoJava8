@@ -21,7 +21,7 @@ public class ProjectBuilder {
     private double requiredBudget = 1000d;
     private double gatheredBudget = 0d;
     private int daysLeft = 7;
-    private String videoLink = "http:\\\\www.google.com";
+    private String videoLink = "https://www.google.com";
     private String history = "No history";
     private String questionsAnswers = "No Q&A";
 

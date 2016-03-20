@@ -6,7 +6,7 @@ package com.sandarovich.kickstarter.dao.quota;
 
 public class QuotaDaoDbImpl implements QuotaDao {
     @Override
-    public String getRandomQuota() {
+    public Quota getRandomQuota() {
         return null;
     }
 }

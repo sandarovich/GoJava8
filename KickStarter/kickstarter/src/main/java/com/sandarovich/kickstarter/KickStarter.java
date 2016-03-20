@@ -57,7 +57,7 @@ public class KickStarter {
         showApplicationTitle();
         showQuota();
         showCategoriesView();
-        category = readCategory();
+        readCategory();
         showСhosenCategory();
         showProjectsView();
         readProject();
@@ -136,16 +136,16 @@ public class KickStarter {
         io.write(category.toString());
     }
 
-    private Category readCategory() {
+    private void readCategory() {
         String readedValue = io.read();
         if (EXIT_INPUT.equals(readedValue)) {
             exitKickstarter();
         }
         if (!categoryDao.isValidCategory(readedValue)) {
             io.write(OPTION_NOT_FOUND);
-            return readCategory();
+            readCategory();
         }
-        return categoryDao.findCategoryById(Integer.parseInt(readedValue));
+        category = categoryDao.findCategoryById(Integer.parseInt(readedValue));
     }
 
 
@@ -165,7 +165,7 @@ public class KickStarter {
     }
 
     void showQuota() {
-        io.write(quotaDao.getRandomQuota());
+        io.write(quotaDao.getRandomQuota().toString());
     }
 
     private void showApplicationTitle() {

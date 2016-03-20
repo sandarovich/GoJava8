@@ -23,13 +23,13 @@ public class QuotaDaoMemoryImpl implements QuotaDao {
         quotas.add(new Quota("Mr SS", "Excellence across the board"));
     }
 
-    String getQuotaById(int quotaIndex) {
+    Quota getQuotaById(int quotaIndex) {
         return (quotaIndex >= 0 && quotaIndex <= quotas.size()) ?
-                quotas.get(quotaIndex).toString() :
-                quotas.get(0).toString();
+            quotas.get(quotaIndex) :
+            quotas.get(0);
     }
 
-    public String getRandomQuota() {
+    public Quota getRandomQuota() {
         int quotaIndex = new Random().nextInt(quotas.size());
         return getQuotaById(quotaIndex);
     }

@@ -5,5 +5,5 @@ package com.sandarovich.kickstarter.dao.quota;
  */
 
 public interface QuotaDao {
-    String getRandomQuota();
+    Quota getRandomQuota();
 }
