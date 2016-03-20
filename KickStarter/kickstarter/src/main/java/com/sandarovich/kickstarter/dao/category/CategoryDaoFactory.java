@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.dao.category;
 
+import com.sandarovich.kickstarter.dao.DaoMode;
+
 /**
  * Category Dao Factory
  */

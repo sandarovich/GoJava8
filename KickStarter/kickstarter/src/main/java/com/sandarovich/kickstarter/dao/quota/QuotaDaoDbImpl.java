@@ -20,7 +20,14 @@ public class QuotaDaoDbImpl implements QuotaDao {
     @Override
     public Quota getRandomQuota() {
         try (Statement statement = connectionManager.getConnection().createStatement()) {
-            ResultSet rs = statement.executeQuery("SELECT TEXT, AUTHOR FROM QUOTA ORDER BY RANDOM() LIMIT(1)");
+            String query =
+                "SELECT " +
+                    " \"QUOTA\".\"TEXT\"," +
+                    "  \"QUOTA\".\"AUTHOR\"" +
+                    "FROM " +
+                    " public.\"QUOTA\"" +
+                    "ORDER BY RANDOM() LIMIT(1)";
+            ResultSet rs = statement.executeQuery(query);
             rs.next();
             return new Quota(rs.getString("AUTHOR"), rs.getString("TEXT"));
         } catch (SQLException e) {

@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.dao.category.DaoMode;
+import com.sandarovich.kickstarter.dao.DaoMode;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import com.sandarovich.kickstarter.io.IO;
 

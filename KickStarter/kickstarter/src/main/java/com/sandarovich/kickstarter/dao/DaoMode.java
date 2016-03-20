@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao.category;
+package com.sandarovich.kickstarter.dao;
 
 /**
  * Application mode enum
@@ -14,12 +14,13 @@ public enum DaoMode {
             throw new IllegalStateException("Environment variable" + daoMode + " was not found");
         }
         daoMode = daoMode.toUpperCase().trim();
-        if (FILE.equals(daoMode)) {
+        if (FILE.toString().equals(daoMode)) {
             return FILE;
         }
-        if (DB.equals(daoMode)) {
+        if (DB.toString().equals(daoMode)) {
             return DB;
         }
         return MEMORY;
     }
+
 }

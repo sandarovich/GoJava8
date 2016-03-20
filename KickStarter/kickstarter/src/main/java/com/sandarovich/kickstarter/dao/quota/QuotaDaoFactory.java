@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter.dao.quota;
 
 import com.sandarovich.kickstarter.ConnectionManager;
-import com.sandarovich.kickstarter.dao.category.DaoMode;
+import com.sandarovich.kickstarter.dao.DaoMode;
 
 /**
  * Quota Dao Factory

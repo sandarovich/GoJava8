@@ -1,6 +1,10 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.dao.category.*;
+import com.sandarovich.kickstarter.dao.DaoMode;
+import com.sandarovich.kickstarter.dao.category.Category;
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
+import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.IO;
