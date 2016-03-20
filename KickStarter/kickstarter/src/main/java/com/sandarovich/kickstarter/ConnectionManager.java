@@ -13,8 +13,10 @@ public class ConnectionManager {
     private Connection connection;
 
     private void openConnection() throws SQLException {
-        String url = "";
-        connection = DriverManager.getConnection(url);
+        String user = "kickstarter";
+        String pass = "777";
+        String url = "jdbc:postgresql://127.0.0.1:5432/kickstarter";
+        connection = DriverManager.getConnection(url, user, pass);
     }
 
     public synchronized Connection getConnection() throws SQLException {

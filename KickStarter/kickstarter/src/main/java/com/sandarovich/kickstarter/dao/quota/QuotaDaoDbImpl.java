@@ -2,6 +2,10 @@ package com.sandarovich.kickstarter.dao.quota;
 
 import com.sandarovich.kickstarter.ConnectionManager;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  * Quata Dao for Db
  */
@@ -15,7 +19,12 @@ public class QuotaDaoDbImpl implements QuotaDao {
     }
     @Override
     public Quota getRandomQuota() {
-
-        return null;
+        try (Statement statement = connectionManager.getConnection().createStatement()) {
+            ResultSet rs = statement.executeQuery("SELECT TEXT, AUTHOR FROM QUOTA ORDER BY RANDOM() LIMIT(1)");
+            rs.next();
+            return new Quota(rs.getString("AUTHOR"), rs.getString("TEXT"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
     }
 }
