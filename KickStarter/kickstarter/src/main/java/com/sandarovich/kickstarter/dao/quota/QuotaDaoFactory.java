@@ -8,19 +8,15 @@ import com.sandarovich.kickstarter.dao.category.DaoMode;
 public class QuotaDaoFactory {
 
     public QuotaDao getQuotaDao(DaoMode mode) {
-        if (mode == DaoMode.MEMORY) {
+        if (DaoMode.MEMORY == mode) {
             return new QuotaDaoMemoryImpl();
         }
-
-        if (mode == DaoMode.FILE) {
+        if (DaoMode.FILE == mode) {
             return new QuotaDaoFileImpl();
         }
-
-        if (mode == DaoMode.DB) {
+        if (DaoMode.DB == mode) {
             return new QuotaDaoDbImpl();
         }
-
-
         return null;
     }
 }

@@ -9,9 +9,12 @@ import com.sandarovich.kickstarter.io.IO;
  */
 
 public class KickStarterRunner {
+
+    public static final String DAO_MODE = "mode";
+
     public static void main(String[] args) {
         IO io = new ConsoleIO();
-        DaoMode daoMode = DaoMode.fromName(System.getProperty("mode"));
+        DaoMode daoMode = DaoMode.fromName(System.getProperty(DAO_MODE));
         new KickStarter(io, daoMode).run();
     }
 }

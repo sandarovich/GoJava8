@@ -11,6 +11,14 @@ import com.sandarovich.kickstarter.io.IO;
 
 public class KickStarter {
 
+    public static final String EXIT_INPUT = "0";
+    public static final String CATEGORY_INPUT = "1";
+    public static final String INVEST_INPUT = "2";
+    public static final String ASK_QUESTION_INPUT = "3";
+    public static final String OPTION_NOT_FOUND = ">> Option not found";
+    public static final String SHORT_DIVIDER = "---";
+    public static final String LONG_DIVIDER = "=======================================";
+
     private IO io;
     private DaoMode daoMode;
     private QuotaDao quotaDao;
@@ -33,7 +41,7 @@ public class KickStarter {
 
     private void readProject() {
         String readedValue = io.read();
-        if (readedValue.equals("0")) {
+        if (EXIT_INPUT.equals(readedValue)) {
             showMainMenu();
         }
         project = category.findProjectById(readedValue);
@@ -58,27 +66,27 @@ public class KickStarter {
     private void showProjectsDetailsView() {
         showViewTitle("Project Details");
         io.write(project.getFullDetails());
-        io.write("---");
-        io.write("0 - Projects");
-        io.write("1 - Category");
-        io.write("2 - Invest");
-        io.write("3 - Ask a question");
+        io.write(SHORT_DIVIDER);
+        io.write(EXIT_INPUT + " - Projects");
+        io.write(CATEGORY_INPUT + " - Category");
+        io.write(INVEST_INPUT + " - Invest");
+        io.write(ASK_QUESTION_INPUT + " - Ask a question");
         readProjectDetailsOptions();
     }
 
     private void readProjectDetailsOptions() {
         String readedValue = io.read();
-        if (readedValue.equals("0")) {
+        if (EXIT_INPUT.equals(readedValue)) {
             showProjectsView();
             readProject();
-        } else if (readedValue.equals("1")) {
+        } else if (CATEGORY_INPUT.equals(readedValue)) {
             showMainMenu();
-        } else if (readedValue.equals("2")) {
+        } else if (INVEST_INPUT.equals(readedValue)) {
             showInvestView();
-        } else if (readedValue.equals("3")) {
+        } else if (ASK_QUESTION_INPUT.equals(readedValue)) {
             showAskQuestion();
         } else {
-            io.write(">> Option not found");
+            io.write(OPTION_NOT_FOUND);
             readProjectDetailsOptions();
         }
     }
@@ -107,18 +115,17 @@ public class KickStarter {
 
     private void exitKickstarter() {
         io.write(">> Bye!");
-        System.exit(0);
     }
 
     private void showProjectsView() {
         showViewTitle("<<Projects>> ");
         io.writeProjectasTable(category.getProjects());
-        io.write("---");
+        io.write(SHORT_DIVIDER);
         for (Project project : category.getProjects()) {
             io.write(project.toString());
         }
-        io.write("---");
-        io.write("0 -> Exit");
+        io.write(SHORT_DIVIDER);
+        io.write(EXIT_INPUT + " -> Exit");
     }
 
     private void showDaoMode() {
@@ -131,11 +138,11 @@ public class KickStarter {
 
     private Category readCategory() {
         String readedValue = io.read();
-        if (readedValue.equals("0")) {
+        if (EXIT_INPUT.equals(readedValue)) {
             exitKickstarter();
         }
         if (!categoryDao.isValidCategory(readedValue)) {
-            io.write(">> Option is not found. Please try again");
+            io.write(OPTION_NOT_FOUND);
             return readCategory();
         }
         return categoryDao.findCategoryById(Integer.parseInt(readedValue));
@@ -147,14 +154,14 @@ public class KickStarter {
         for (Category category : categoryDao.getCategories()) {
             io.write(category.toString());
         }
-        io.write("---");
-        io.write("0 -> Exit");
+        io.write(SHORT_DIVIDER);
+        io.write(EXIT_INPUT + " -> Exit");
     }
 
     private void showViewTitle(String titleName) {
-        io.write("============");
+        io.write(LONG_DIVIDER);
         io.write(titleName);
-        io.write("============");
+        io.write(LONG_DIVIDER);
     }
 
     void showQuota() {
@@ -167,10 +174,10 @@ public class KickStarter {
 
     private String getApplicationTitle() {
         StringBuilder result = new StringBuilder();
-        result.append("=======================================\n");
+        result.append(LONG_DIVIDER + "\n");
         result.append("     Kickstarter emulator\n");
         result.append("     by O.Kolodiazhny 2016\n");
-        result.append("=======================================");
+        result.append(LONG_DIVIDER);
         return result.toString();
     }
 

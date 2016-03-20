@@ -10,8 +10,8 @@ public enum DaoMode {
     DB;
 
     public static DaoMode fromName(String daoMode) {
-        if (daoMode == null) {
-            return MEMORY;
+        if (daoMode == null || daoMode.isEmpty()) {
+            throw new IllegalStateException("Environment variable" + daoMode + " was not found");
         }
         daoMode = daoMode.toUpperCase().trim();
         if (daoMode.equals(DaoMode.FILE.toString())) {
