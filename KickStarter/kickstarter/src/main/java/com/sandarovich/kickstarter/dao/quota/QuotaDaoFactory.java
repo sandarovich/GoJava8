@@ -1,5 +1,6 @@
 package com.sandarovich.kickstarter.dao.quota;
 
+import com.sandarovich.kickstarter.ConnectionManager;
 import com.sandarovich.kickstarter.dao.category.DaoMode;
 
 /**
@@ -15,7 +16,8 @@ public class QuotaDaoFactory {
             return new QuotaDaoFileImpl();
         }
         if (DaoMode.DB == mode) {
-            return new QuotaDaoDbImpl();
+            ConnectionManager connectionManager = new ConnectionManager();
+            return new QuotaDaoDbImpl(connectionManager);
         }
         return null;
     }
