@@ -15,12 +15,12 @@ public class Project {
     private final int daysLeft;
     private final String videoLink;
     private final String history;
-    private String questionsAnswers;
+    private List<Question> questions = new ArrayList<Question>();
     private double gatherdBudget;
 
     public Project(int id, String name, String shortDesription,
                    double requiredBudget, double gatherdBudget, int daysLeft, String videoLink,
-                   String history, String questionsAnswers) {
+                   String history, List<Question> questions) {
         this.id = id;
         this.name = name;
         this.shortDesription = shortDesription;
@@ -29,7 +29,7 @@ public class Project {
         this.daysLeft = daysLeft;
         this.videoLink = videoLink;
         this.history = history;
-        this.questionsAnswers = questionsAnswers;
+        this.questions = questions;
     }
 
 
@@ -64,8 +64,11 @@ public class Project {
         result.append("Gathered Budget: " + gatherdBudget + "\n");
         result.append("Days Left: " + daysLeft + "\n");
         result.append("Video: " + videoLink + "\n");
-        result.append("Questions: " + questionsAnswers + "\n");
-        result.append(history);
+        result.append("Questions: " + "\n");
+        for (Question question : questions) {
+            result.append(question.getText() + "\n");
+        }
+        result.append("History: " + history);
         return result.toString();
     }
 
@@ -74,6 +77,7 @@ public class Project {
     }
 
     public void addQuestion(String question) {
-        questionsAnswers += question;
+        System.out.println(question);
+        questions.add(new Question(question));
     }
 }

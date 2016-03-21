@@ -8,6 +8,9 @@ import com.sandarovich.kickstarter.dao.category.Project;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.IO;
+import com.sandarovich.kickstarter.payment.Payment;
+import com.sandarovich.kickstarter.payment.PaymentSystem;
+import com.sandarovich.kickstarter.payment.PaymentVisa;
 
 /**
  * Console Kick Starter
@@ -22,6 +25,9 @@ public class KickStarter {
     public static final String OPTION_NOT_FOUND = ">> Option not found";
     public static final String SHORT_DIVIDER = "---";
     public static final String LONG_DIVIDER = "=======================================";
+    public static final String BYE = ">> Bye!";
+    public static final String SUCCESSFULLY_INVESTED = "Successfully invested.";
+    public static final String AMOUNT_IS_INCORRECT = "Amount is incorrect. Operation aborted. Let's try again..";
 
     private IO io;
     private DaoMode daoMode;
@@ -75,10 +81,10 @@ public class KickStarter {
         io.write(CATEGORY_INPUT + " - Category");
         io.write(INVEST_INPUT + " - Invest");
         io.write(ASK_QUESTION_INPUT + " - Ask a question");
-        readProjectDetailsOptions();
+        readProjectOptions();
     }
 
-    private void readProjectDetailsOptions() {
+    private void readProjectOptions() {
         String readedValue = io.read();
         if (EXIT_INPUT.equals(readedValue)) {
             showProjectsView();
@@ -91,7 +97,7 @@ public class KickStarter {
             showAskQuestion();
         } else {
             io.write(OPTION_NOT_FOUND);
-            readProjectDetailsOptions();
+            readProjectOptions();
         }
     }
 
@@ -100,25 +106,44 @@ public class KickStarter {
         io.write("You question: ");
         String question = io.read();
         project.addQuestion(question);
-
         showProjectsDetailsView();
     }
 
     private void showInvestView() {
         showViewTitle("Invest:");
-        io.write("Please enter your name:");
-        String name = io.read();
-        io.write("Please enter your Card number:");
-        String cardNumber = io.read();
-        io.write("Please enter ammount:");
-        String ammount = io.read();
-        project.invest(Double.valueOf(ammount));
-
+        investIntoProject();
         showProjectsDetailsView();
     }
 
+    private void investIntoProject() {
+        Payment payment = readPaymentDetails();
+        PaymentSystem paymentSystem = new PaymentVisa();
+        if (paymentSystem.isPossible(payment.getAmount())
+                && paymentSystem.isProcess(payment.getAmount())) {
+            project.invest(payment.getAmount());
+            io.write(SUCCESSFULLY_INVESTED);
+        }
+
+    }
+
+    private Payment readPaymentDetails() {
+        Payment payment = new Payment();
+        io.write("Please enter your name:");
+        payment.setCardHolder(io.read());
+        io.write("Please enter your Card number:");
+        payment.setCardNumber(io.read());
+        io.write("Please enter ammount:");
+        try {
+            payment.setAmount(io.read());
+        } catch (NumberFormatException e) {
+            io.write(AMOUNT_IS_INCORRECT);
+            readPaymentDetails();
+        }
+        return payment;
+    }
+
     private void exitKickstarter() {
-        io.write(">> Bye!");
+        io.write(BYE);
     }
 
     private void showProjectsView() {

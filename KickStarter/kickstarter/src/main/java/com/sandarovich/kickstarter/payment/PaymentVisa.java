@@ -3,21 +3,21 @@ package com.sandarovich.kickstarter.payment;
 /**
  * PaymentVisa
  */
-public class PaymentVisa implements Payment {
+public class PaymentVisa implements PaymentSystem {
     private int id;
     private long cardNumber;
     private String cardHolder;
     private double amount;
 
     @Override
-    public boolean isPossible() {
-        //TODO implement Payment system check
+    public boolean isPossible(double amount) {
+        //TODO implement PaymentSystem system check
         return true;
     }
 
     @Override
     public boolean isProcess(double amount) {
-        if (isPossible() && amount > 0) {
+        if (amount > 0 && isPossible(amount)) {
             return true;
         }
         return false;

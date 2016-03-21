@@ -22,8 +22,8 @@ public class ProjectBuilder {
     private double gatheredBudget = 0d;
     private int daysLeft = 7;
     private String videoLink = "https://www.google.com";
-    private String history = "No history";
-    private String questionsAnswers = "No Q&A";
+    private String history = "Brave new world";
+    private List<Question> questions = new ArrayList<Question>();
 
 
     public ProjectBuilder() {
@@ -56,7 +56,7 @@ public class ProjectBuilder {
     public ProjectBuilder build() {
         this.project = new Project(id, name, shortDescription,
             requiredBudget, gatheredBudget, daysLeft, videoLink,
-            history, questionsAnswers);
+                history, questions);
         this.add();
         return this;
     }
@@ -70,23 +70,5 @@ public class ProjectBuilder {
     public List<Project> getProjects() {
         return this.projects;
     }
-
-//    public ProjectBuilder add(int id, Category category, String name, String shortDesription,
-//                              double goalAmount, double collectedAmount, Calendar goalDate, String videoLink,
-//                              String history, String questionsAnswers) {
-//        this.id = id;
-//        this.category = category;
-//        this.name = name;
-//        this.shortDescription = shortDesription;
-//        this.goalAmount = goalAmount;
-//        this.collectedAmount = collectedAmount;
-//        this.goalDate = goalDate;
-//        this.videoLink = videoLink;
-//        this.history = history;
-//        this.questionsAnswers = questionsAnswers;
-//        this.add();
-//        return this;
-//    }
-
 
 }
