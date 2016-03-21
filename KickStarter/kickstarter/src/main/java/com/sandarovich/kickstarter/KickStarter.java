@@ -186,6 +186,7 @@ public class KickStarter {
 
     private void exitKickstarter() {
         io.write(BYE);
+        System.exit(0);
     }
 
     private void showProjectsView() {
