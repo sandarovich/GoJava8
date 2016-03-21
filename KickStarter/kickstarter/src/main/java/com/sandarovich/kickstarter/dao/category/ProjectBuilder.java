@@ -24,6 +24,7 @@ public class ProjectBuilder {
     private String videoLink = "https://www.google.com";
     private String history = "Brave new world";
     private List<Question> questions = new ArrayList<Question>();
+    private List<Award> awards = new ArrayList<Award>();
 
 
     public ProjectBuilder() {
@@ -52,12 +53,18 @@ public class ProjectBuilder {
         return this;
     }
 
+    public ProjectBuilder andAward(Award award) {
+        this.awards.add(award);
+        return this;
+    }
+
 
     public ProjectBuilder build() {
         this.project = new Project(id, name, shortDescription,
             requiredBudget, gatheredBudget, daysLeft, videoLink,
-                history, questions);
+                history, questions, awards);
         this.add();
+        this.awards = new ArrayList<Award>();
         return this;
     }
 

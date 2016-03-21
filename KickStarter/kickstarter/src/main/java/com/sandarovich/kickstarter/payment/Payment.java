@@ -22,11 +22,8 @@ public class Payment {
         return amount;
     }
 
-    public void setAmount(String amount) {
-        try {
-            this.amount = Double.valueOf(amount);
-        } catch (Exception e) {
-            throw new NumberFormatException("Amount is incorrect");
-        }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

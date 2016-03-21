@@ -17,10 +17,11 @@ public class Project {
     private final String history;
     private List<Question> questions = new ArrayList<Question>();
     private double gatherdBudget;
+    private List<Award> awards = new ArrayList<Award>();
 
     public Project(int id, String name, String shortDesription,
                    double requiredBudget, double gatherdBudget, int daysLeft, String videoLink,
-                   String history, List<Question> questions) {
+                   String history, List<Question> questions, List<Award> awards) {
         this.id = id;
         this.name = name;
         this.shortDesription = shortDesription;
@@ -30,6 +31,7 @@ public class Project {
         this.videoLink = videoLink;
         this.history = history;
         this.questions = questions;
+        this.awards = awards;
     }
 
 
@@ -80,4 +82,10 @@ public class Project {
         System.out.println(question);
         questions.add(new Question(question));
     }
+
+    public List<Award> getAwards() {
+        return awards;
+    }
+
+
 }

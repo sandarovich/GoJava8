@@ -1,16 +1,15 @@
 package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.DaoMode;
-import com.sandarovich.kickstarter.dao.category.Category;
-import com.sandarovich.kickstarter.dao.category.CategoryDao;
-import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
-import com.sandarovich.kickstarter.dao.category.Project;
+import com.sandarovich.kickstarter.dao.category.*;
 import com.sandarovich.kickstarter.dao.quota.QuotaDao;
 import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.payment.Payment;
 import com.sandarovich.kickstarter.payment.PaymentSystem;
 import com.sandarovich.kickstarter.payment.PaymentVisa;
+
+import java.util.List;
 
 /**
  * Console Kick Starter
@@ -115,32 +114,75 @@ public class KickStarter {
         showProjectsDetailsView();
     }
 
+
     private void investIntoProject() {
         Payment payment = readPaymentDetails();
         PaymentSystem paymentSystem = new PaymentVisa();
         if (paymentSystem.isPossible(payment.getAmount())
                 && paymentSystem.isProcess(payment.getAmount())) {
             project.invest(payment.getAmount());
-            io.write(SUCCESSFULLY_INVESTED);
+            io.write(LONG_DIVIDER);
+            io.write(payment.getAmount() + " $ " + SUCCESSFULLY_INVESTED);
+            io.write(LONG_DIVIDER);
         }
 
     }
 
     private Payment readPaymentDetails() {
-        Payment payment = new Payment();
-        io.write("Please enter your name:");
-        payment.setCardHolder(io.read());
-        io.write("Please enter your Card number:");
-        payment.setCardNumber(io.read());
-        io.write("Please enter amount:");
+        Payment result = new Payment();
+//        io.write("Please enter your name:");
+//        result.setCardHolder(io.read());
+//        io.write("Please enter your Card number:");
+//        result.setCardNumber(io.read());
+        showAwardView();
+        double amount = readPaymentAmount();
+        result.setAmount(amount);
+        return result;
+    }
+
+    private double readPaymentAmount() {
+        String readedValue = io.read();
+
+        if (EXIT_INPUT.equals(readedValue)) {
+            try {
+                io.write("Please enter amount:");
+                return Double.valueOf(io.read());
+            } catch (NumberFormatException e) {
+                io.write(AMOUNT_IS_INCORRECT);
+                showAwardView();
+                readPaymentAmount();
+            }
+        }
+        int counter = 1;
+        int currentOption = 0;
         try {
-            payment.setAmount(io.read());
+            currentOption = Integer.parseInt(readedValue);
         } catch (NumberFormatException e) {
-            io.write(AMOUNT_IS_INCORRECT);
+            io.write(OPTION_NOT_FOUND);
             readPaymentDetails();
         }
-        return payment;
+
+        for (Award award : project.getAwards()) {
+            if (counter++ == currentOption) {
+                return award.getAmount();
+            }
+        }
+        io.write(OPTION_NOT_FOUND);
+        return readPaymentAmount();
     }
+
+
+    private void showAwardView() {
+        showViewTitle("Award options:");
+        int counter = 1;
+        List<Award> awards = project.getAwards();
+        for (Award award : awards) {
+            io.write(String.valueOf(counter++) + " - " + award.getAward());
+        }
+        io.write(SHORT_DIVIDER);
+        io.write("0" + " - Manually amount mode:");
+    }
+
 
     private void exitKickstarter() {
         io.write(BYE);
