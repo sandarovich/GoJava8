@@ -12,7 +12,8 @@ public enum DaoMode {
     public static DaoMode fromName(String daoMode) {
         if (daoMode == null || daoMode.isEmpty()) {
             //-Dmode=memory
-            throw new IllegalStateException("Environment variable" + daoMode + " was not found");
+            throw new IllegalStateException("Environment variable mode was not found" +
+                    " --> To Fix use: -Dmode=memory)");
         }
         daoMode = daoMode.toUpperCase().trim();
         if (FILE.toString().equals(daoMode)) {
