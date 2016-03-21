@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter;
+package com.sandarovich.kickstarter.payment;
 
 /**
  * Payment interface
@@ -7,5 +7,5 @@ package com.sandarovich.kickstarter;
 public interface Payment {
     boolean isPossible();
 
-    void process();
+    boolean isProcess(double amount);
 }
