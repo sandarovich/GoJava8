@@ -103,7 +103,7 @@ public class KickStarter {
 
     private void showAskQuestion() {
         showViewTitle("Ask a question:");
-        io.write("You question: ");
+        io.write("Please, enter you question: ");
         String question = io.read();
         project.addQuestion(question);
         showProjectsDetailsView();
