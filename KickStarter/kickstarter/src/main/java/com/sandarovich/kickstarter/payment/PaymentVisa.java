@@ -17,11 +17,6 @@ public class PaymentVisa implements PaymentSystem {
 
     @Override
     public boolean isProcess(double amount) {
-        if (amount > 0 && isPossible(amount)) {
-            return true;
-        }
-        return false;
+        return (amount > 0 && isPossible(amount));
     }
-
-
 }
