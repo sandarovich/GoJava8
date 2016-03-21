@@ -121,19 +121,19 @@ public class KickStarter {
         if (paymentSystem.isPossible(payment.getAmount())
                 && paymentSystem.isProcess(payment.getAmount())) {
             project.invest(payment.getAmount());
-            io.write(LONG_DIVIDER);
+            io.write(SHORT_DIVIDER);
             io.write(payment.getAmount() + " $ " + SUCCESSFULLY_INVESTED);
-            io.write(LONG_DIVIDER);
+            io.write(SHORT_DIVIDER);
         }
 
     }
 
     private Payment readPaymentDetails() {
         Payment result = new Payment();
-//        io.write("Please enter your name:");
-//        result.setCardHolder(io.read());
-//        io.write("Please enter your Card number:");
-//        result.setCardNumber(io.read());
+        io.write("Please enter your name:");
+        result.setCardHolder(io.read());
+        io.write("Please enter your Card number:");
+        result.setCardNumber(io.read());
         showAwardView();
         double amount = readPaymentAmount();
         result.setAmount(amount);
@@ -150,7 +150,7 @@ public class KickStarter {
             } catch (NumberFormatException e) {
                 io.write(AMOUNT_IS_INCORRECT);
                 showAwardView();
-                readPaymentAmount();
+                return readPaymentAmount();
             }
         }
         int counter = 1;
@@ -159,9 +159,9 @@ public class KickStarter {
             currentOption = Integer.parseInt(readedValue);
         } catch (NumberFormatException e) {
             io.write(OPTION_NOT_FOUND);
-            readPaymentDetails();
+            showAwardView();
+            return readPaymentAmount();
         }
-
         for (Award award : project.getAwards()) {
             if (counter++ == currentOption) {
                 return award.getAmount();
