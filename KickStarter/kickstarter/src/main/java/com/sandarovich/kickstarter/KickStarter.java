@@ -132,7 +132,7 @@ public class KickStarter {
         payment.setCardHolder(io.read());
         io.write("Please enter your Card number:");
         payment.setCardNumber(io.read());
-        io.write("Please enter ammount:");
+        io.write("Please enter amount:");
         try {
             payment.setAmount(io.read());
         } catch (NumberFormatException e) {
