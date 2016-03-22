@@ -2,8 +2,8 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.DaoMode;
 import com.sandarovich.kickstarter.dao.category.*;
-import com.sandarovich.kickstarter.dao.quota.QuotaDao;
-import com.sandarovich.kickstarter.dao.quota.QuotaDaoFactory;
+import com.sandarovich.kickstarter.dao.quote.QuoteDao;
+import com.sandarovich.kickstarter.dao.quote.QuoteDaoFactory;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.payment.Payment;
 import com.sandarovich.kickstarter.payment.PaymentSystem;
@@ -30,7 +30,7 @@ public class KickStarter {
 
     private IO io;
     private DaoMode daoMode;
-    private QuotaDao quotaDao;
+    private QuoteDao quoteDao;
     private CategoryDao categoryDao;
     private Category category;
     private Project project;
@@ -39,7 +39,7 @@ public class KickStarter {
     public KickStarter(IO io, DaoMode daoMode) {
         this.io = io;
         this.daoMode = daoMode;
-        this.quotaDao = new QuotaDaoFactory().getQuotaDao(daoMode);
+        this.quoteDao = new QuoteDaoFactory().getQuotaDao(daoMode);
         this.categoryDao = new CategoryDaoFactory().getCategoryDao(daoMode);
     }
 
@@ -237,7 +237,7 @@ public class KickStarter {
     }
 
     void showQuota() {
-        io.write(quotaDao.getRandomQuota().toString());
+        io.write(quoteDao.getRandomQuota().toString());
     }
 
     private void showApplicationTitle() {

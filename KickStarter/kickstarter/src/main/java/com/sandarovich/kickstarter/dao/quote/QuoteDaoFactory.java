@@ -1,23 +1,23 @@
-package com.sandarovich.kickstarter.dao.quota;
+package com.sandarovich.kickstarter.dao.quote;
 
 import com.sandarovich.kickstarter.ConnectionManager;
 import com.sandarovich.kickstarter.dao.DaoMode;
 
 /**
- * Quota Dao Factory
+ * Quote Dao Factory
  */
-public class QuotaDaoFactory {
+public class QuoteDaoFactory {
 
-    public QuotaDao getQuotaDao(DaoMode mode) {
+    public QuoteDao getQuotaDao(DaoMode mode) {
         if (DaoMode.MEMORY == mode) {
-            return new QuotaDaoMemoryImpl();
+            return new QuoteDaoMemoryImpl();
         }
         if (DaoMode.FILE == mode) {
-            return new QuotaDaoFileImpl();
+            return new QuoteDaoFileImpl();
         }
         if (DaoMode.DB == mode) {
             ConnectionManager connectionManager = new ConnectionManager();
-            return new QuotaDaoDbImpl(connectionManager);
+            return new QuoteDaoDbImpl(connectionManager);
         }
         return null;
     }

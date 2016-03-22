@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao.quota;
+package com.sandarovich.kickstarter.dao.quote;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -9,20 +9,20 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Quota file mode test
+ * Quote file mode test
  */
 
-public class QuotaDaoFileImplTest {
+public class QuoteDaoFileImplTest {
 
     @Test
     public void testFillQuotas() throws
             IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        List<Quota> quotas = objectMapper.readValue(
+        List<Quote> quotes = objectMapper.readValue(
                 getClass().getClassLoader().getResourceAsStream("quotaDaoFile.json"),
                 objectMapper.getTypeFactory().constructCollectionType(
-                        List.class, Quota.class));
-        assertEquals(3, quotas.size());
+                        List.class, Quote.class));
+        assertEquals(3, quotes.size());
     }
 }
