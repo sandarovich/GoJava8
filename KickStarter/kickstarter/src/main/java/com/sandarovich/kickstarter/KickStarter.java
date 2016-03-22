@@ -1,9 +1,13 @@
 package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.DaoMode;
-import com.sandarovich.kickstarter.dao.category.*;
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDaoFactory;
+import com.sandarovich.kickstarter.domain.Award;
+import com.sandarovich.kickstarter.domain.Category;
+import com.sandarovich.kickstarter.domain.Project;
 import com.sandarovich.kickstarter.io.IO;
 import com.sandarovich.kickstarter.payment.Payment;
 import com.sandarovich.kickstarter.payment.PaymentSystem;

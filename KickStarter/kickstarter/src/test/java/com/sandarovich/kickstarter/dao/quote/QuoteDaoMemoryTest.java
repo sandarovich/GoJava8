@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter.dao.quote;
 
 import com.sandarovich.kickstarter.KickStarter;
 import com.sandarovich.kickstarter.dao.DaoMode;
+import com.sandarovich.kickstarter.domain.Quote;
 import com.sandarovich.kickstarter.io.ConsoleIO;
 import org.junit.Test;
 

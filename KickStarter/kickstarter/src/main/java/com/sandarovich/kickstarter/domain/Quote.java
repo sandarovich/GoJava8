@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao.quote;
+package com.sandarovich.kickstarter.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 

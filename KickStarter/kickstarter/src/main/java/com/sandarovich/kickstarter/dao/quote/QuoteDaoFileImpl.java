@@ -1,6 +1,7 @@
 package com.sandarovich.kickstarter.dao.quote;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sandarovich.kickstarter.domain.Quote;
 
 import java.io.IOException;
 import java.util.List;

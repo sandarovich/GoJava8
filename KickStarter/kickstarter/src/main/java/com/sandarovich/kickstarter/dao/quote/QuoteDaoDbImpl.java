@@ -1,6 +1,7 @@
 package com.sandarovich.kickstarter.dao.quote;
 
 import com.sandarovich.kickstarter.ConnectionManager;
+import com.sandarovich.kickstarter.domain.Quote;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.dao.category;
 
+import com.sandarovich.kickstarter.domain.Category;
+
 import java.util.List;
 
 /**

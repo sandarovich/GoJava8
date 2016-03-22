@@ -4,6 +4,7 @@ package com.sandarovich.kickstarter.dao.category;
  * Tests for Category Source
  */
 
+import com.sandarovich.kickstarter.domain.Category;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

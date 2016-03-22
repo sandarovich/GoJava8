@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.dao.quote;
 
+import com.sandarovich.kickstarter.domain.Quote;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

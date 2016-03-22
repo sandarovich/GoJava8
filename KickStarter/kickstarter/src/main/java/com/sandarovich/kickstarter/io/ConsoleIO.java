@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.io;
 
-import com.sandarovich.kickstarter.dao.category.Project;
+import com.sandarovich.kickstarter.domain.Project;
 import dnl.utils.text.table.TextTable;
 
 import java.io.BufferedReader;

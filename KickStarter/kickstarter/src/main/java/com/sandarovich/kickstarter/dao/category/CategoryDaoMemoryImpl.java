@@ -1,5 +1,10 @@
 package com.sandarovich.kickstarter.dao.category;
 
+import com.sandarovich.kickstarter.domain.Award;
+import com.sandarovich.kickstarter.domain.Category;
+import com.sandarovich.kickstarter.domain.Project;
+import com.sandarovich.kickstarter.domain.ProjectBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 

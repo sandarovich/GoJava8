@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao.category;
+package com.sandarovich.kickstarter.domain;
 
 import java.util.List;
 
