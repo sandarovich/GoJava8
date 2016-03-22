@@ -19,7 +19,7 @@ public class QuoteDaoMemoryImpl implements QuoteDao {
     }
 
     void fillQuotas() {
-        quotes = new ArrayList<Quote>();
+        quotes = new ArrayList<>();
         quotes.add(new Quote("Mr SS", "Every big journey begins with a small step"));
         quotes.add(new Quote("Mr SS", "No pain, no gain"));
         quotes.add(new Quote("Mr SS", "Excellence across the board"));
