@@ -41,7 +41,7 @@ public class Project {
             name;
     }
 
-    public List<Object> getAsRow() {
+    public List<Object> getProjectAsObjectArray() {
         List<Object> result = new ArrayList<Object>();
         result.add(id);
         result.add(name);
@@ -74,12 +74,11 @@ public class Project {
         return result.toString();
     }
 
-    public void invest(double ammount) {
-        gatherdBudget += ammount;
+    public void invest(double amount) {
+        gatherdBudget += amount;
     }
 
     public void addQuestion(String question) {
-        System.out.println(question);
         questions.add(new Question(question));
     }
 

@@ -27,7 +27,7 @@ class ProjectTableView {
     private Object[][] generateData(List<Project> projects) {
         Object[][] result = new Object[projects.size()][columnNames.length];
         for (int projectIndex = 0; projectIndex < projects.size(); projectIndex++) {
-            List<Object> row = projects.get(projectIndex).getAsRow();
+            List<Object> row = projects.get(projectIndex).getProjectAsObjectArray();
             int columnIndex = 0;
             for (Object rowElement : row) {
                 result[projectIndex][columnIndex++] = rowElement;
