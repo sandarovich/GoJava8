@@ -55,7 +55,7 @@ public class KickStarter {
     private void readProject() {
         String readedValue = io.read();
         if (EXIT_INPUT.equals(readedValue)) {
-            showMainMenu();
+            showCategoriesView();
         }
         project = category.findProjectById(readedValue);
         if (project == null) {
@@ -70,10 +70,6 @@ public class KickStarter {
         showApplicationTitle();
         showQuota();
         showCategoriesView();
-        readCategory();
-        showСhosenCategory();
-        showProjectsView();
-        readProject();
     }
 
     private void showProjectsDetailsView() {
@@ -93,7 +89,7 @@ public class KickStarter {
             showProjectsView();
             readProject();
         } else if (CATEGORY_INPUT.equals(readedValue)) {
-            showMainMenu();
+            showCategoriesView();
         } else if (INVEST_INPUT.equals(readedValue)) {
             showInvestView();
         } else if (ASK_QUESTION_INPUT.equals(readedValue)) {
@@ -102,6 +98,14 @@ public class KickStarter {
             io.write(OPTION_NOT_FOUND);
             readProjectOptions();
         }
+    }
+
+    private void showCategoriesView() {
+        showCategories();
+        readCategory();
+        showСhosenCategory();
+        showProjectsView();
+        readProject();
     }
 
     private void showAskQuestion() {
@@ -225,7 +229,7 @@ public class KickStarter {
     }
 
 
-    private void showCategoriesView() {
+    private void showCategories() {
         showViewTitle("<<Category>> ");
         for (Category category : categoryDao.getCategories()) {
             io.write(category.toString());
