@@ -9,9 +9,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 /**
- * @author Olexander Kolodiazhny
- *         <p/>
- *         Output\Read text to user console
+ *        Output\Read text to user console
+ *
  */
 
 public class ConsoleIO implements IO {
@@ -25,7 +24,6 @@ public class ConsoleIO implements IO {
     public String read() {
         String resultStr = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         try {
             resultStr = reader.readLine();
         } catch (IOException e) {
@@ -35,7 +33,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void writeProjectasTable(List<Project> object) {
+    public void showProjectsAsTable(List<Project> object) {
         ProjectTableView projectTableView = new ProjectTableView(object);
         TextTable textTable = new TextTable(projectTableView.getColumnNames(), projectTableView.getData());
         textTable.printTable();

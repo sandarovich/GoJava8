@@ -191,7 +191,7 @@ public class KickStarter {
 
     private void showProjectsView() {
         showViewTitle("<<Projects>> ");
-        io.writeProjectasTable(category.getProjects());
+        io.showProjectsAsTable(category.getProjects());
         io.write(SHORT_DIVIDER);
         for (Project project : category.getProjects()) {
             io.write(project.toString());
