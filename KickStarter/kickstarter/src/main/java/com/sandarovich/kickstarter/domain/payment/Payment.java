@@ -22,7 +22,6 @@ public class Payment {
         return amount;
     }
 
-
     public void setAmount(Double amount) {
         this.amount = amount;
     }
