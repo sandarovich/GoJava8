@@ -18,10 +18,6 @@ public class Category {
         this.projects = projects;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public List<Project> getProjects() {
         return projects;
     }
@@ -44,5 +40,13 @@ public class Category {
     @Override
     public String toString() {
         return id + " -> " + name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

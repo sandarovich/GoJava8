@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.io;
 
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 
 import java.util.List;
@@ -14,4 +16,8 @@ public interface IO {
     String read();
 
     void writeProjectsAsTable(List<Project> projects);
+
+    void writeCategory(Category category);
+
+    void writeAllCategories(CategoryDao categoryDao);
 }

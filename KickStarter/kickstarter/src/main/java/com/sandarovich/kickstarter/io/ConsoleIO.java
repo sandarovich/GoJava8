@@ -1,5 +1,7 @@
 package com.sandarovich.kickstarter.io;
 
+import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 import dnl.utils.text.table.TextTable;
 
@@ -37,6 +39,18 @@ public class ConsoleIO implements IO {
         ProjectTableView projectTableView = new ProjectTableView(object);
         TextTable textTable = new TextTable(projectTableView.getColumnNames(), projectTableView.getData());
         textTable.printTable();
+    }
+
+    @Override
+    public void writeCategory(Category category) {
+        System.out.println(category.getId() + " -> " + category.getName());
+    }
+
+    @Override
+    public void writeAllCategories(CategoryDao categoryDao) {
+        for (Category category : categoryDao.getCategories()) {
+            writeCategory(category);
+        }
     }
 
 }

@@ -101,9 +101,9 @@ public class KickStarter {
     }
 
     private void showCategoriesView() {
-        showCategories();
+        showAllCategoriesView();
         readCategory();
-        showСhosenCategory();
+        showCategory();
         showProjectsView();
         readProject();
     }
@@ -127,7 +127,7 @@ public class KickStarter {
         Payment payment = readPaymentDetails();
         PaymentSystem paymentSystem = new PaymentVisa();
         if (paymentSystem.isPossible(payment.getAmount())
-                && paymentSystem.isProcess(payment.getAmount())) {
+            && paymentSystem.isProcess(payment.getAmount())) {
             project.invest(payment.getAmount());
             io.write(SHORT_DIVIDER);
             io.write(payment.getAmount() + " $ " + SUCCESSFULLY_INVESTED);
@@ -212,8 +212,8 @@ public class KickStarter {
         io.write(">> Application is running in : " + daoMode.toString() + " mode");
     }
 
-    private void showСhosenCategory() {
-        io.write(category.toString());
+    private void showCategory() {
+        io.writeCategory(category);
     }
 
     private void readCategory() {
@@ -229,11 +229,9 @@ public class KickStarter {
     }
 
 
-    private void showCategories() {
-        showViewTitle("<<Category>> ");
-        for (Category category : categoryDao.getCategories()) {
-            io.write(category.toString());
-        }
+    private void showAllCategoriesView() {
+        showViewTitle("<<Categories:>> ");
+        io.writeAllCategories(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
     }
