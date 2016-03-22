@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.payment;
+package com.sandarovich.kickstarter.domain.payment;
 
 /**
  * PaymentVisa

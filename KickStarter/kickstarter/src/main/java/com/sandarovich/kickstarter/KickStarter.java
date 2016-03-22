@@ -8,10 +8,10 @@ import com.sandarovich.kickstarter.dao.quote.QuoteDaoFactory;
 import com.sandarovich.kickstarter.domain.Award;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
+import com.sandarovich.kickstarter.domain.payment.Payment;
+import com.sandarovich.kickstarter.domain.payment.PaymentSystem;
+import com.sandarovich.kickstarter.domain.payment.PaymentVisa;
 import com.sandarovich.kickstarter.io.IO;
-import com.sandarovich.kickstarter.payment.Payment;
-import com.sandarovich.kickstarter.payment.PaymentSystem;
-import com.sandarovich.kickstarter.payment.PaymentVisa;
 
 import java.util.List;
 
