@@ -13,10 +13,10 @@ public class ConnectionManager {
     private Connection connection;
 
     private void openConnection() throws SQLException {
-        String user = "vlqhnrbjejpbkg";
-        String pass = "ROfMEA0Iiwh8pbuwdB58GOwM7t";
-        String dbName = "dfg7r5r65g9u67";
-        String host = "ec2-54-83-22-48.compute-1.amazonaws.com";
+        String user = "0gqDWl5Ea1MoSQLH5gcBABiyuXsGINdp";
+        String pass = "gphvdznv";
+        String dbName = "gphvdznv";
+        String host = "tantor.db.elephantsql.com";
         String port = "5432";
         String url = "jdbc:postgresql://" + host + ":" + port + "/" + dbName;
 

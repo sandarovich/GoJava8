@@ -24,7 +24,7 @@ public class QuoteDaoDbImpl implements QuoteDao {
         try (Statement statement = connectionManager.getConnection().createStatement()) {
             String query =
                     "SELECT " +
-                            " \"QUOTA\".\"TEXT\"," +
+                            " \"QUOTE\".\"TEXT\"," +
                             "  \"QUOTA\".\"AUTHOR\"" +
                             "FROM " +
                             " public.\"QUOTA\"" +
