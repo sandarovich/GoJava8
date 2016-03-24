@@ -1,8 +1,10 @@
 package com.sandarovich.kickstarter.io;
 
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
+import com.sandarovich.kickstarter.domain.Quote;
 import dnl.utils.text.table.TextTable;
 
 import java.io.BufferedReader;
@@ -67,6 +69,12 @@ public class ConsoleIO implements IO {
         System.out.println("    Kickstarter emulator");
         System.out.println("    by O.Kolodiazhny 2016");
         System.out.println(LONG_DIVIDER);
+    }
+
+    @Override
+    public void writeQuota(QuoteDao quoteDao) {
+        Quote quote = quoteDao.getRandomQuota();
+        System.out.println(quote.getAuthor() + " : \"" + quote.getQuote() + "\"");
     }
 
 

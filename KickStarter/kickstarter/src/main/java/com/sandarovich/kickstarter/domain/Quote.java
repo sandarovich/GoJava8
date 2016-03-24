@@ -24,7 +24,7 @@ public class Quote {
     public String toString() {
         return author + ": " + "\"" + quota + "\"";
     }
-    public String getQuota() {
+    public String getQuote() {
         return quota;
     }
     public String getAuthor() {
