@@ -23,14 +23,16 @@ public class QuoteDaoDbImpl implements QuoteDao {
     public Quote getRandomQuota() {
         try (Statement statement = connectionManager.getConnection().createStatement()) {
             String query = "SELECT text, author " +
-                            "FROM " +
-                    "public.quote " +
-                    "ORDER BY RANDOM() LIMIT(1);";
+                "FROM " +
+                "public.quote " +
+                "ORDER BY RANDOM() LIMIT(1);";
             ResultSet rs = statement.executeQuery(query);
             if (!rs.next()) {
                 throw new SQLException("No records found in Quote table.");
             }
-            return new Quote(rs.getString("AUTHOR"), rs.getString("TEXT"));
+            Quote result = new Quote(rs.getString("AUTHOR"), rs.getString("TEXT"));
+            connectionManager.closeConnection();
+            return result;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
