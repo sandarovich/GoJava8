@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Quata Dao for Db
+ * Quate Dao for Db
  */
 
 public class QuoteDaoDbImpl implements QuoteDao {
