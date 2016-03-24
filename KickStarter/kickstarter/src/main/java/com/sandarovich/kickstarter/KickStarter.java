@@ -60,42 +60,42 @@ public class KickStarter {
 
     private void showCategoriesView() {
         showAllCategoriesView();
-        readCategoryOptions();
+        readAllCategoriesOptions();
         showCategory();
         showProjectsView();
-        readProjectOpt();
+        readProjectViewOptions();
+        showProjectsDetailsView();
+        readProjectsDetailsViewOptions();
     }
 
 
-    private void readProjectOpt() {
+    private void readProjectViewOptions() {
         String inputValue = io.read();
         if (EXIT_INPUT.equals(inputValue)) {
             showCategoriesView();
         }
         project = readProject(inputValue);
         if (project == null) {
-            readProjectOpt();
+            readProjectViewOptions();
         }
-        showProjectsDetailsView();
-
     }
 
     private void showProjectsDetailsView() {
         io.writeViewTitle("Project Details");
-        io.write(project.getFullDetails());
+        io.writeProjectDetails(project);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " - Projects");
         io.write(CATEGORY_INPUT + " - Category");
         io.write(INVEST_INPUT + " - Invest");
         io.write(ASK_QUESTION_INPUT + " - Ask a question");
-        readDetailedProjectOptions();
+
     }
 
-    private void readDetailedProjectOptions() {
+    private void readProjectsDetailsViewOptions() {
         String readedValue = io.read();
         if (EXIT_INPUT.equals(readedValue)) {
             showProjectsView();
-            readProjectOpt();
+            readProjectViewOptions();
         } else if (CATEGORY_INPUT.equals(readedValue)) {
             showCategoriesView();
         } else if (INVEST_INPUT.equals(readedValue)) {
@@ -104,7 +104,7 @@ public class KickStarter {
             showAskQuestionView();
         } else {
             io.write(OPTION_NOT_FOUND);
-            readDetailedProjectOptions();
+            readProjectsDetailsViewOptions();
         }
     }
 
@@ -220,14 +220,14 @@ public class KickStarter {
     }
 
 
-    private void readCategoryOptions() {
+    private void readAllCategoriesOptions() {
         String inputValue = io.read();
         if (EXIT_INPUT.equals(inputValue)) {
             exitKickstarter();
         }
         category = readCategory(inputValue);
         if (category == null) {
-            readCategoryOptions();
+            readAllCategoriesOptions();
         }
 
     }

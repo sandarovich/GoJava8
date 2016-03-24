@@ -15,8 +15,8 @@ public class Project {
     private final int daysLeft;
     private final String videoLink;
     private final String history;
-    private List<Question> questions = new ArrayList<Question>();
     private double gatherdBudget;
+    private List<Question> questions = new ArrayList<Question>();
     private List<Award> awards = new ArrayList<Award>();
 
     public Project(int id, String name, String shortDesription,
@@ -32,13 +32,6 @@ public class Project {
         this.history = history;
         this.questions = questions;
         this.awards = awards;
-    }
-
-
-    @Override
-    public String toString() {
-        return id + " -> " +
-            name;
     }
 
     public List<Object> getProjectAsObjectArray() {
@@ -61,21 +54,32 @@ public class Project {
         return name;
     }
 
-    public String getFullDetails() {
-        StringBuilder result = new StringBuilder();
-        result.append("Id: " + id + "\n");
-        result.append("Name: " + name + "\n");
-        result.append("Short Description: " + shortDesription + "\n");
-        result.append("Required Budget: " + requiredBudget + "\n");
-        result.append("Gathered Budget: " + gatherdBudget + "\n");
-        result.append("Days Left: " + daysLeft + "\n");
-        result.append("Video: " + videoLink + "\n");
-        result.append("Questions: " + "\n");
-        for (Question question : questions) {
-            result.append(question.getText() + "\n");
-        }
-        result.append("History: " + history);
-        return result.toString();
+    public String getShortDesription() {
+        return shortDesription;
+    }
+
+    public double getRequiredBudget() {
+        return requiredBudget;
+    }
+
+    public double getGatherdBudget() {
+        return gatherdBudget;
+    }
+
+    public int getDaysLeft() {
+        return daysLeft;
+    }
+
+    public String getVideoLink() {
+        return videoLink;
+    }
+
+    public String getHistory() {
+        return history;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
     }
 
     public void invest(double amount) {

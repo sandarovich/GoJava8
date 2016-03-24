@@ -19,12 +19,12 @@ public interface IO {
 
     void writeAllProjectsAsTable(List<Project> projects);
     void writeCategory(Category category);
-
     void writeAllCategoriesAsList(CategoryDao categoryDao);
     void writeViewTitle(String titleName);
     void writeApplicationTitle();
     void writeQuote(QuoteDao quoteDao);
     void writeDaoMode(DaoMode daoMode);
-
     void writeAllProjectsAsList(CategoryDao categoryDao, Category category);
+
+    void writeProjectDetails(Project project);
 }

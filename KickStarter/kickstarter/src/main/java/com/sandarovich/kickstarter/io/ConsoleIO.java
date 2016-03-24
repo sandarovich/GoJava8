@@ -5,6 +5,7 @@ import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
+import com.sandarovich.kickstarter.domain.Question;
 import com.sandarovich.kickstarter.domain.Quote;
 import dnl.utils.text.table.TextTable;
 
@@ -88,6 +89,23 @@ public class ConsoleIO implements IO {
         for (Project project : categoryDao.getProjects(category)) {
             System.out.println(project.getId() + " -> " + project.getName());
         }
+    }
+
+    @Override
+    public void writeProjectDetails(Project project) {
+        System.out.println("Id: " + project.getId());
+        System.out.println("Name: " + project.getName());
+        System.out.println("Short Description: " + project.getShortDesription());
+        System.out.println("History: " + project.getHistory());
+        System.out.println("Required Budget: " + project.getRequiredBudget());
+        System.out.println("Gathered Budget: " + project.getGatherdBudget());
+        System.out.println("Days Left: " + project.getDaysLeft());
+        System.out.println("Video: " + project.getVideoLink());
+        System.out.println("Questions:  ");
+        for (Question question : project.getQuestions()) {
+            System.out.println(question.getText());
+        }
+
     }
 
 

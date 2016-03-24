@@ -14,6 +14,5 @@ public interface CategoryDao {
     Category findCategoryById(int id);
     boolean isValidCategory(String category);
     Project findProject(Category category, String inputValue);
-
     List<Project> getProjects(Category category);
 }
