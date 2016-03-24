@@ -82,17 +82,16 @@ public class Project {
         return questions;
     }
 
-    public void invest(double amount) {
-        gatherdBudget += amount;
-    }
-
-    public void addQuestion(String question) {
-        questions.add(new Question(question));
-    }
-
     public List<Award> getAwards() {
         return awards;
     }
 
+    //Temporary methods for Memory mode
+    public void invest(double amount) {
+        gatherdBudget += amount;
+    }
+    public void addQuestion(String question) {
+        questions.add(new Question(question));
+    }
 
 }

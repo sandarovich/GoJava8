@@ -137,4 +137,19 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
     public List<Project> getProjects(Category category) {
         return category.getProjects();
     }
+
+    @Override
+    public void addQuestion(Project project, String question) {
+        project.addQuestion(question);
+    }
+
+    @Override
+    public void investIntoProject(Project project, double amount) {
+        project.invest(amount);
+    }
+
+    @Override
+    public List<Award> getProjectAwards(Project project) {
+        return project.getAwards();
+    }
 }

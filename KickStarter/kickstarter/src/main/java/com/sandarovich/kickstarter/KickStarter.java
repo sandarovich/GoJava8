@@ -13,8 +13,6 @@ import com.sandarovich.kickstarter.domain.payment.PaymentSystem;
 import com.sandarovich.kickstarter.domain.payment.PaymentVisa;
 import com.sandarovich.kickstarter.io.IO;
 
-import java.util.List;
-
 /**
  * Console Kick Starter
  */
@@ -27,7 +25,7 @@ public class KickStarter {
     public static final String ASK_QUESTION_INPUT = "3";
     public static final String OPTION_NOT_FOUND = ">> Option not found";
     public static final String SHORT_DIVIDER = "---";
-
+    public static final String MANUALLY_AWARD_INPUT = "0";
     public static final String BYE = ">> Bye!";
     public static final String SUCCESSFULLY_INVESTED = "Successfully invested.";
     public static final String AMOUNT_IS_INCORRECT = "Amount is incorrect. Operation aborted. Let's try again..";
@@ -88,7 +86,6 @@ public class KickStarter {
         io.write(CATEGORY_INPUT + " - Category");
         io.write(INVEST_INPUT + " - Invest");
         io.write(ASK_QUESTION_INPUT + " - Ask a question");
-
     }
 
     private void readProjectsDetailsViewOptions() {
@@ -113,7 +110,7 @@ public class KickStarter {
         io.writeViewTitle("Ask a question:");
         io.write("Please, enter you question: ");
         String question = io.read();
-        project.addQuestion(question);
+        categoryDao.addQuestion(project, question);
         showProjectsDetailsView();
     }
 
@@ -129,7 +126,7 @@ public class KickStarter {
         PaymentSystem paymentSystem = new PaymentVisa();
         if (paymentSystem.isPossible(payment.getAmount())
             && paymentSystem.isProcess(payment.getAmount())) {
-            project.invest(payment.getAmount());
+            categoryDao.investIntoProject(project, payment.getAmount());
             io.write(SHORT_DIVIDER);
             io.write(payment.getAmount() + " $ " + SUCCESSFULLY_INVESTED);
             io.write(SHORT_DIVIDER);
@@ -151,8 +148,7 @@ public class KickStarter {
 
     private double readPaymentAmount() {
         String readedValue = io.read();
-
-        if (EXIT_INPUT.equals(readedValue)) {
+        if (MANUALLY_AWARD_INPUT.equals(readedValue)) {
             try {
                 io.write("Please enter amount:");
                 return Double.valueOf(io.read());
@@ -183,17 +179,13 @@ public class KickStarter {
 
     private void showAwardView() {
         io.writeViewTitle("Award options:");
-        int counter = 1;
-        List<Award> awards = project.getAwards();
-        for (Award award : awards) {
-            io.write(String.valueOf(counter++) + " - " + award.getAward());
-        }
+        io.writeProjectAwards(categoryDao, project);
         io.write(SHORT_DIVIDER);
-        io.write("0" + " - Manually amount mode:");
+        io.write(MANUALLY_AWARD_INPUT + " - Manually amount mode:");
     }
 
 
-    private void exitKickstarter() {
+    private void exitAppication() {
         io.write(BYE);
         System.exit(0);
     }
@@ -223,7 +215,7 @@ public class KickStarter {
     private void readAllCategoriesOptions() {
         String inputValue = io.read();
         if (EXIT_INPUT.equals(inputValue)) {
-            exitKickstarter();
+            exitAppication();
         }
         category = readCategory(inputValue);
         if (category == null) {

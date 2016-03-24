@@ -3,10 +3,7 @@ package com.sandarovich.kickstarter.io;
 import com.sandarovich.kickstarter.dao.DaoMode;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
-import com.sandarovich.kickstarter.domain.Category;
-import com.sandarovich.kickstarter.domain.Project;
-import com.sandarovich.kickstarter.domain.Question;
-import com.sandarovich.kickstarter.domain.Quote;
+import com.sandarovich.kickstarter.domain.*;
 import dnl.utils.text.table.TextTable;
 
 import java.io.BufferedReader;
@@ -106,6 +103,15 @@ public class ConsoleIO implements IO {
             System.out.println(question.getText());
         }
 
+    }
+
+    @Override
+    public void writeProjectAwards(CategoryDao categoryDao, Project project) {
+        int counter = 1;
+        List<Award> awards = categoryDao.getProjectAwards(project);
+        for (Award award : awards) {
+            System.out.println(String.valueOf(counter++) + " - " + award.getAward());
+        }
     }
 
 
