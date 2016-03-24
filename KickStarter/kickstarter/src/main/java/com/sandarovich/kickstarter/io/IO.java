@@ -16,8 +16,10 @@ public interface IO {
     String read();
 
     void writeProjectsAsTable(List<Project> projects);
-
     void writeCategory(Category category);
-
     void writeAllCategories(CategoryDao categoryDao);
+
+    void writeViewTitle(String titleName);
+
+    void writeApplicationTitle();
 }

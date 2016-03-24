@@ -27,7 +27,7 @@ public class KickStarter {
     public static final String ASK_QUESTION_INPUT = "3";
     public static final String OPTION_NOT_FOUND = ">> Option not found";
     public static final String SHORT_DIVIDER = "---";
-    public static final String LONG_DIVIDER = "=======================================";
+
     public static final String BYE = ">> Bye!";
     public static final String SUCCESSFULLY_INVESTED = "Successfully invested.";
     public static final String AMOUNT_IS_INCORRECT = "Amount is incorrect. Operation aborted. Let's try again..";
@@ -67,13 +67,13 @@ public class KickStarter {
     }
 
     private void showMainMenu() {
-        showApplicationTitle();
+        io.writeApplicationTitle();
         showQuota();
         showCategoriesView();
     }
 
     private void showProjectsDetailsView() {
-        showViewTitle("Project Details");
+        io.writeViewTitle("Project Details");
         io.write(project.getFullDetails());
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " - Projects");
@@ -109,7 +109,7 @@ public class KickStarter {
     }
 
     private void showAskQuestion() {
-        showViewTitle("Ask a question:");
+        io.writeViewTitle("Ask a question:");
         io.write("Please, enter you question: ");
         String question = io.read();
         project.addQuestion(question);
@@ -117,7 +117,7 @@ public class KickStarter {
     }
 
     private void showInvestView() {
-        showViewTitle("Invest:");
+        io.writeViewTitle("Invest:");
         investIntoProject();
         showProjectsDetailsView();
     }
@@ -181,7 +181,7 @@ public class KickStarter {
 
 
     private void showAwardView() {
-        showViewTitle("Award options:");
+        io.writeViewTitle("Award options:");
         int counter = 1;
         List<Award> awards = project.getAwards();
         for (Award award : awards) {
@@ -198,7 +198,7 @@ public class KickStarter {
     }
 
     private void showProjectsView() {
-        showViewTitle("<<Projects>> ");
+        io.writeViewTitle("<<Projects>> ");
         io.writeProjectsAsTable(category.getProjects());
         io.write(SHORT_DIVIDER);
         for (Project project : category.getProjects()) {
@@ -230,33 +230,15 @@ public class KickStarter {
 
 
     private void showAllCategoriesView() {
-        showViewTitle("<<Categories:>> ");
+        io.writeViewTitle("<<Categories:>> ");
         io.writeAllCategories(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
     }
 
-    private void showViewTitle(String titleName) {
-        io.write(LONG_DIVIDER);
-        io.write(titleName);
-        io.write(LONG_DIVIDER);
-    }
 
     void showQuota() {
         io.write(quoteDao.getRandomQuota().toString());
-    }
-
-    private void showApplicationTitle() {
-        io.write(getApplicationTitle());
-    }
-
-    private String getApplicationTitle() {
-        StringBuilder result = new StringBuilder();
-        result.append(LONG_DIVIDER + "\n");
-        result.append("     Kickstarter emulator\n");
-        result.append("     by O.Kolodiazhny 2016\n");
-        result.append(LONG_DIVIDER);
-        return result.toString();
     }
 
 }

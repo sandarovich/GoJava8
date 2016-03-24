@@ -11,11 +11,12 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 /**
- *        Output\Read text to user console
- *
+ * Output\Read text to user console
  */
 
 public class ConsoleIO implements IO {
+
+    public static final String LONG_DIVIDER = "=======================================";
 
     @Override
     public void write(String message) {
@@ -52,5 +53,21 @@ public class ConsoleIO implements IO {
             writeCategory(category);
         }
     }
+
+    @Override
+    public void writeViewTitle(String titleName) {
+        System.out.println(LONG_DIVIDER);
+        System.out.println(titleName);
+        System.out.println(LONG_DIVIDER);
+    }
+
+    @Override
+    public void writeApplicationTitle() {
+        System.out.println(LONG_DIVIDER);
+        System.out.println("    Kickstarter emulator");
+        System.out.println("    by O.Kolodiazhny 2016");
+        System.out.println(LONG_DIVIDER);
+    }
+
 
 }
