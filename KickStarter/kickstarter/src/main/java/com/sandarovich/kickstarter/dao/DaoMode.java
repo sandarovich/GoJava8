@@ -15,11 +15,11 @@ public enum DaoMode {
             throw new IllegalStateException("Environment variable mode was not found" +
                     " --> To Fix use: -Dmode=memory)");
         }
-        daoMode = daoMode.toUpperCase().trim();
-        if (FILE.toString().equals(daoMode)) {
+        String daoModeFormatted = daoMode.toUpperCase().trim();
+        if (FILE.name().equals(daoModeFormatted)) {
             return FILE;
         }
-        if (DB.toString().equals(daoMode)) {
+        if (DB.name().equals(daoModeFormatted)) {
             return DB;
         }
         return MEMORY;

@@ -1,5 +1,6 @@
 package com.sandarovich.kickstarter.io;
 
+import com.sandarovich.kickstarter.dao.DaoMode;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.domain.Category;
@@ -75,6 +76,11 @@ public class ConsoleIO implements IO {
     public void writeQuote(QuoteDao quoteDao) {
         Quote quote = quoteDao.getRandomQuota();
         System.out.println(quote.getAuthor() + " : \"" + quote.getQuote() + "\"");
+    }
+
+    @Override
+    public void writeDaoMode(DaoMode daoMode) {
+        System.out.println(">> Application is running in : " + daoMode.name() + " mode");
     }
 
 

@@ -209,7 +209,7 @@ public class KickStarter {
     }
 
     private void showDaoMode() {
-        io.write(">> Application is running in : " + daoMode.toString() + " mode");
+        io.writeDaoMode(daoMode);
     }
 
     private void showCategory() {

@@ -1,5 +1,6 @@
 package com.sandarovich.kickstarter.io;
 
+import com.sandarovich.kickstarter.dao.DaoMode;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.domain.Category;
@@ -23,4 +24,6 @@ public interface IO {
     void writeApplicationTitle();
 
     void writeQuote(QuoteDao quoteDao);
+
+    void writeDaoMode(DaoMode daoMode);
 }
