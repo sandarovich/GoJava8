@@ -18,10 +18,6 @@ public class Category {
         this.projects = projects;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public List<Project> getProjects() {
         return projects;
     }
@@ -33,6 +29,7 @@ public class Category {
         } catch (NumberFormatException e) {
             return null;
         }
+
         for (Project project : getProjects()) {
             if (project.getId() == Integer.parseInt(id)) {
                 return project;
@@ -41,8 +38,11 @@ public class Category {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return id + " -> " + name;
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

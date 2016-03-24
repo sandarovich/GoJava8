@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.DaoMode;
 import com.sandarovich.kickstarter.io.IO;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -11,7 +12,7 @@ import static org.mockito.Mockito.*;
 /**
  * @author Olexander Kolodiazhny 2016
  */
-
+@Ignore
 public class KickStartTest {
 
     @Test

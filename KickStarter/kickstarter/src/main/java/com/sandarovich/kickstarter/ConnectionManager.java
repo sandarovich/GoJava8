@@ -15,7 +15,9 @@ public class ConnectionManager {
     private void openConnection() throws SQLException {
         String user = "kickstarter";
         String pass = "777";
-        String url = "jdbc:postgresql://127.0.0.1:5432/kickstarter";
+        String dbName = "kickstarter";
+        String host = "localhost";
+        String url = "jdbc:postgresql://" + host + ":5432/" + dbName;
         connection = DriverManager.getConnection(url, user, pass);
     }
 
