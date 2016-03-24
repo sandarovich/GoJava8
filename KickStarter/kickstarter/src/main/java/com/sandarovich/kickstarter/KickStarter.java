@@ -48,9 +48,24 @@ public class KickStarter {
     }
 
     public void run() {
-        showDaoMode();
+        io.writeDaoMode(daoMode);
         showMainMenu();
     }
+
+    private void showMainMenu() {
+        io.writeApplicationTitle();
+        io.writeQuote(quoteDao);
+        showCategoriesView();
+    }
+
+    private void showCategoriesView() {
+        showAllCategoriesView();
+        readCategory();
+        showCategory();
+        showProjectsView();
+        readProject();
+    }
+
 
     private void readProject() {
         String readedValue = io.read();
@@ -64,12 +79,6 @@ public class KickStarter {
         }
         showProjectsDetailsView();
 
-    }
-
-    private void showMainMenu() {
-        io.writeApplicationTitle();
-        io.writeQuote(quoteDao);
-        showCategoriesView();
     }
 
     private void showProjectsDetailsView() {
@@ -100,13 +109,7 @@ public class KickStarter {
         }
     }
 
-    private void showCategoriesView() {
-        showAllCategoriesView();
-        readCategory();
-        showCategory();
-        showProjectsView();
-        readProject();
-    }
+
 
     private void showAskQuestion() {
         io.writeViewTitle("Ask a question:");
@@ -208,25 +211,10 @@ public class KickStarter {
         io.write(EXIT_INPUT + " -> Exit");
     }
 
-    private void showDaoMode() {
-        io.writeDaoMode(daoMode);
-    }
-
     private void showCategory() {
         io.writeCategory(category);
     }
 
-    private void readCategory() {
-        String readedValue = io.read();
-        if (EXIT_INPUT.equals(readedValue)) {
-            exitKickstarter();
-        }
-        if (!categoryDao.isValidCategory(readedValue)) {
-            io.write(OPTION_NOT_FOUND);
-            readCategory();
-        }
-        category = categoryDao.findCategoryById(Integer.parseInt(readedValue));
-    }
 
 
     private void showAllCategoriesView() {
@@ -234,6 +222,15 @@ public class KickStarter {
         io.writeAllCategories(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
+    }
+
+
+    private void readCategory() {
+        String inputValue = io.read();
+        if (EXIT_INPUT.equals(inputValue)) {
+            exitKickstarter();
+        }
+        category = io.readCategory(categoryDao, inputValue);
     }
 
 }

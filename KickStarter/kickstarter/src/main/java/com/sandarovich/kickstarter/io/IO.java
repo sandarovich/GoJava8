@@ -22,8 +22,8 @@ public interface IO {
     void writeAllCategories(CategoryDao categoryDao);
     void writeViewTitle(String titleName);
     void writeApplicationTitle();
-
     void writeQuote(QuoteDao quoteDao);
-
     void writeDaoMode(DaoMode daoMode);
+
+    Category readCategory(CategoryDao categoryDao, String value);
 }

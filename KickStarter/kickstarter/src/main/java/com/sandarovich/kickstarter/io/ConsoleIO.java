@@ -20,6 +20,7 @@ import java.util.List;
 public class ConsoleIO implements IO {
 
     public static final String LONG_DIVIDER = "=======================================";
+    public static final String OPTION_NOT_FOUND = ">> Option not found";
 
     @Override
     public void write(String message) {
@@ -33,7 +34,7 @@ public class ConsoleIO implements IO {
         try {
             resultStr = reader.readLine();
         } catch (IOException e) {
-            new ConsoleIO().write(">> Exception.Unable to read input");
+            System.out.println(">> Exception.Unable to read input");
         }
         return resultStr;
     }
@@ -81,6 +82,16 @@ public class ConsoleIO implements IO {
     @Override
     public void writeDaoMode(DaoMode daoMode) {
         System.out.println(">> Application is running in : " + daoMode.name() + " mode");
+    }
+
+    @Override
+    public Category readCategory(CategoryDao categoryDao, String value) {
+
+        if (!categoryDao.isValidCategory(value)) {
+            System.out.println(OPTION_NOT_FOUND);
+            readCategory(categoryDao, read());
+        }
+        return categoryDao.findCategoryById(Integer.parseInt(value));
     }
 
 
