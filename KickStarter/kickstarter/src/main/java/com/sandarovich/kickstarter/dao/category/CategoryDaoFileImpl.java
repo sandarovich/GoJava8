@@ -1,6 +1,7 @@
 package com.sandarovich.kickstarter.dao.category;
 
 import com.sandarovich.kickstarter.domain.Category;
+import com.sandarovich.kickstarter.domain.Project;
 
 import java.util.List;
 
@@ -21,5 +22,10 @@ public class CategoryDaoFileImpl implements CategoryDao {
     @Override
     public boolean isValidCategory(String category) {
         return false;
+    }
+
+    @Override
+    public Project findProject(Category category, String inputValue) {
+        return null;
     }
 }

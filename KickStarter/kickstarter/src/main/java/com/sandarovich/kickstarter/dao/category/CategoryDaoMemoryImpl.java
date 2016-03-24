@@ -32,29 +32,29 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
     private List<Project> getITProjects() {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(1)
-                .andName("USB TOY   ")
-                .andDescription("Not Ordinary gameplay ")
-                .andRequiredBudget(2000d)
-                .andAward(new Award(1d, "Free Calendar"))
-                .andAward(new Award(5d, "Free Magneto"))
-                .andAward(new Award(250d, "Free Business trip"))
-                .build();
+            .andName("USB TOY   ")
+            .andDescription("Not Ordinary gameplay ")
+            .andRequiredBudget(2000d)
+            .andAward(new Award(1d, "Free Calendar"))
+            .andAward(new Award(5d, "Free Magneto"))
+            .andAward(new Award(250d, "Free Business trip"))
+            .build();
         builder.forId(102)
-                .andName("Power Bank")
-                .andDescription("Unique technology ")
-                .andRequiredBudget(1200d)
-                .andAward(new Award(1d, "Free Calendar"))
-                .andAward(new Award(5d, "Free Magneto"))
-                .andAward(new Award(250d, "Free Business trip"))
-                .build();
+            .andName("Power Bank")
+            .andDescription("Unique technology ")
+            .andRequiredBudget(1200d)
+            .andAward(new Award(1d, "Free Calendar"))
+            .andAward(new Award(5d, "Free Magneto"))
+            .andAward(new Award(250d, "Free Business trip"))
+            .build();
         builder.forId(3)
-                .andName("Robot Frodo")
-                .andDescription("Fast and Smart")
-                .andRequiredBudget(7000d)
-                .andAward(new Award(1d, "Free Calendar"))
-                .andAward(new Award(5d, "Free Magneto"))
-                .andAward(new Award(250d, "Free Business trip"))
-                .build();
+            .andName("Robot Frodo")
+            .andDescription("Fast and Smart")
+            .andRequiredBudget(7000d)
+            .andAward(new Award(1d, "Free Calendar"))
+            .andAward(new Award(5d, "Free Magneto"))
+            .andAward(new Award(250d, "Free Business trip"))
+            .build();
         builder.forId(97);
         return builder.getProjects();
     }
@@ -62,31 +62,31 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
     private List<Project> getTourismProjects() {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(5)
-                .andName("Super Bag")
-                .andDescription("Auto resizable")
-                .andAward(new Award(1d, "Free Calendar"))
-                .andAward(new Award(5d, "Free Magneto"))
-                .andAward(new Award(250d, "Free Business trip"))
-                .build();
+            .andName("Super Bag")
+            .andDescription("Auto resizable")
+            .andAward(new Award(1d, "Free Calendar"))
+            .andAward(new Award(5d, "Free Magneto"))
+            .andAward(new Award(250d, "Free Business trip"))
+            .build();
         return builder.getProjects();
     }
 
     private List<Project> getGardenProjects() {
         ProjectBuilder builder = new ProjectBuilder();
         builder.forId(97)
-                .andName("Bison grass")
-                .andDescription("Power energy from sun")
-                .andAward(new Award(1d, "Free Calendar"))
-                .andAward(new Award(5d, "Free Magneto"))
-                .andAward(new Award(250d, "Free Business trip"))
-                .build();
+            .andName("Bison grass")
+            .andDescription("Power energy from sun")
+            .andAward(new Award(1d, "Free Calendar"))
+            .andAward(new Award(5d, "Free Magneto"))
+            .andAward(new Award(250d, "Free Business trip"))
+            .build();
         builder.forId(77)
-                .andName("Garfield grass")
-                .andDescription("Feel exotic")
-                .andAward(new Award(1d, "Free Calendar"))
-                .andAward(new Award(5d, "Free Magneto"))
-                .andAward(new Award(250d, "Free Business trip"))
-                .build();
+            .andName("Garfield grass")
+            .andDescription("Feel exotic")
+            .andAward(new Award(1d, "Free Calendar"))
+            .andAward(new Award(5d, "Free Magneto"))
+            .andAward(new Award(250d, "Free Business trip"))
+            .build();
         return builder.getProjects();
     }
 
@@ -116,4 +116,20 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
         return findCategoryById(categoryId) != null;
     }
 
+    @Override
+    public Project findProject(Category category, String inputValue) {
+        Project result = null;
+        try {
+            Integer.parseInt(inputValue);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+
+        for (Project project : category.getProjects()) {
+            if (project.getId() == Integer.parseInt(inputValue)) {
+                return project;
+            }
+        }
+        return result;
+    }
 }

@@ -84,15 +84,5 @@ public class ConsoleIO implements IO {
         System.out.println(">> Application is running in : " + daoMode.name() + " mode");
     }
 
-    @Override
-    public Category readCategory(CategoryDao categoryDao, String value) {
-
-        if (!categoryDao.isValidCategory(value)) {
-            System.out.println(OPTION_NOT_FOUND);
-            readCategory(categoryDao, read());
-        }
-        return categoryDao.findCategoryById(Integer.parseInt(value));
-    }
-
 
 }

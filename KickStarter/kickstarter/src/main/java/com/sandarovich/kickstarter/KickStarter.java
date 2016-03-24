@@ -60,22 +60,21 @@ public class KickStarter {
 
     private void showCategoriesView() {
         showAllCategoriesView();
-        readCategory();
+        readCategoryOptions();
         showCategory();
         showProjectsView();
-        readProject();
+        readProjectOpt();
     }
 
 
-    private void readProject() {
-        String readedValue = io.read();
-        if (EXIT_INPUT.equals(readedValue)) {
+    private void readProjectOpt() {
+        String inputValue = io.read();
+        if (EXIT_INPUT.equals(inputValue)) {
             showCategoriesView();
         }
-        project = category.findProjectById(readedValue);
+        project = readProject(inputValue);
         if (project == null) {
-            io.write(">> Option not found");
-            readProject();
+            readProjectOpt();
         }
         showProjectsDetailsView();
 
@@ -89,29 +88,28 @@ public class KickStarter {
         io.write(CATEGORY_INPUT + " - Category");
         io.write(INVEST_INPUT + " - Invest");
         io.write(ASK_QUESTION_INPUT + " - Ask a question");
-        readProjectOptions();
+        readDetailedProjectOptions();
     }
 
-    private void readProjectOptions() {
+    private void readDetailedProjectOptions() {
         String readedValue = io.read();
         if (EXIT_INPUT.equals(readedValue)) {
             showProjectsView();
-            readProject();
+            readProjectOpt();
         } else if (CATEGORY_INPUT.equals(readedValue)) {
             showCategoriesView();
         } else if (INVEST_INPUT.equals(readedValue)) {
             showInvestView();
         } else if (ASK_QUESTION_INPUT.equals(readedValue)) {
-            showAskQuestion();
+            showAskQuestionView();
         } else {
             io.write(OPTION_NOT_FOUND);
-            readProjectOptions();
+            readDetailedProjectOptions();
         }
     }
 
 
-
-    private void showAskQuestion() {
+    private void showAskQuestionView() {
         io.writeViewTitle("Ask a question:");
         io.write("Please, enter you question: ");
         String question = io.read();
@@ -216,7 +214,6 @@ public class KickStarter {
     }
 
 
-
     private void showAllCategoriesView() {
         io.writeViewTitle("<<Categories:>> ");
         io.writeAllCategories(categoryDao);
@@ -225,12 +222,33 @@ public class KickStarter {
     }
 
 
-    private void readCategory() {
+    private void readCategoryOptions() {
         String inputValue = io.read();
         if (EXIT_INPUT.equals(inputValue)) {
             exitKickstarter();
         }
-        category = io.readCategory(categoryDao, inputValue);
+        category = readCategory(inputValue);
+        if (category == null) {
+            readCategoryOptions();
+        }
+
+    }
+
+    public Category readCategory(String value) {
+        if (!categoryDao.isValidCategory(value)) {
+            io.write(OPTION_NOT_FOUND);
+            return null;
+        }
+        return categoryDao.findCategoryById(Integer.parseInt(value));
+    }
+
+    public Project readProject(String inputValue) {
+        Project result = categoryDao.findProject(category, inputValue);
+        if (result == null) {
+            io.write(OPTION_NOT_FOUND);
+            return null;
+        }
+        return result;
     }
 
 }

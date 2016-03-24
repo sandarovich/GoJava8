@@ -24,6 +24,4 @@ public interface IO {
     void writeApplicationTitle();
     void writeQuote(QuoteDao quoteDao);
     void writeDaoMode(DaoMode daoMode);
-
-    Category readCategory(CategoryDao categoryDao, String value);
 }
