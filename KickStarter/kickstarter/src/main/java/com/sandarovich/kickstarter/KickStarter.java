@@ -74,6 +74,7 @@ public class KickStarter {
         }
         project = readProject(inputValue);
         if (project == null) {
+            io.write(OPTION_NOT_FOUND);
             readProjectViewOptions();
         }
     }
@@ -147,8 +148,8 @@ public class KickStarter {
     }
 
     private double readPaymentAmount() {
-        String readedValue = io.read();
-        if (MANUALLY_AWARD_INPUT.equals(readedValue)) {
+        String inputValue = io.read();
+        if (MANUALLY_AWARD_INPUT.equals(inputValue)) {
             try {
                 io.write("Please enter amount:");
                 return Double.valueOf(io.read());
@@ -161,13 +162,13 @@ public class KickStarter {
         int counter = 1;
         int currentOption = 0;
         try {
-            currentOption = Integer.parseInt(readedValue);
+            currentOption = Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
             io.write(OPTION_NOT_FOUND);
             showAwardView();
             return readPaymentAmount();
         }
-        for (Award award : project.getAwards()) {
+        for (Award award : categoryDao.getProjectAwards(project)) {
             if (counter++ == currentOption) {
                 return award.getAmount();
             }
@@ -219,14 +220,15 @@ public class KickStarter {
         }
         category = readCategory(inputValue);
         if (category == null) {
+            io.write(OPTION_NOT_FOUND);
             readAllCategoriesOptions();
         }
 
     }
 
+
     public Category readCategory(String value) {
         if (!categoryDao.isValidCategory(value)) {
-            io.write(OPTION_NOT_FOUND);
             return null;
         }
         return categoryDao.findCategoryById(Integer.parseInt(value));
@@ -234,10 +236,6 @@ public class KickStarter {
 
     public Project readProject(String inputValue) {
         Project result = categoryDao.findProject(category, inputValue);
-        if (result == null) {
-            io.write(OPTION_NOT_FOUND);
-            return null;
-        }
         return result;
     }
 

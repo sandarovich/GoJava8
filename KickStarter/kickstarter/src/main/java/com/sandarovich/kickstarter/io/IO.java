@@ -26,6 +26,5 @@ public interface IO {
     void writeDaoMode(DaoMode daoMode);
     void writeAllProjectsAsList(CategoryDao categoryDao, Category category);
     void writeProjectDetails(Project project);
-
     void writeProjectAwards(CategoryDao categoryDao, Project project);
 }

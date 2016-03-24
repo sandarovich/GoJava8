@@ -1,5 +1,6 @@
 package com.sandarovich.kickstarter.dao.category;
 
+import com.sandarovich.kickstarter.domain.Award;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 
@@ -31,6 +32,21 @@ public class CategoryDaoFileImpl implements CategoryDao {
 
     @Override
     public List<Project> getProjects(Category category) {
+        return null;
+    }
+
+    @Override
+    public void addQuestion(Project project, String question) {
+
+    }
+
+    @Override
+    public void investIntoProject(Project project, double amount) {
+
+    }
+
+    @Override
+    public List<Award> getProjectAwards(Project project) {
         return null;
     }
 }
