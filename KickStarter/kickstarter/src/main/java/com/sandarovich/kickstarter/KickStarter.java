@@ -200,11 +200,9 @@ public class KickStarter {
 
     private void showProjectsView() {
         io.writeViewTitle("<<Projects>> ");
-        io.writeProjectsAsTable(category.getProjects());
+        io.writeAllProjectsAsTable(categoryDao.getProjects(category));
         io.write(SHORT_DIVIDER);
-        for (Project project : category.getProjects()) {
-            io.write(project.toString());
-        }
+        io.writeAllProjectsAsList(categoryDao, category);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
     }
@@ -216,7 +214,7 @@ public class KickStarter {
 
     private void showAllCategoriesView() {
         io.writeViewTitle("<<Categories:>> ");
-        io.writeAllCategories(categoryDao);
+        io.writeAllCategoriesAsList(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
     }

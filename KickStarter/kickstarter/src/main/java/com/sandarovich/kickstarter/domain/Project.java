@@ -57,6 +57,10 @@ public class Project {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getFullDetails() {
         StringBuilder result = new StringBuilder();
         result.append("Id: " + id + "\n");

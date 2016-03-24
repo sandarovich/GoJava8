@@ -132,4 +132,9 @@ public class CategoryDaoMemoryImpl implements CategoryDao {
         }
         return result;
     }
+
+    @Override
+    public List<Project> getProjects(Category category) {
+        return category.getProjects();
+    }
 }

@@ -17,11 +17,14 @@ public interface IO {
     void write(String message);
     String read();
 
-    void writeProjectsAsTable(List<Project> projects);
+    void writeAllProjectsAsTable(List<Project> projects);
     void writeCategory(Category category);
-    void writeAllCategories(CategoryDao categoryDao);
+
+    void writeAllCategoriesAsList(CategoryDao categoryDao);
     void writeViewTitle(String titleName);
     void writeApplicationTitle();
     void writeQuote(QuoteDao quoteDao);
     void writeDaoMode(DaoMode daoMode);
+
+    void writeAllProjectsAsList(CategoryDao categoryDao, Category category);
 }

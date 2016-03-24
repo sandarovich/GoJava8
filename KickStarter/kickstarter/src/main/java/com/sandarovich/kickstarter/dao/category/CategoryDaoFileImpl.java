@@ -28,4 +28,9 @@ public class CategoryDaoFileImpl implements CategoryDao {
     public Project findProject(Category category, String inputValue) {
         return null;
     }
+
+    @Override
+    public List<Project> getProjects(Category category) {
+        return null;
+    }
 }

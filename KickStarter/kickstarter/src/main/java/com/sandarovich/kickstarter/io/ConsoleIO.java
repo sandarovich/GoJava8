@@ -20,7 +20,6 @@ import java.util.List;
 public class ConsoleIO implements IO {
 
     public static final String LONG_DIVIDER = "=======================================";
-    public static final String OPTION_NOT_FOUND = ">> Option not found";
 
     @Override
     public void write(String message) {
@@ -40,7 +39,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void writeProjectsAsTable(List<Project> object) {
+    public void writeAllProjectsAsTable(List<Project> object) {
         ProjectTableView projectTableView = new ProjectTableView(object);
         TextTable textTable = new TextTable(projectTableView.getColumnNames(), projectTableView.getData());
         textTable.printTable();
@@ -52,7 +51,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void writeAllCategories(CategoryDao categoryDao) {
+    public void writeAllCategoriesAsList(CategoryDao categoryDao) {
         for (Category category : categoryDao.getCategories()) {
             writeCategory(category);
         }
@@ -82,6 +81,13 @@ public class ConsoleIO implements IO {
     @Override
     public void writeDaoMode(DaoMode daoMode) {
         System.out.println(">> Application is running in : " + daoMode.name() + " mode");
+    }
+
+    @Override
+    public void writeAllProjectsAsList(CategoryDao categoryDao, Category category) {
+        for (Project project : categoryDao.getProjects(category)) {
+            System.out.println(project.getId() + " -> " + project.getName());
+        }
     }
 
 
