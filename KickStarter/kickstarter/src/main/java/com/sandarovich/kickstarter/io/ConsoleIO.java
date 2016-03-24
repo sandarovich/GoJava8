@@ -72,7 +72,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void writeQuota(QuoteDao quoteDao) {
+    public void writeQuote(QuoteDao quoteDao) {
         Quote quote = quoteDao.getRandomQuota();
         System.out.println(quote.getAuthor() + " : \"" + quote.getQuote() + "\"");
     }

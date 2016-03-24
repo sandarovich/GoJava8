@@ -68,7 +68,7 @@ public class KickStarter {
 
     private void showMainMenu() {
         io.writeApplicationTitle();
-        showQuota();
+        io.writeQuote(quoteDao);
         showCategoriesView();
     }
 
@@ -234,11 +234,6 @@ public class KickStarter {
         io.writeAllCategories(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
-    }
-
-
-    void showQuota() {
-        io.write(quoteDao.getRandomQuota().toString());
     }
 
 }

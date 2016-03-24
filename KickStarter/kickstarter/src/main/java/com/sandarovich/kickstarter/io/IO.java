@@ -22,5 +22,5 @@ public interface IO {
     void writeViewTitle(String titleName);
     void writeApplicationTitle();
 
-    void writeQuota(QuoteDao quoteDao);
+    void writeQuote(QuoteDao quoteDao);
 }
