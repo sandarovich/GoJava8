@@ -150,8 +150,8 @@ public class KickStarter {
     private double readPaymentAmount() {
         String inputValue = io.read();
         if (MANUALLY_AWARD_INPUT.equals(inputValue)) {
+            io.write("Please enter amount:");
             try {
-                io.write("Please enter amount:");
                 return Double.valueOf(io.read());
             } catch (NumberFormatException e) {
                 io.write(AMOUNT_IS_INCORRECT);
