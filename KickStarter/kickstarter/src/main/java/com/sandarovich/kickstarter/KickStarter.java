@@ -88,15 +88,15 @@ public class KickStarter {
     }
 
     private void readProjectsDetailsViewOptions() {
-        String readedValue = io.read();
-        if (EXIT_INPUT.equals(readedValue)) {
+        String inputValue = io.read();
+        if (EXIT_INPUT.equals(inputValue)) {
             showProjectsView();
             readProjectViewOptions();
-        } else if (CATEGORY_INPUT.equals(readedValue)) {
+        } else if (CATEGORY_INPUT.equals(inputValue)) {
             showCategoriesView();
-        } else if (INVEST_INPUT.equals(readedValue)) {
+        } else if (INVEST_INPUT.equals(inputValue)) {
             showInvestView();
-        } else if (ASK_QUESTION_INPUT.equals(readedValue)) {
+        } else if (ASK_QUESTION_INPUT.equals(inputValue)) {
             showAskQuestionView();
         } else {
             io.write(OPTION_NOT_FOUND);
@@ -116,6 +116,7 @@ public class KickStarter {
         io.writeViewTitle("Invest:");
         investIntoProject();
         showProjectsDetailsView();
+        readProjectsDetailsViewOptions();
     }
 
 
