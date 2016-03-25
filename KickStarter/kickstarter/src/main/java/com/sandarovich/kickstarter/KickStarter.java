@@ -151,14 +151,15 @@ public class KickStarter {
         String inputValue = io.read();
         if (MANUALLY_AWARD_INPUT.equals(inputValue)) {
             io.write("Please enter amount:");
-            try {
-                return Double.valueOf(io.read());
-            } catch (NumberFormatException e) {
+            Double amount = readAmount(inputValue);
+            if (amount == null) {
                 io.write(AMOUNT_IS_INCORRECT);
                 showAwardView();
                 return readPaymentAmount();
             }
         }
+
+        // TODO To easy lines bellow
         int counter = 1;
         int currentOption = 0;
         try {
@@ -237,6 +238,14 @@ public class KickStarter {
     public Project readProject(String inputValue) {
         Project result = categoryDao.findProject(category, inputValue);
         return result;
+    }
+
+    public Double readAmount(String inputValue) {
+        try {
+            return Double.valueOf(io.read());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
 }
