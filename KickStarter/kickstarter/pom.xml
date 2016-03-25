@@ -81,8 +81,6 @@
                     </archive>
                 </configuration>
             </plugin>
-
-
         </plugins>
     </build>
     <!-- BEGIN: Specific to mapping unit tests and covered code -->
