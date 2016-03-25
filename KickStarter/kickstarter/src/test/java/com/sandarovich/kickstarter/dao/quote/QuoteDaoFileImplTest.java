@@ -21,7 +21,7 @@ public class QuoteDaoFileImplTest {
         ObjectMapper objectMapper = new ObjectMapper();
 
         List<Quote> quotes = objectMapper.readValue(
-                getClass().getClassLoader().getResourceAsStream("quotaDaoFile.json"),
+                getClass().getClassLoader().getResourceAsStream("quoteDaoFile.json"),
                 objectMapper.getTypeFactory().constructCollectionType(
                         List.class, Quote.class));
         assertEquals(3, quotes.size());

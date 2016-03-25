@@ -20,7 +20,7 @@ public class QuoteDaoFileImpl extends QuoteDaoMemoryImpl {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             this.quotes = objectMapper.readValue(
-                    getClass().getClassLoader().getResourceAsStream("quotaDaoFile.json"),
+                    getClass().getClassLoader().getResourceAsStream("quoteDaoFile.json"),
                     objectMapper.getTypeFactory().constructCollectionType(
                             List.class, Quote.class));
         } catch (IOException ex) {

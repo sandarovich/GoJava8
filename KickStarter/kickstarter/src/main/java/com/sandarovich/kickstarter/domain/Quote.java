@@ -9,23 +9,23 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 public class Quote {
 
     private String author;
-    private String quota;
+    private String quote;
 
     public Quote() {
 
     }
 
-    public Quote(String author, String quota) {
+    public Quote(String author, String quote) {
         this.author = author;
-        this.quota = quota;
+        this.quote = quote;
     }
 
     @Override
     public String toString() {
-        return author + ": " + "\"" + quota + "\"";
+        return author + ": " + "\"" + quote + "\"";
     }
     public String getQuote() {
-        return quota;
+        return quote;
     }
     public String getAuthor() {
         return author;
