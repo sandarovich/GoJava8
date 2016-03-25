@@ -37,7 +37,6 @@ public class KickStarter {
     private Category category;
     private Project project;
 
-
     public KickStarter(IO io, DaoMode daoMode) {
         this.io = io;
         this.daoMode = daoMode;
@@ -65,7 +64,6 @@ public class KickStarter {
         showProjectsDetailsView();
         readProjectsDetailsViewOptions();
     }
-
 
     private void readProjectViewOptions() {
         String inputValue = io.read();
@@ -105,7 +103,6 @@ public class KickStarter {
             readProjectsDetailsViewOptions();
         }
     }
-
 
     private void showAskQuestionView() {
         io.writeViewTitle("Ask a question:");
@@ -206,14 +203,12 @@ public class KickStarter {
         io.writeCategory(category);
     }
 
-
     private void showAllCategoriesView() {
         io.writeViewTitle("<<Categories:>> ");
         io.writeAllCategoriesAsList(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
     }
-
 
     private void readAllCategoriesOptions() {
         String inputValue = io.read();
@@ -227,7 +222,6 @@ public class KickStarter {
         }
 
     }
-
 
     public Category readCategory(String value) {
         if (!categoryDao.isValidCategory(value)) {
