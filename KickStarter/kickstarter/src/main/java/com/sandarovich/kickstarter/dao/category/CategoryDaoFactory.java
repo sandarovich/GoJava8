@@ -11,12 +11,16 @@ public class CategoryDaoFactory {
         if (mode == null) {
             return null;
         }
-        if (mode == DaoMode.MEMORY) {
+        if (DaoMode.MEMORY == mode) {
             return new CategoryDaoMemoryImpl();
         }
 
-        if (mode == DaoMode.FILE) {
+        if (DaoMode.FILE == mode) {
             return new CategoryDaoFileImpl();
+        }
+
+        if (DaoMode.DB == mode) {
+            return new CategoryDaoDbImpl();
         }
 
         return null;
