@@ -46,35 +46,22 @@ public class KickStarter {
 
     public void run() {
         io.writeDaoMode(daoMode);
-        showMainMenu();
-    }
-
-    private void showMainMenu() {
         io.writeApplicationTitle();
         io.writeQuote(quoteDao);
-        showCategoriesView();
-    }
-
-    private void showCategoriesView() {
         showAllCategoriesView();
-        readAllCategoriesOptions();
-        showCategory();
-        showProjectsView();
-        readProjectViewOptions();
-        showProjectsDetailsView();
-        readProjectsDetailsViewOptions();
     }
 
     private void readProjectViewOptions() {
         String inputValue = io.read();
         if (EXIT_INPUT.equals(inputValue)) {
-            showCategoriesView();
+            showAllCategoriesView();
         }
         project = readProject(inputValue);
         if (project == null) {
             io.write(OPTION_NOT_FOUND);
             readProjectViewOptions();
         }
+        showProjectsDetailsView();
     }
 
     private void showProjectsDetailsView() {
@@ -85,15 +72,15 @@ public class KickStarter {
         io.write(CATEGORY_INPUT + " - Category");
         io.write(INVEST_INPUT + " - Invest");
         io.write(ASK_QUESTION_INPUT + " - Ask a question");
+        readProjectsDetailsViewOptions();
     }
 
     private void readProjectsDetailsViewOptions() {
         String inputValue = io.read();
         if (EXIT_INPUT.equals(inputValue)) {
             showProjectsView();
-            readProjectViewOptions();
         } else if (CATEGORY_INPUT.equals(inputValue)) {
-            showCategoriesView();
+            showAllCategoriesView();
         } else if (INVEST_INPUT.equals(inputValue)) {
             showInvestView();
         } else if (ASK_QUESTION_INPUT.equals(inputValue)) {
@@ -116,15 +103,13 @@ public class KickStarter {
         io.writeViewTitle("Invest:");
         investIntoProject();
         showProjectsDetailsView();
-        readProjectsDetailsViewOptions();
     }
-
 
     private void investIntoProject() {
         Payment payment = readPaymentDetails();
         PaymentSystem paymentSystem = new PaymentVisa();
         if (paymentSystem.isPossible(payment.getAmount())
-            && paymentSystem.isProcess(payment.getAmount())) {
+                && paymentSystem.isProcess(payment.getAmount())) {
             categoryDao.investIntoProject(project, payment.getAmount());
             io.write(SHORT_DIVIDER);
             io.write(payment.getAmount() + " $ " + SUCCESSFULLY_INVESTED);
@@ -149,7 +134,7 @@ public class KickStarter {
         String inputValue = io.read();
         if (MANUALLY_AWARD_INPUT.equals(inputValue)) {
             io.write("Please enter amount:");
-            Double amount = readAmount(io.read());
+            Double amount = readAmount();
             if (amount == null) {
                 io.write(AMOUNT_IS_INCORRECT);
                 showAwardView();
@@ -158,7 +143,7 @@ public class KickStarter {
             return amount;
         }
 
-        // TODO To easy lines bellow
+        // TODO Strange-look. To refactor lines bellow
         int counter = 1;
         int currentOption = 0;
         try {
@@ -177,14 +162,12 @@ public class KickStarter {
         return readPaymentAmount();
     }
 
-
     private void showAwardView() {
         io.writeViewTitle("Award options:");
         io.writeProjectAwards(categoryDao, project);
         io.write(SHORT_DIVIDER);
         io.write(MANUALLY_AWARD_INPUT + " - Manually amount mode:");
     }
-
 
     private void exitAppication() {
         io.write(BYE);
@@ -198,10 +181,12 @@ public class KickStarter {
         io.writeAllProjectsAsList(categoryDao, category);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
+        readProjectViewOptions();
     }
 
     private void showCategory() {
         io.writeCategory(category);
+        showProjectsView();
     }
 
     private void showAllCategoriesView() {
@@ -209,6 +194,8 @@ public class KickStarter {
         io.writeAllCategoriesAsList(categoryDao);
         io.write(SHORT_DIVIDER);
         io.write(EXIT_INPUT + " -> Exit");
+        readAllCategoriesOptions();
+        showCategory();
     }
 
     private void readAllCategoriesOptions() {
@@ -236,7 +223,7 @@ public class KickStarter {
         return result;
     }
 
-    public Double readAmount(String inputValue) {
+    public Double readAmount() {
         try {
             return Double.valueOf(io.read());
         } catch (NumberFormatException e) {

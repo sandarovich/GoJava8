@@ -22,7 +22,6 @@ public class Category {
         return projects;
     }
 
-
     public int getId() {
         return id;
     }
