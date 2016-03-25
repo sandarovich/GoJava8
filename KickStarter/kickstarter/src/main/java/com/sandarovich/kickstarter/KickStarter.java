@@ -151,12 +151,13 @@ public class KickStarter {
         String inputValue = io.read();
         if (MANUALLY_AWARD_INPUT.equals(inputValue)) {
             io.write("Please enter amount:");
-            Double amount = readAmount(inputValue);
+            Double amount = readAmount(io.read());
             if (amount == null) {
                 io.write(AMOUNT_IS_INCORRECT);
                 showAwardView();
                 return readPaymentAmount();
             }
+            return amount;
         }
 
         // TODO To easy lines bellow
