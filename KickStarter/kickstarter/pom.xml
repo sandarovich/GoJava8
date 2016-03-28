@@ -94,7 +94,7 @@
                     <update>true</update>
                     <url>http://localhost:8080/manager/text</url>
                     <server>TomcatServer</server>
-                    <path>/kickstarter</path>
+                    <path>/servlet</path>
                     <username>tomcat</username>
                     <password>tomcat</password>
                 </configuration>

@@ -12,7 +12,8 @@ public class MainServlet extends HttpServlet {
         PrintWriter out = res.getWriter();
         out.println("<h1>Servlet rules</h1>");
         out.println("<p>Real magic</p>");
-        out.println("<b>True/False</b>");
+        String url = "\"/kickstarter/\"";
+        out.println("<a href=kickstarter>Categories</b>");
     }
 
 }
