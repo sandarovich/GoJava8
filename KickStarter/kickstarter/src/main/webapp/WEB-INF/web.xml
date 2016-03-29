@@ -4,12 +4,12 @@
          http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
     <servlet>
-        <servlet-name>mainServlet</servlet-name>
-        <servlet-class>com.sandarovich.kickstarter.MainServlet</servlet-class>
+        <servlet-name>KickstarterWeb</servlet-name>
+        <servlet-class>com.sandarovich.kickstarter.KickstarterWeb</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>mainServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>KickstarterWeb</servlet-name>
+        <url-pattern>/kickstarter</url-pattern>
     </servlet-mapping>
 </web-app>
