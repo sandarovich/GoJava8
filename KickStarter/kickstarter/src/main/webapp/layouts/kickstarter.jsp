@@ -17,9 +17,7 @@
             <div class="page-header">
                 <h1>KickStarter <small>"The Best is yet to come..."</small></h1>
             </div>
-            <footer>
-                <p>Created by <a href="https://ua.linkedin.com/in/oleksandr-kolodiazhnyi-053273106">O.Kolodiazhny</a> 2016</p>
-            </footer>
+            <%@ include file="footer.jsp" %>
         </div>
     </body>
 </html>
