@@ -12,4 +12,10 @@
         <servlet-name>KickstarterWeb</servlet-name>
         <url-pattern>/kickstarter</url-pattern>
     </servlet-mapping>
+
+    <env-entry>
+        <env-entry-name>daoMode</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>memory</env-entry-value>
+    </env-entry>
 </web-app>
