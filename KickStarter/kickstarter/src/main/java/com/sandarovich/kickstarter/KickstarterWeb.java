@@ -38,7 +38,7 @@ public class KickstarterWeb extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
         Quote quote = quoteDao.getRandomQuota();
-        req.setAttribute("quote", " : \"" + quote.getQuote() + "\"" + quote.getAuthor());
+        req.setAttribute("quote", "\"" + quote.getQuote() + "\" - " + quote.getAuthor());
         RequestDispatcher rd = req.getRequestDispatcher("layouts/kickstarter.jsp");
         rd.forward(req, res);
     }
