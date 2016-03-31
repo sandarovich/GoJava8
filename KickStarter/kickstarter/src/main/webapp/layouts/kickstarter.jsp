@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,7 @@
         </ul>
         <div class="container">
             <div class="page-header">
-                <h1>KickStarter <small>"The Best is yet to come..."</small></h1>
+                <h1>KickStarter <small>${quote}</small></h1>
             </div>
             <%@ include file="footer.jsp" %>
         </div>
