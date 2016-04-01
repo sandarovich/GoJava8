@@ -48,8 +48,16 @@ public class KickstarterWeb extends HttpServlet {
             showMainPage(req, res);
         } else if (CATEGORIES_VIEW.equals(requestPage)) {
             showCategoriesPage(req, res);
+        } else if (CATEGORY_VIEW.equals(requestPage)) {
+            showProjectsPage(req, res);
         }
 
+    }
+
+    private void showProjectsPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setAttribute("title", "Projects");
+        RequestDispatcher rd = context.getRequestDispatcher("/layouts/projects.jsp");
+        rd.forward(req, res);
     }
 
     private void showCategoriesPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
