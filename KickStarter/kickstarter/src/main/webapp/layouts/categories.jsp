@@ -1,8 +1,9 @@
 <%@ include file="header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <div class="container">
             <%@ include file="navigation.jsp" %>
             <div class="page-header">
-                <h1>Categories:</h1>
+                <h2>Categories:</h1>
             </div>
             <div class="list-group">
             <c:forEach var="category" items="${categories}">
