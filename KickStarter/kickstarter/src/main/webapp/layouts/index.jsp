@@ -5,7 +5,7 @@
                 <h1>KickStarter <small>${quote}</small></h1>
             </div>
             <div class="jumbotron">
-                <h1>Categories</h1>
+                <h2>Categories</h1>
                  <p>We have a best project to invest in for everybody. Right here and right now.</p>
                  <p><a class="btn btn-primary btn-lg" href="?view=categories" role="button">Learn more</a></p>
             </div>
