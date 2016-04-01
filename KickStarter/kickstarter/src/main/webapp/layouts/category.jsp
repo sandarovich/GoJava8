@@ -1,24 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>KickStarter</title>
+        <title>${title}</title>
         <link href="${pageContext.request.contextPath}/styles/main.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/styles/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <ul class="nav nav-tabs">
-          <li role="presentation"><a href="#">Home</a></li>
-          <li role="presentation"><a href="#">Categories</a></li>
-          <li role="presentation" class="active"><a href="https://ua.linkedin.com/in/oleksandr-kolodiazhnyi-053273106">Contact us</a></li>
-        </ul>
         <div class="container">
-            <div class="page-header">
-                <h1>KickStarter <small>${quote}</small></h1>
-            </div>
+            <%@ include file="navigation.jsp" %>
+            <%@ include file="header.jsp" %>
+            <h2> Categories</h2>
             <%@ include file="footer.jsp" %>
         </div>
+
     </body>
 </html>

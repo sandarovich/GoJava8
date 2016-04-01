@@ -1,3 +1,11 @@
-<footer>
-    <p>Created by <a href="https://ua.linkedin.com/in/oleksandr-kolodiazhnyi-053273106">O.Kolodiazhny</a> 2016</p>
-</footer>
+        <div class="container">
+            <footer>
+                <div id="copyright" class="container text-center">
+                    <p class = "textcopyright">Created by <a href="https://ua.linkedin.com/in/oleksandr-kolodiazhnyi-053273106">O.Kolodiazhny&copy;</a> 2016</p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
+
+
