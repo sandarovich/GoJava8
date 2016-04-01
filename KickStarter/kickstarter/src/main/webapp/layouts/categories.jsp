@@ -13,7 +13,14 @@
         <div class="container">
             <%@ include file="navigation.jsp" %>
             <%@ include file="header.jsp" %>
-            <h2> Categories</h2>
+            <div class="page-header">
+                <h1>Categories:</h1>
+            </div>
+            <div class="list-group">
+            <c:forEach var="category" items="${categories}">
+                <a href="?view=category&id=${category.id}" class="list-group-item">${category.id} - ${category.name}</a>
+            </c:forEach>
+            </div>
             <%@ include file="footer.jsp" %>
         </div>
 
