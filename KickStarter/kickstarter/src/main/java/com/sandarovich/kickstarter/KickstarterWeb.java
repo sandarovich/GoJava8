@@ -49,19 +49,23 @@ public class KickstarterWeb extends HttpServlet {
         } else if (CATEGORIES_VIEW.equals(requestPage)) {
             showCategoriesPage(req, res);
         } else if (CATEGORY_VIEW.equals(requestPage)) {
-            showProjectsPage(req, res);
+            showCategoryPage(req, res);
         }
 
     }
 
-    private void showProjectsPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.setAttribute("title", "Projects");
-        RequestDispatcher rd = context.getRequestDispatcher("/layouts/projects.jsp");
+    private void showCategoryPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int id = Integer.valueOf(req.getParameter("id"));
+        Category category = categoryDao.findCategoryById(id);
+        req.setAttribute("title", category.getName());
+        req.setAttribute("category", category);
+        req.setAttribute("projects", category.getProjects());
+        RequestDispatcher rd = context.getRequestDispatcher("/layouts/category.jsp");
         rd.forward(req, res);
     }
 
     private void showCategoriesPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.setAttribute("title", "Categories");
+        req.setAttribute("title", "Categories:");
         List<Category> categories = categoryDao.getCategories();
         req.setAttribute("categories", categories);
         RequestDispatcher rd = context.getRequestDispatcher("/layouts/categories.jsp");

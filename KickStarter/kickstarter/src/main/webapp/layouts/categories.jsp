@@ -3,7 +3,7 @@
         <div class="container">
             <%@ include file="navigation.jsp" %>
             <div class="page-header">
-                <h2>Categories:</h1>
+                <h2>${title}</h1>
             </div>
             <div class="list-group">
             <c:forEach var="category" items="${categories}">
