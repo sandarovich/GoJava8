@@ -1,7 +1,9 @@
 package com.sandarovich.kickstarter;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -10,31 +12,19 @@ import java.sql.SQLException;
 
 public class ConnectionManager {
 
-    private Connection connection;
+    private DataSource dataSource;
 
-    private void openConnection() throws SQLException {
-        String user = "gphvdznv";
-        String pass = "0gqDWl5Ea1MoSQLH5gcBABiyuXsGINdp";
-        String dbName = "gphvdznv";
-        String host = "tantor.db.elephantsql.com";
-        String port = "5432";
-        String url = "jdbc:postgresql://" + host + ":" + port + "/" + dbName + "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+    public ConnectionManager() {
         try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
+            InitialContext initContext = new InitialContext();
+            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/dbconnect");
+        } catch (NamingException e) {
             e.printStackTrace();
         }
-        connection = DriverManager.getConnection(url, user, pass);
     }
 
-    public synchronized Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            openConnection();
-        }
-        return connection;
+    public Connection getConnection() throws SQLException {
+        return dataSource != null ? dataSource.getConnection() : null;
     }
 
-    public void closeConnection() throws SQLException {
-        connection.close();
-    }
 }

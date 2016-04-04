@@ -3,6 +3,7 @@ package com.sandarovich.kickstarter.dao.quote;
 import com.sandarovich.kickstarter.ConnectionManager;
 import com.sandarovich.kickstarter.domain.Quote;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,7 +22,8 @@ public class QuoteDaoDbImpl implements QuoteDao {
 
     @Override
     public Quote getRandomQuota() {
-        try (Statement statement = connectionManager.getConnection().createStatement()) {
+        try (Connection connection = connectionManager.getConnection()) {
+            Statement statement = connection.createStatement();
             String query = "SELECT text, author " +
                 "FROM " +
                 "public.quote " +
@@ -31,7 +33,6 @@ public class QuoteDaoDbImpl implements QuoteDao {
                 throw new SQLException("No records found in Quote table.");
             }
             Quote result = new Quote(rs.getString("AUTHOR"), rs.getString("TEXT"));
-            connectionManager.closeConnection();
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
