@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiResourceLocking="true">
     <Resource name="jdbc/kickstarter"
+              global="jdbc/kickstarter"
               auth="Container"
               type="javax.sql.DataSource"
-              username="gphvdznv"
-              password="0gqDWl5Ea1MoSQLH5gcBABiyuXsGINdp"
+              username="kickstarter"
+              password="kickstarter"
               driverClassName="org.postgresql.Driver"
-              url="jdbc:postgresql://tantor.db.elephantsql.com:5432/gphvdznv?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"
+              url="jdbc:postgresql://kickstarter.c6tpu7dauy4w.us-west-2.rds.amazonaws.com:5432/kickstarter?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"
               validationQuery="select 1"
               maxActive="10"
               maxIdle="4"/>

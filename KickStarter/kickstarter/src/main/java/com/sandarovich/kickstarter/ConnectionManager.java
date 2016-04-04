@@ -17,14 +17,9 @@ public class ConnectionManager {
     public ConnectionManager() {
         try {
             InitialContext initContext = new InitialContext();
-            try {
-                Class.forName("org.postgresql.Driver");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
             dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/kickstarter");
         } catch (NamingException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }

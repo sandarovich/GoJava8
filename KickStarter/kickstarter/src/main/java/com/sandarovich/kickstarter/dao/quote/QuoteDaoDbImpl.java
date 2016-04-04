@@ -30,6 +30,7 @@ public class QuoteDaoDbImpl implements QuoteDao {
                 "ORDER BY RANDOM() LIMIT(1);";
             ResultSet rs = statement.executeQuery(query);
             if (!rs.next()) {
+                connection.close();
                 throw new SQLException("No records found in Quote table.");
             }
             Quote result = new Quote(rs.getString("AUTHOR"), rs.getString("TEXT"));
