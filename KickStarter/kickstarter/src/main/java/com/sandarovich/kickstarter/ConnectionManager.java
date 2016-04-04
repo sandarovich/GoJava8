@@ -17,14 +17,20 @@ public class ConnectionManager {
     public ConnectionManager() {
         try {
             InitialContext initContext = new InitialContext();
-            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/dbconnect");
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/kickstarter");
         } catch (NamingException e) {
             e.printStackTrace();
         }
+
     }
 
     public Connection getConnection() throws SQLException {
-        return dataSource != null ? dataSource.getConnection() : null;
+        return dataSource.getConnection();
     }
 
 }
