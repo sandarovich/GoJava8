@@ -60,7 +60,7 @@ public class KickstarterWeb extends HttpServlet {
         req.setAttribute("title", category.getName());
         req.setAttribute("category", category);
         req.setAttribute("projects", category.getProjects());
-        RequestDispatcher rd = context.getRequestDispatcher("/layouts/category.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/category.jsp");
         rd.forward(req, res);
     }
 
@@ -68,7 +68,7 @@ public class KickstarterWeb extends HttpServlet {
         req.setAttribute("title", "Categories:");
         List<Category> categories = categoryDao.getCategories();
         req.setAttribute("categories", categories);
-        RequestDispatcher rd = context.getRequestDispatcher("/layouts/categories.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/categories.jsp");
         rd.forward(req, res);
     }
 
@@ -76,7 +76,7 @@ public class KickstarterWeb extends HttpServlet {
         Quote quote = quoteDao.getRandomQuota();
         req.setAttribute("quote", "\"" + quote.getQuote() + "\" - " + quote.getAuthor());
         req.setAttribute("title", "Kickstarter");
-        RequestDispatcher rd = req.getRequestDispatcher("layouts/index.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/layouts/index.jsp");
         rd.forward(req, res);
     }
 
