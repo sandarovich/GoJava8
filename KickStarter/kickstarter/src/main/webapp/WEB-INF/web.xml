@@ -20,6 +20,7 @@
     </env-entry>
 
     <resource-ref>
+        <description>Primary database</description>
         <res-ref-name>jdbc/kickstarterDb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
