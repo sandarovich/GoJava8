@@ -14,7 +14,6 @@
     </servlet-mapping>
 
     <env-entry>
-        <description>Mode switcher</description>
         <env-entry-name>daoMode</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
         <env-entry-value>db</env-entry-value>
