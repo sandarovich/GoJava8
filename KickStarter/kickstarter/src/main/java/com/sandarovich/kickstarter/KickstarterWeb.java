@@ -54,7 +54,7 @@ public class KickstarterWeb extends HttpServlet {
         Category category = categoryDao.findCategoryById(id);
         req.setAttribute("title", category.getName());
         req.setAttribute("category", category);
-        req.setAttribute("projects", category.getProjects());
+        req.setAttribute("projects", categoryDao.getProjects(category));
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/category.jsp");
         rd.forward(req, res);
     }
@@ -75,16 +75,5 @@ public class KickstarterWeb extends HttpServlet {
         rd.forward(req, res);
     }
 
-//    private String getDaoModeFromEnvironment() {
-//        String mode = null;
-//        try {
-//            Context initCtx = new InitialContext();
-//            Context envCtx = (Context) initCtx.lookup("java:comp/env");
-//            mode = (String) envCtx.lookup(DAO_MODE);
-//        } catch (NamingException e) {
-//            e.printStackTrace();
-//        }
-//        return mode;
-//    }
 
 }

@@ -1,32 +1,23 @@
 package com.sandarovich.kickstarter.domain;
 
-import java.util.List;
-
-/**
- * @author Olexander Kolodiazhny
- */
-
 public class Category {
 
-    private final int id;
-    private final String name;
-    private List<Project> projects;
-
-    public Category(int id, String name, List<Project> projects) {
-        this.id = id;
-        this.name = name;
-        this.projects = projects;
-    }
-
-    public List<Project> getProjects() {
-        return projects;
-    }
+    private int id;
+    private String name;
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

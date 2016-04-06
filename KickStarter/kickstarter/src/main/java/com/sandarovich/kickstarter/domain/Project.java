@@ -1,97 +1,71 @@
 package com.sandarovich.kickstarter.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Olexander Koldoiazhnhy 2016
  */
 
 public class Project {
-    private final int id;
-    private final String name;
-    private final String shortDesription;
-    private final double requiredBudget;
-    private final int daysLeft;
-    private final String videoLink;
-    private final String history;
-    private double gatherdBudget;
-    private List<Question> questions = new ArrayList<Question>();
-    private List<Award> awards = new ArrayList<Award>();
-
-    public Project(int id, String name, String shortDesription,
-                   double requiredBudget, double gatherdBudget, int daysLeft, String videoLink,
-                   String history, List<Question> questions, List<Award> awards) {
-        this.id = id;
-        this.name = name;
-        this.shortDesription = shortDesription;
-        this.requiredBudget = requiredBudget;
-        this.gatherdBudget = gatherdBudget;
-        this.daysLeft = daysLeft;
-        this.videoLink = videoLink;
-        this.history = history;
-        this.questions = questions;
-        this.awards = awards;
-    }
-
-    public List<Object> getProjectAsObjectArray() {
-        List<Object> result = new ArrayList<Object>();
-        result.add(id);
-        result.add(name);
-        result.add(shortDesription);
-        result.add(requiredBudget);
-        result.add(gatherdBudget);
-        result.add(daysLeft);
-        return result;
-    }
-
+    private int id;
+    private String name;
+    private String desription;
+    private double requiredBudget;
+    private int daysLeft;
+    private String videoLink;
+    private String history;
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getShortDesription() {
-        return shortDesription;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesription() {
+        return desription;
+    }
+
+    public void setDesription(String desription) {
+        this.desription = desription;
     }
 
     public double getRequiredBudget() {
         return requiredBudget;
     }
 
-    public double getGatherdBudget() {
-        return gatherdBudget;
+    public void setRequiredBudget(double requiredBudget) {
+        this.requiredBudget = requiredBudget;
     }
 
     public int getDaysLeft() {
         return daysLeft;
     }
 
+    public void setDaysLeft(int daysLeft) {
+        this.daysLeft = daysLeft;
+    }
+
     public String getVideoLink() {
         return videoLink;
+    }
+
+    public void setVideoLink(String videoLink) {
+        this.videoLink = videoLink;
     }
 
     public String getHistory() {
         return history;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public void setHistory(String history) {
+        this.history = history;
     }
-
-    public List<Award> getAwards() {
-        return awards;
-    }
-
-    //Temporary methods for Memory mode
-    public void invest(double amount) {
-        gatherdBudget += amount;
-    }
-    public void addQuestion(String question) {
-        questions.add(new Question(question));
-    }
-
 }
