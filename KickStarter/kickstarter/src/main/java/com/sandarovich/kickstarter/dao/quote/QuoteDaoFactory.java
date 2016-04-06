@@ -1,7 +1,7 @@
 package com.sandarovich.kickstarter.dao.quote;
 
 import com.sandarovich.kickstarter.ConnectionManager;
-import com.sandarovich.kickstarter.dao.DaoMode;
+import com.sandarovich.kickstarter.DaoMode;
 
 /**
  * Quote Dao Factory

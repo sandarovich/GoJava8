@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao;
+package com.sandarovich.kickstarter;
 
 /**
  * Application mode enum
@@ -12,7 +12,7 @@ public enum DaoMode {
     public static DaoMode fromName(String daoMode) {
         if (daoMode == null || daoMode.isEmpty()) {
             throw new IllegalStateException("Environment variable mode in web.xml  was not found" +
-                    " --> To Fix use: add it)");
+                " --> To Fix use: add it)");
         }
         String daoModeFormatted = daoMode.toUpperCase().trim();
         if (FILE.name().equals(daoModeFormatted)) {
