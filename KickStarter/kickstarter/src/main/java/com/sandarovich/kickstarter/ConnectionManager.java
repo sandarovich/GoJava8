@@ -22,7 +22,6 @@ public class ConnectionManager {
         } catch (ClassNotFoundException | NamingException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public Connection getConnection() throws SQLException {

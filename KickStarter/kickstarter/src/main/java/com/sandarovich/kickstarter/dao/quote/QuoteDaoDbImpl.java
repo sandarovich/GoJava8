@@ -3,10 +3,9 @@ package com.sandarovich.kickstarter.dao.quote;
 import com.sandarovich.kickstarter.ConnectionManager;
 import com.sandarovich.kickstarter.domain.Quote;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Quate Dao for Db
@@ -14,6 +13,10 @@ import java.sql.Statement;
 
 public class QuoteDaoDbImpl implements QuoteDao {
 
+    public static final String SQL_GET_RANDOM_QUOTE = "SELECT text, author " +
+        "FROM " +
+        "public.quote " +
+        "ORDER BY RANDOM() LIMIT(1);";
     private ConnectionManager connectionManager;
 
     public QuoteDaoDbImpl(ConnectionManager connectionManager) {
@@ -22,21 +25,15 @@ public class QuoteDaoDbImpl implements QuoteDao {
 
     @Override
     public Quote getRandomQuota() {
-        try (Connection connection = connectionManager.getConnection()) {
-            Statement statement = connection.createStatement();
-            String query = "SELECT text, author " +
-                "FROM " +
-                "public.quote " +
-                "ORDER BY RANDOM() LIMIT(1);";
-            ResultSet rs = statement.executeQuery(query);
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(SQL_GET_RANDOM_QUOTE)) {
+            ResultSet rs = statement.executeQuery();
             if (!rs.next()) {
-                connection.close();
-                throw new SQLException("No records found in Quote table.");
+                throw new NoResultException("No records found in Quote table.");
             }
             Quote result = new Quote(rs.getString("AUTHOR"), rs.getString("TEXT"));
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage(), e);
+            throw new DaoException(e);
         }
     }
 }
