@@ -6,6 +6,7 @@ import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 import com.sandarovich.kickstarter.domain.ProjectBuilder;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import java.util.List;
 public class CategoryDaoDbImpl implements CategoryDao {
 
     private final List<Category> categories = new ArrayList<Category>();
+    private DataSource dataSource;
 
-    public CategoryDaoDbImpl() {
+    public CategoryDaoDbImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
         fillCategories();
     }
 

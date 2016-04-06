@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao.quote;
+package com.sandarovich.kickstarter.dao;
 
 
 public class DaoException extends RuntimeException {

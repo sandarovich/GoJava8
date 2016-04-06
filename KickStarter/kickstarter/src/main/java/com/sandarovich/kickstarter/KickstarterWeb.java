@@ -1,13 +1,12 @@
 package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
-import com.sandarovich.kickstarter.dao.category.CategoryDaoFactory;
+import com.sandarovich.kickstarter.dao.category.CategoryDaoDbImpl;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
-import com.sandarovich.kickstarter.dao.quote.QuoteDaoFactory;
+import com.sandarovich.kickstarter.dao.quote.QuoteDaoDbImpl;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Quote;
 
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,17 +31,30 @@ public class KickstarterWeb extends HttpServlet {
     private QuoteDao quoteDao;
     private CategoryDao categoryDao;
     private ServletContext context;
+    private DataSource dataSource;
+
+    public void initDataSource() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            InitialContext initContext = new InitialContext();
+            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/kickstarter");
+        } catch (ClassNotFoundException | NamingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public void init(ServletConfig config) {
-        DaoMode daoMode = DaoMode.fromName(getDaoModeFromEnvironment());
-        quoteDao = new QuoteDaoFactory().getQuotaDao(daoMode);
-        categoryDao = new CategoryDaoFactory().getCategoryDao(daoMode);
+        initDataSource();
+        quoteDao = new QuoteDaoDbImpl(dataSource);
+        categoryDao = new CategoryDaoDbImpl(dataSource);
         context = config.getServletContext();
     }
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+        throws IOException, ServletException {
         String requestPage = req.getParameter(VIEW_PAGE_PARAMETER);
         if (requestPage == null || req.getQueryString() == null) {
             showMainPage(req, res);
@@ -79,16 +92,16 @@ public class KickstarterWeb extends HttpServlet {
         rd.forward(req, res);
     }
 
-    private String getDaoModeFromEnvironment() {
-        String mode = null;
-        try {
-            Context initCtx = new InitialContext();
-            Context envCtx = (Context) initCtx.lookup("java:comp/env");
-            mode = (String) envCtx.lookup(DAO_MODE);
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-        return mode;
-    }
+//    private String getDaoModeFromEnvironment() {
+//        String mode = null;
+//        try {
+//            Context initCtx = new InitialContext();
+//            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+//            mode = (String) envCtx.lookup(DAO_MODE);
+//        } catch (NamingException e) {
+//            e.printStackTrace();
+//        }
+//        return mode;
+//    }
 
 }
