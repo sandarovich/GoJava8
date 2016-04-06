@@ -17,6 +17,7 @@ public class QuoteDaoDbImpl implements QuoteDao {
         "FROM " +
         "public.quote " +
         "ORDER BY RANDOM() LIMIT(1);";
+
     private ConnectionManager connectionManager;
 
     public QuoteDaoDbImpl(ConnectionManager connectionManager) {
