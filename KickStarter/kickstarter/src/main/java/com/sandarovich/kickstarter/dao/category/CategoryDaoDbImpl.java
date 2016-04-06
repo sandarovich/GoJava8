@@ -19,9 +19,13 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
     private static final String SQL_GET_CATEGORIES = "SELECT id, name FROM category";
     private static final String SQL_FIND_BY_CATEGORY = "SELECT id, name FROM category WHERE id=?";
     private static final java.lang.String SQL_FIND_PROJECTS_BY_CATEGORY =
-        "SELECT id, name, description, required_budget, days_left, video_link, history" +
+        "SELECT id, name, description, required_budget, days_left, video_link, history " +
             "FROM project " +
             "WHERE categoryid=?;";
+    private static final java.lang.String SQL_FIND_GATHERED_BUDGET_BY_PROJECT =
+        "SELECT SUM(amount) amount\n" +
+            "FROM  payment\n" +
+            "WHERE projectid=?;";
 
     @Override
     public List<Category> getCategories() {
@@ -81,6 +85,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
                 project.setDaysLeft(rs.getInt("days_left"));
                 project.setHistory(rs.getString("history"));
                 project.setVideoLink(rs.getString("video_link"));
+                project.setGatheredBudget(getGatheredBudget(project));
                 projects.add(project);
             }
             rs.close();
@@ -89,6 +94,20 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
         }
 
         return projects;
+    }
+
+    private double getGatheredBudget(Project project) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_GATHERED_BUDGET_BY_PROJECT)) {
+            statement.setInt(1, project.getId());
+            ResultSet rs = statement.executeQuery();
+            double result = rs.next() ? rs.getDouble("amount") : 0;
+            rs.close();
+            return result;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+
     }
 
 }

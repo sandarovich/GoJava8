@@ -9,6 +9,7 @@ public class Project {
     private String name;
     private String desription;
     private double requiredBudget;
+    private double gatheredBudget;
     private int daysLeft;
     private String videoLink;
     private String history;
@@ -68,4 +69,13 @@ public class Project {
     public void setHistory(String history) {
         this.history = history;
     }
+
+    public double getGatheredBudget() {
+        return gatheredBudget;
+    }
+
+    public void setGatheredBudget(double gatheredBudget) {
+        this.gatheredBudget = gatheredBudget;
+    }
+
 }
