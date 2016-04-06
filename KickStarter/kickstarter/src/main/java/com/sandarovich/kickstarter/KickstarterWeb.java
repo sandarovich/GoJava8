@@ -7,8 +7,6 @@ import com.sandarovich.kickstarter.dao.quote.QuoteDaoDbImpl;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Quote;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -16,14 +14,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
 
 public class KickstarterWeb extends HttpServlet {
 
-    public static final String DAO_MODE = "daoMode";
     public static final String VIEW_PAGE_PARAMETER = "view";
     public static final String CATEGORIES_VIEW = "categories";
     public static final String CATEGORY_VIEW = "category";
@@ -31,23 +27,10 @@ public class KickstarterWeb extends HttpServlet {
     private QuoteDao quoteDao;
     private CategoryDao categoryDao;
     private ServletContext context;
-    private DataSource dataSource;
-
-    public void initDataSource() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            InitialContext initContext = new InitialContext();
-            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/kickstarter");
-        } catch (ClassNotFoundException | NamingException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
     public void init(ServletConfig config) {
-        initDataSource();
-        quoteDao = new QuoteDaoDbImpl(dataSource);
-        categoryDao = new CategoryDaoDbImpl(dataSource);
+        quoteDao = new QuoteDaoDbImpl();
+        categoryDao = new CategoryDaoDbImpl();
         context = config.getServletContext();
     }
 
