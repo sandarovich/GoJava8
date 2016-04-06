@@ -18,9 +18,9 @@
                         <c:forEach var="project" items="${projects}">
                             <tr>
                                 <td><a href="?view=project&id=${project.id}">${project.name}</a></td>
-                                <td>${project.shortDesription}</td>
+                                <td>${project.desription}</td>
                                 <td>${project.requiredBudget}</td>
-                                <td>${project.gatherdBudget}</td>
+                                <td>${project.gatheredBudget}</td>
                                 <td>${project.daysLeft}</td>
                             </tr>
                         </c:forEach>
