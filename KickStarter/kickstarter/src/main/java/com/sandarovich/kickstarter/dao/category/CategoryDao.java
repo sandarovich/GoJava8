@@ -14,10 +14,9 @@ public interface CategoryDao {
     List<Category> getCategories();
     Category findCategoryById(int id);
     List<Project> getProjects(Category category);
-
     Project findProjectById(int projectId);
-
     List<Question> getQuestions(Project project);
-
     void addQuestion(Question question, int projectId);
+
+    Category findCategoryByProject(Project project);
 }

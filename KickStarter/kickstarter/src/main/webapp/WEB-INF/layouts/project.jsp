@@ -5,6 +5,9 @@
             <div class="page-header">
               <h2>${title}</h1>
             </div>
+             <ol class="breadcrumb">
+                <li><a href="?view=category&id=${category.id}">${category.name}</a></li>
+             </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">Project:</div>
                     <table class="table">
@@ -22,7 +25,10 @@
                          </tr>
                          <tr>
                             <td>Gathered:</td>
-                            <td>${project.gatheredBudget}</td>
+                            <td>
+                                ${project.gatheredBudget}
+                                <a class="btn btn-default btn-small" href="?view=invest&id=${project.id}" role="button">Invest</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Days Left:</td>

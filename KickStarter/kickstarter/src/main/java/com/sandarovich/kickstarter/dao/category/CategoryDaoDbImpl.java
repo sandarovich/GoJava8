@@ -38,6 +38,15 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
     private static final String SQL_ADD_QUESTION_INTO_PROJECT =
         "INSERT INTO question (text, projectid)" +
             "VALUES (?, ?);";
+    private static final String SQL_FIND_CATEGORY_BY_PROJECT =
+        "SELECT id, name " +
+            "FROM category " +
+            "WHERE id = ( " +
+            "SELECT categoryid " +
+            "FROM project " +
+            "WHERE id=? " +
+            "GROUP by categoryid " +
+            "LIMIT(1));";
 
     @Override
     public List<Category> getCategories() {
@@ -163,6 +172,29 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
             throw new DaoException(e);
         }
 
+    }
+
+    @Override
+    public Category findCategoryByProject(Project project) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_CATEGORY_BY_PROJECT)) {
+            statement.setInt(1, project.getId());
+            ResultSet rs = statement.executeQuery();
+            Category category;
+            if (rs.next()) {
+                String name = rs.getString("name");
+                int id = rs.getInt("id");
+                rs.close();
+                category = new Category();
+                category.setId(id);
+                category.setName(name);
+            } else {
+                throw new NoResultException("No category found");
+            }
+            return category;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     private double getGatheredBudget(Project project) {

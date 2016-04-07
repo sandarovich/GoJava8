@@ -29,6 +29,9 @@ public class KickstarterWeb extends HttpServlet {
     public static final String PROJECT_VIEW = "project";
     public static final String ACTION_ADD_QUESTION = "addQuestion";
     private static final String QUESTION_VIEW = "question";
+    private static final String ACTION_ADD_INVEST = "addInvestment";
+    private static final String INVEST_VIEW = "invest";
+
     private QuoteDao quoteDao;
     private CategoryDao categoryDao;
     private ServletContext context;
@@ -45,7 +48,14 @@ public class KickstarterWeb extends HttpServlet {
         String requestedAction = req.getParameter("action");
         if (ACTION_ADD_QUESTION.equals(requestedAction)) {
             addQuestion(req, res);
+        } else if (ACTION_ADD_INVEST.equals(requestedAction)) {
+            addInvestment(req, res);
         }
+    }
+
+    private void addInvestment(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+        // res.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
     }
 
     private void addQuestion(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -76,8 +86,31 @@ public class KickstarterWeb extends HttpServlet {
             showProjectPage(req, res);
         } else if (QUESTION_VIEW.equals(requestPage)) {
             showQuestionPage(req, res);
+        } else if (INVEST_VIEW.equals(requestPage)) {
+            showInvestPage(req, res);
         }
 
+    }
+
+    private void showInvestPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int projectId = 0;
+        try {
+            projectId = Integer.valueOf(req.getParameter("id"));
+        } catch (NumberFormatException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        Project project = null;
+        try {
+            project = categoryDao.findProjectById(projectId);
+        } catch (NoResultException e) {
+            res.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        req.setAttribute("project", project);
+        req.setAttribute("title", "Invest");
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/invest.jsp");
+        rd.forward(req, res);
     }
 
     private void showQuestionPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -95,6 +128,7 @@ public class KickstarterWeb extends HttpServlet {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+        req.setAttribute("title", "Question");
         req.setAttribute("project", project);
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/question.jsp");
         rd.forward(req, res);
@@ -118,9 +152,11 @@ public class KickstarterWeb extends HttpServlet {
         }
         List<Question> questions;
         questions = categoryDao.getQuestions(project);
+        Category category = categoryDao.findCategoryByProject(project);
         req.setAttribute("title", project.getName());
         req.setAttribute("project", project);
         req.setAttribute("questions", questions);
+        req.setAttribute("category", category);
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/project.jsp");
         rd.forward(req, res);
     }
