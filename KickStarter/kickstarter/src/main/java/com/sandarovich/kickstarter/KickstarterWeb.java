@@ -1,10 +1,13 @@
 package com.sandarovich.kickstarter;
 
+import com.sandarovich.kickstarter.dao.NoResultException;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.category.CategoryDaoDbImpl;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDaoDbImpl;
 import com.sandarovich.kickstarter.domain.Category;
+import com.sandarovich.kickstarter.domain.Project;
+import com.sandarovich.kickstarter.domain.Question;
 import com.sandarovich.kickstarter.domain.Quote;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +26,8 @@ public class KickstarterWeb extends HttpServlet {
     public static final String VIEW_PAGE_PARAMETER = "view";
     public static final String CATEGORIES_VIEW = "categories";
     public static final String CATEGORY_VIEW = "category";
+    public static final String PROJECT_VIEW = "project";
+    private static final String QUESTION_VIEW = "question";
 
     private QuoteDao quoteDao;
     private CategoryDao categoryDao;
@@ -45,13 +50,58 @@ public class KickstarterWeb extends HttpServlet {
             showCategoriesPage(req, res);
         } else if (CATEGORY_VIEW.equals(requestPage)) {
             showCategoryPage(req, res);
+        } else if (PROJECT_VIEW.equals(requestPage)) {
+            showProjectPage(req, res);
+        } else if (QUESTION_VIEW.equals(requestPage)) {
+            showQuestionPage(req, res);
         }
 
     }
 
+    private void showQuestionPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+    }
+
+    private void showProjectPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int projectId = 0;
+        try {
+            projectId = Integer.valueOf(req.getParameter("id"));
+        } catch (NumberFormatException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        Project project = null;
+        try {
+            project = categoryDao.findProjectById(projectId);
+
+        } catch (NoResultException e) {
+            res.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        List<Question> questions;
+        questions = categoryDao.getQuestions(project);
+        req.setAttribute("title", project.getName());
+        req.setAttribute("project", project);
+        req.setAttribute("questions", questions);
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/project.jsp");
+        rd.forward(req, res);
+    }
+
     private void showCategoryPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        int id = Integer.valueOf(req.getParameter("id"));
-        Category category = categoryDao.findCategoryById(id);
+        int categoryId = 0;
+        try {
+            categoryId = Integer.valueOf(req.getParameter("id"));
+        } catch (NumberFormatException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        Category category = null;
+        try {
+            category = categoryDao.findCategoryById(categoryId);
+        } catch (NoResultException e) {
+            res.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
         req.setAttribute("title", category.getName());
         req.setAttribute("category", category);
         req.setAttribute("projects", categoryDao.getProjects(category));
@@ -60,7 +110,7 @@ public class KickstarterWeb extends HttpServlet {
     }
 
     private void showCategoriesPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.setAttribute("title", "Categories:");
+        req.setAttribute("title", "Categories");
         List<Category> categories = categoryDao.getCategories();
         req.setAttribute("categories", categories);
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/categories.jsp");

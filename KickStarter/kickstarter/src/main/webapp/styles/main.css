@@ -22,6 +22,6 @@ footer {
 	padding-top: 15px;
 }
 
-.list-group {
+.list-group.categories {
     width: 400px;
 }
