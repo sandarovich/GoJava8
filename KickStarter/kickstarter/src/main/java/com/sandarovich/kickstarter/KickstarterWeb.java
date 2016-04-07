@@ -59,7 +59,23 @@ public class KickstarterWeb extends HttpServlet {
     }
 
     private void showQuestionPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+        int projectId = 0;
+        try {
+            projectId = Integer.valueOf(req.getParameter("id"));
+        } catch (NumberFormatException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        Project project = null;
+        try {
+            project = categoryDao.findProjectById(projectId);
+        } catch (NoResultException e) {
+            res.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        req.setAttribute("project", project);
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/question.jsp");
+        rd.forward(req, res);
     }
 
     private void showProjectPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
