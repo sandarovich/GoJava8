@@ -35,6 +35,9 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
         "SELECT id, text " +
             "FROM question " +
             "WHERE projectid=?";
+    private static final String SQL_ADD_QUESTION_INTO_PROJECT =
+        "INSERT INTO question (text, projectid)" +
+            "VALUES (?, ?);";
 
     @Override
     public List<Category> getCategories() {
@@ -146,6 +149,20 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
             throw new DaoException(e);
         }
         return questions;
+    }
+
+    @Override
+    public void addQuestion(Question question, int projectId) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_ADD_QUESTION_INTO_PROJECT)) {
+            statement.setString(1, question.getText());
+            statement.setInt(2, projectId);
+            statement.execute();
+            statement.close();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+
     }
 
     private double getGatheredBudget(Project project) {

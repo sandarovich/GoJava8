@@ -5,16 +5,16 @@ html {
 
 body {
 	background: #F4F4F4;
-	margin-bottom: 60px;
+	margin-bottom: 40px !important;
 }
 
 footer {
-  width: 100%;
+  /*width: 100%;*/
   position: absolute;
-  margin: 0 auto;
+  margin-top: 20 px;
   bottom: 0;
   overflow: hidden;
-  height: 60px;
+  height: 40px;
 }
 
 .textcopyright {

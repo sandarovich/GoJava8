@@ -27,8 +27,8 @@ public class KickstarterWeb extends HttpServlet {
     public static final String CATEGORIES_VIEW = "categories";
     public static final String CATEGORY_VIEW = "category";
     public static final String PROJECT_VIEW = "project";
+    public static final String ACTION_ADD_QUESTION = "addQuestion";
     private static final String QUESTION_VIEW = "question";
-
     private QuoteDao quoteDao;
     private CategoryDao categoryDao;
     private ServletContext context;
@@ -39,6 +39,28 @@ public class KickstarterWeb extends HttpServlet {
         context = config.getServletContext();
     }
 
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String requestedAction = req.getParameter("action");
+        if (ACTION_ADD_QUESTION.equals(requestedAction)) {
+            addQuestion(req, res);
+        }
+    }
+
+    private void addQuestion(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        int projectId = 0;
+        try {
+            projectId = Integer.valueOf(req.getParameter("projectId"));
+        } catch (NumberFormatException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        Question question = new Question();
+        question.setText(req.getParameter("question"));
+        categoryDao.addQuestion(question, projectId);
+        res.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)

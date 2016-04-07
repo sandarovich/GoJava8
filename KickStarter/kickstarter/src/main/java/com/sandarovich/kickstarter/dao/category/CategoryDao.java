@@ -18,4 +18,6 @@ public interface CategoryDao {
     Project findProjectById(int projectId);
 
     List<Question> getQuestions(Project project);
+
+    void addQuestion(Question question, int projectId);
 }
