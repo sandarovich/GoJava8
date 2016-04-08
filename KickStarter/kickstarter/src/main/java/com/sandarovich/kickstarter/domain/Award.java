@@ -4,6 +4,7 @@ package com.sandarovich.kickstarter.domain;
  * Award
  */
 public class Award {
+
     private int id;
     private double amount;
     private String description;
@@ -23,4 +24,5 @@ public class Award {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

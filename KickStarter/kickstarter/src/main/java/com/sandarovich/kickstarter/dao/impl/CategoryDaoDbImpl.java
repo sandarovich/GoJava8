@@ -1,6 +1,7 @@
-package com.sandarovich.kickstarter.dao.category;
+package com.sandarovich.kickstarter.dao.impl;
 
 
+import com.sandarovich.kickstarter.dao.CategoryDao;
 import com.sandarovich.kickstarter.dao.DaoException;
 import com.sandarovich.kickstarter.dao.NoResultException;
 import com.sandarovich.kickstarter.domain.Category;

@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.dao.project;
+package com.sandarovich.kickstarter.dao;
 
 
 import com.sandarovich.kickstarter.domain.Category;

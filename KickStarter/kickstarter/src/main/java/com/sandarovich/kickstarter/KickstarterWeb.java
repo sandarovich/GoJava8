@@ -1,10 +1,6 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.dao.NoResultException;
-import com.sandarovich.kickstarter.dao.category.CategoryDao;
-import com.sandarovich.kickstarter.dao.project.ProjectDao;
-import com.sandarovich.kickstarter.dao.question.QuestionDao;
-import com.sandarovich.kickstarter.dao.quote.QuoteDao;
+import com.sandarovich.kickstarter.dao.*;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 import com.sandarovich.kickstarter.domain.Question;
@@ -103,7 +99,6 @@ public class KickstarterWeb extends HttpServlet {
         } else if (INVEST_VIEW.equals(requestPage)) {
             showInvestPage(req, res);
         }
-
     }
 
     private void showInvestPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
