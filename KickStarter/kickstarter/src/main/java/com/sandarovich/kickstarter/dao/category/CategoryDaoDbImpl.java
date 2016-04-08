@@ -1,13 +1,15 @@
 package com.sandarovich.kickstarter.dao.category;
 
 
-import com.sandarovich.kickstarter.dao.DaoDB;
 import com.sandarovich.kickstarter.dao.DaoException;
 import com.sandarovich.kickstarter.dao.NoResultException;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 import com.sandarovich.kickstarter.domain.Question;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +17,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
+@Repository
+public class CategoryDaoDbImpl implements CategoryDao {
 
     private static final String SQL_GET_CATEGORIES = "SELECT id, name FROM category";
     private static final String SQL_FIND_BY_CATEGORY = "SELECT id, name FROM category WHERE id=?";
@@ -48,11 +51,14 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
             "GROUP by categoryid " +
             "LIMIT(1));";
 
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     public List<Category> getCategories() {
         List<Category> result = new ArrayList<>();
 
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_CATEGORIES)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -70,7 +76,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
 
     @Override
     public Category findCategoryById(int categoryId) {
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_CATEGORY)) {
             statement.setInt(1, categoryId);
             ResultSet rs = statement.executeQuery();
@@ -93,7 +99,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
     @Override
     public List<Project> getProjects(Category category) {
         List<Project> projects = new ArrayList<>();
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_PROJECTS_BY_CATEGORY)) {
             statement.setInt(1, category.getId());
             ResultSet rs = statement.executeQuery();
@@ -124,7 +130,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
 
     @Override
     public Project findProjectById(int projectId) {
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_PROJECT_ID)) {
             statement.setInt(1, projectId);
             ResultSet rs = statement.executeQuery();
@@ -143,7 +149,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
     @Override
     public List<Question> getQuestions(Project project) {
         List<Question> questions = new ArrayList<>();
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_QUESTIONS_BY_PROJECT_ID)) {
             statement.setInt(1, project.getId());
             ResultSet rs = statement.executeQuery();
@@ -162,7 +168,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
 
     @Override
     public void addQuestion(Question question, int projectId) {
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_ADD_QUESTION_INTO_PROJECT)) {
             statement.setString(1, question.getText());
             statement.setInt(2, projectId);
@@ -176,7 +182,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
 
     @Override
     public Category findCategoryByProject(Project project) {
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_CATEGORY_BY_PROJECT)) {
             statement.setInt(1, project.getId());
             ResultSet rs = statement.executeQuery();
@@ -198,7 +204,7 @@ public class CategoryDaoDbImpl extends DaoDB implements CategoryDao {
     }
 
     private double getGatheredBudget(Project project) {
-        try (Connection connection = getConnection();
+        try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_GATHERED_BUDGET_BY_PROJECT)) {
             statement.setInt(1, project.getId());
             ResultSet rs = statement.executeQuery();
