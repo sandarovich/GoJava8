@@ -1,8 +1,8 @@
 package com.sandarovich.kickstarter.dao.impl;
 
 
-import com.sandarovich.kickstarter.dao.DaoException;
 import com.sandarovich.kickstarter.dao.QuestionDao;
+import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.domain.Project;
 import com.sandarovich.kickstarter.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
