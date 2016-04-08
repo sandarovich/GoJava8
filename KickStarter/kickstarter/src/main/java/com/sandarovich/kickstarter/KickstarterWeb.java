@@ -4,6 +4,7 @@ import com.sandarovich.kickstarter.dao.CategoryDao;
 import com.sandarovich.kickstarter.dao.ProjectDao;
 import com.sandarovich.kickstarter.dao.QuestionDao;
 import com.sandarovich.kickstarter.dao.QuoteDao;
+import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
 import com.sandarovich.kickstarter.model.Question;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 
 public class KickstarterWeb extends HttpServlet {
@@ -88,18 +90,18 @@ public class KickstarterWeb extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
         throws IOException, ServletException {
-        String requestPage = req.getParameter(VIEW_PAGE_PARAMETER);
-        if (requestPage == null || req.getQueryString() == null) {
+        String requestView = req.getParameter(VIEW_PAGE_PARAMETER);
+        if (Objects.isNull(requestView) || Objects.isNull(req.getQueryString())) {
             showMainPage(req, res);
-        } else if (CATEGORIES_VIEW.equals(requestPage)) {
+        } else if (CATEGORIES_VIEW.equals(requestView)) {
             showCategoriesPage(req, res);
-        } else if (CATEGORY_VIEW.equals(requestPage)) {
+        } else if (CATEGORY_VIEW.equals(requestView)) {
             showCategoryPage(req, res);
-        } else if (PROJECT_VIEW.equals(requestPage)) {
+        } else if (PROJECT_VIEW.equals(requestView)) {
             showProjectPage(req, res);
-        } else if (QUESTION_VIEW.equals(requestPage)) {
+        } else if (QUESTION_VIEW.equals(requestView)) {
             showQuestionPage(req, res);
-        } else if (INVEST_VIEW.equals(requestPage)) {
+        } else if (INVEST_VIEW.equals(requestView)) {
             showInvestPage(req, res);
         }
     }
