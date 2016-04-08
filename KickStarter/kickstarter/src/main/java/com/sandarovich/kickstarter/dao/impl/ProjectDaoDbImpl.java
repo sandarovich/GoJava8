@@ -4,8 +4,8 @@ package com.sandarovich.kickstarter.dao.impl;
 import com.sandarovich.kickstarter.dao.ProjectDao;
 import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
-import com.sandarovich.kickstarter.domain.Category;
-import com.sandarovich.kickstarter.domain.Project;
+import com.sandarovich.kickstarter.model.Category;
+import com.sandarovich.kickstarter.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

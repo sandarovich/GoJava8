@@ -1,6 +1,6 @@
 package com.sandarovich.kickstarter.dao;
 
-import com.sandarovich.kickstarter.domain.Quote;
+import com.sandarovich.kickstarter.model.Quote;
 
 /**
  * Quote Dao interface

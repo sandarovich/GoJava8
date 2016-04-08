@@ -1,8 +1,8 @@
 package com.sandarovich.kickstarter.dao;
 
 
-import com.sandarovich.kickstarter.domain.Project;
-import com.sandarovich.kickstarter.domain.Question;
+import com.sandarovich.kickstarter.model.Project;
+import com.sandarovich.kickstarter.model.Question;
 
 import java.util.List;
 

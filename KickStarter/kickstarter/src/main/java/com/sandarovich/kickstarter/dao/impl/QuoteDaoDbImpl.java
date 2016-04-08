@@ -3,7 +3,7 @@ package com.sandarovich.kickstarter.dao.impl;
 import com.sandarovich.kickstarter.dao.QuoteDao;
 import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
-import com.sandarovich.kickstarter.domain.Quote;
+import com.sandarovich.kickstarter.model.Quote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

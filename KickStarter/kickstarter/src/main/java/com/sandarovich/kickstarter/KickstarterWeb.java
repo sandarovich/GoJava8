@@ -1,10 +1,13 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.dao.*;
-import com.sandarovich.kickstarter.domain.Category;
-import com.sandarovich.kickstarter.domain.Project;
-import com.sandarovich.kickstarter.domain.Question;
-import com.sandarovich.kickstarter.domain.Quote;
+import com.sandarovich.kickstarter.dao.CategoryDao;
+import com.sandarovich.kickstarter.dao.ProjectDao;
+import com.sandarovich.kickstarter.dao.QuestionDao;
+import com.sandarovich.kickstarter.dao.QuoteDao;
+import com.sandarovich.kickstarter.model.Category;
+import com.sandarovich.kickstarter.model.Project;
+import com.sandarovich.kickstarter.model.Question;
+import com.sandarovich.kickstarter.model.Quote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
