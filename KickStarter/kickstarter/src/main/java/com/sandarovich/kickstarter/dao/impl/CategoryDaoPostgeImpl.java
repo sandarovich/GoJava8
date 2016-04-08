@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CategoryDaoDbImpl implements CategoryDao {
+public class CategoryDaoPostgeImpl implements CategoryDao {
 
     private static final String SQL_GET_CATEGORIES = "SELECT id, name FROM category";
     private static final String SQL_FIND_BY_CATEGORY = "SELECT id, name FROM category WHERE id=?";

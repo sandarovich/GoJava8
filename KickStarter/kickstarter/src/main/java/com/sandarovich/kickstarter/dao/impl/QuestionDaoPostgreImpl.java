@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class QuestionDaoDbImpl implements QuestionDao {
+public class QuestionDaoPostgreImpl implements QuestionDao {
 
     private static final String SQL_FIND_QUESTIONS_BY_PROJECT_ID =
         "SELECT id, text " +

@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 
 @Repository
-public class QuoteDaoDbImpl implements QuoteDao {
+public class QuoteDaoPostgreImpl implements QuoteDao {
 
     public static final String SQL_GET_RANDOM_QUOTE = "SELECT text, author " +
         "FROM " +

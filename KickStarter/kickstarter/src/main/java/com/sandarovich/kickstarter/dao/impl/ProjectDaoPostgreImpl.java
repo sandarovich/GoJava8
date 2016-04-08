@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProjectDaoDbImpl implements ProjectDao {
+public class ProjectDaoPostgreImpl implements ProjectDao {
 
     private static final String SQL_FIND_PROJECTS_BY_CATEGORY =
         "SELECT id, name, description, required_budget, days_left, video_link, history " +
