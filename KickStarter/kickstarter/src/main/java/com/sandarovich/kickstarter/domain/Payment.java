@@ -1,4 +1,4 @@
-package com.sandarovich.kickstarter.domain.payment;
+package com.sandarovich.kickstarter.domain;
 
 /**
  * Payment
