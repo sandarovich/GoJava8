@@ -3,6 +3,7 @@ package com.sandarovich.kickstarter;
 import com.sandarovich.kickstarter.dao.NoResultException;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
 import com.sandarovich.kickstarter.dao.project.ProjectDao;
+import com.sandarovich.kickstarter.dao.question.QuestionDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
@@ -39,6 +40,8 @@ public class KickstarterWeb extends HttpServlet {
     private CategoryDao categoryDao;
     @Autowired
     private ProjectDao projectDao;
+    @Autowired
+    private QuestionDao questionDao;
 
     private ServletContext context;
 
@@ -50,6 +53,8 @@ public class KickstarterWeb extends HttpServlet {
     public void destroy() {
         quoteDao = null;
         categoryDao = null;
+        questionDao = null;
+        projectDao = null;
     }
 
 
@@ -77,7 +82,7 @@ public class KickstarterWeb extends HttpServlet {
         }
         Question question = new Question();
         question.setText(req.getParameter("question"));
-        categoryDao.addQuestion(question, projectId);
+        questionDao.addQuestion(question, projectId);
         res.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
     }
 
@@ -160,7 +165,7 @@ public class KickstarterWeb extends HttpServlet {
             return;
         }
         List<Question> questions;
-        questions = categoryDao.getQuestions(project);
+        questions = questionDao.getQuestions(project);
         Category category = categoryDao.findCategoryByProject(project);
         req.setAttribute("title", project.getName());
         req.setAttribute("project", project);
