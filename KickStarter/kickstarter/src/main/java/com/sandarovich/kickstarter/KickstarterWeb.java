@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.NoResultException;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
+import com.sandarovich.kickstarter.dao.project.ProjectDao;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
@@ -34,9 +35,10 @@ public class KickstarterWeb extends HttpServlet {
 
     @Autowired
     private QuoteDao quoteDao;
-
     @Autowired
     private CategoryDao categoryDao;
+    @Autowired
+    private ProjectDao projectDao;
 
     private ServletContext context;
 
@@ -109,7 +111,7 @@ public class KickstarterWeb extends HttpServlet {
         }
         Project project = null;
         try {
-            project = categoryDao.findProjectById(projectId);
+            project = projectDao.findProjectById(projectId);
         } catch (NoResultException e) {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -130,7 +132,7 @@ public class KickstarterWeb extends HttpServlet {
         }
         Project project = null;
         try {
-            project = categoryDao.findProjectById(projectId);
+            project = projectDao.findProjectById(projectId);
         } catch (NoResultException e) {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -151,7 +153,7 @@ public class KickstarterWeb extends HttpServlet {
         }
         Project project = null;
         try {
-            project = categoryDao.findProjectById(projectId);
+            project = projectDao.findProjectById(projectId);
 
         } catch (NoResultException e) {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -185,7 +187,7 @@ public class KickstarterWeb extends HttpServlet {
         }
         req.setAttribute("title", category.getName());
         req.setAttribute("category", category);
-        req.setAttribute("projects", categoryDao.getProjects(category));
+        req.setAttribute("projects", projectDao.getProjects(category));
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/category.jsp");
         rd.forward(req, res);
     }

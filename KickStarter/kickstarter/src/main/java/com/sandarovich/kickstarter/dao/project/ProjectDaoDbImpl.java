@@ -1,0 +1,101 @@
+package com.sandarovich.kickstarter.dao.project;
+
+
+import com.sandarovich.kickstarter.dao.DaoException;
+import com.sandarovich.kickstarter.dao.NoResultException;
+import com.sandarovich.kickstarter.domain.Category;
+import com.sandarovich.kickstarter.domain.Project;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class ProjectDaoDbImpl implements ProjectDao {
+
+    private static final String SQL_FIND_PROJECTS_BY_CATEGORY =
+        "SELECT id, name, description, required_budget, days_left, video_link, history " +
+            "FROM project " +
+            "WHERE categoryid=?;";
+    private static final String SQL_FIND_GATHERED_BUDGET_BY_PROJECT =
+        "SELECT SUM(amount) amount " +
+            "FROM  payment " +
+            "WHERE projectid=?;";
+    private static final String SQL_FIND_BY_PROJECT_ID =
+        "SELECT id, name, description, required_budget, days_left, video_link, history " +
+            "FROM project " +
+            "WHERE id=?;";
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Override
+    public Project findProjectById(int projectId) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_PROJECT_ID)) {
+            statement.setInt(1, projectId);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Project project = getProject(rs);
+                rs.close();
+                return project;
+            } else {
+                throw new NoResultException("No project found");
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Project> getProjects(Category category) {
+        List<Project> projects = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_PROJECTS_BY_CATEGORY)) {
+            statement.setInt(1, category.getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Project project = getProject(rs);
+                projects.add(project);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+
+        return projects;
+    }
+
+    private Project getProject(ResultSet rs) throws SQLException {
+        Project project = new Project();
+        project.setId(rs.getInt("id"));
+        project.setName(rs.getString("name"));
+        project.setDesription(rs.getString("description"));
+        project.setRequiredBudget(rs.getDouble("required_budget"));
+        project.setDaysLeft(rs.getInt("days_left"));
+        project.setHistory(rs.getString("history"));
+        project.setVideoLink(rs.getString("video_link"));
+        project.setGatheredBudget(getGatheredBudget(project));
+        return project;
+    }
+
+    private double getGatheredBudget(Project project) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_GATHERED_BUDGET_BY_PROJECT)) {
+            statement.setInt(1, project.getId());
+            ResultSet rs = statement.executeQuery();
+            double result = rs.next() ? rs.getDouble("amount") : 0;
+            rs.close();
+            return result;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+
+    }
+}
