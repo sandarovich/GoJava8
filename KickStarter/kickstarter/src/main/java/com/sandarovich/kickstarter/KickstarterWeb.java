@@ -2,13 +2,13 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.NoResultException;
 import com.sandarovich.kickstarter.dao.category.CategoryDao;
-import com.sandarovich.kickstarter.dao.category.CategoryDaoDbImpl;
 import com.sandarovich.kickstarter.dao.quote.QuoteDao;
-import com.sandarovich.kickstarter.dao.quote.QuoteDaoDbImpl;
 import com.sandarovich.kickstarter.domain.Category;
 import com.sandarovich.kickstarter.domain.Project;
 import com.sandarovich.kickstarter.domain.Question;
 import com.sandarovich.kickstarter.domain.Quote;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -32,14 +32,22 @@ public class KickstarterWeb extends HttpServlet {
     private static final String ACTION_ADD_INVEST = "addInvestment";
     private static final String INVEST_VIEW = "invest";
 
+    @Autowired
     private QuoteDao quoteDao;
+
+    @Autowired
     private CategoryDao categoryDao;
+
     private ServletContext context;
 
     public void init(ServletConfig config) {
-        quoteDao = new QuoteDaoDbImpl();
-        categoryDao = new CategoryDaoDbImpl();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
         context = config.getServletContext();
+    }
+
+    public void destroy() {
+        quoteDao = null;
+        categoryDao = null;
     }
 
 
@@ -55,7 +63,6 @@ public class KickstarterWeb extends HttpServlet {
 
     private void addInvestment(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        // res.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
     }
 
     private void addQuestion(HttpServletRequest req, HttpServletResponse res) throws IOException {
