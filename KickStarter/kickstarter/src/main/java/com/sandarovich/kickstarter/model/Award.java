@@ -7,6 +7,7 @@ public class Award {
 
     private int id;
     private double amount;
+    private String name;
     private String description;
 
     public double getAmount() {
@@ -25,4 +26,12 @@ public class Award {
         this.description = description;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

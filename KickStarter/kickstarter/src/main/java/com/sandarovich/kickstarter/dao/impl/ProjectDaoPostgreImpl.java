@@ -5,6 +5,7 @@ import com.sandarovich.kickstarter.dao.ProjectDao;
 import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Category;
+import com.sandarovich.kickstarter.model.Payment;
 import com.sandarovich.kickstarter.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +33,9 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
         "SELECT id, name, description, required_budget, days_left, video_link, history " +
             "FROM project " +
             "WHERE id=?;";
+    private static final String SQL_INVEST_INTO_PROJECT =
+            "INSERT INTO payment (cardnumber, cardholder, amount, projectid) " +
+                    "VALUES (?, ? , ?, ?);";
 
     @Autowired
     private DataSource dataSource;
@@ -49,6 +53,20 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
             } else {
                 throw new NoResultException("No project found");
             }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public void invest(Payment payment, int projectId) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_INVEST_INTO_PROJECT)) {
+            statement.setString(1, payment.getCardNumber());
+            statement.setString(2, payment.getCardHolder());
+            statement.setDouble(3, payment.getAmount());
+            statement.setInt(4, projectId);
+            statement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
         }

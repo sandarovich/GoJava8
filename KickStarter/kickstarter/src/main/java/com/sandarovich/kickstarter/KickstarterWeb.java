@@ -1,14 +1,8 @@
 package com.sandarovich.kickstarter;
 
-import com.sandarovich.kickstarter.dao.CategoryDao;
-import com.sandarovich.kickstarter.dao.ProjectDao;
-import com.sandarovich.kickstarter.dao.QuestionDao;
-import com.sandarovich.kickstarter.dao.QuoteDao;
+import com.sandarovich.kickstarter.dao.*;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
-import com.sandarovich.kickstarter.model.Category;
-import com.sandarovich.kickstarter.model.Project;
-import com.sandarovich.kickstarter.model.Question;
-import com.sandarovich.kickstarter.model.Quote;
+import com.sandarovich.kickstarter.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -21,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 
 public class KickstarterWeb extends HttpServlet {
@@ -43,6 +36,9 @@ public class KickstarterWeb extends HttpServlet {
     private ProjectDao projectDao;
     @Autowired
     private QuestionDao questionDao;
+
+    @Autowired
+    private AwardDao awardDao;
 
     private ServletContext context;
 
@@ -70,7 +66,24 @@ public class KickstarterWeb extends HttpServlet {
     }
 
     private void addInvestment(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
+        int projectId = 0;
+        Payment payment = new Payment();
+        if (req.getParameter("award") == null || req.getParameter("award").isEmpty()) {
+            payment.setAmount(Double.valueOf(req.getParameter("amount")));
+        } else {
+            payment.setAmount(Double.valueOf(req.getParameter("award")));
+        }
+        payment.setCardHolder(req.getParameter("cardHolder"));
+        payment.setCardNumber(req.getParameter("cardNumber"));
+        try {
+            projectId = Integer.valueOf(req.getParameter("projectId"));
+            projectDao.findProjectById(projectId);
+        } catch (NumberFormatException | NoResultException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        projectDao.invest(payment, projectId);
+        res.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
     }
 
     private void addQuestion(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -91,7 +104,7 @@ public class KickstarterWeb extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
         throws IOException, ServletException {
         String requestView = req.getParameter(VIEW_PAGE_PARAMETER);
-        if (Objects.isNull(requestView) || Objects.isNull(req.getQueryString())) {
+        if (requestView == null || req.getQueryString() == null) {
             showMainPage(req, res);
         } else if (CATEGORIES_VIEW.equals(requestView)) {
             showCategoriesPage(req, res);
@@ -121,8 +134,10 @@ public class KickstarterWeb extends HttpServlet {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+        List<Award> awards = awardDao.getAwardsByProject(project);
         req.setAttribute("project", project);
         req.setAttribute("title", "Invest");
+        req.setAttribute("awards", awards);
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/layouts/invest.jsp");
         rd.forward(req, res);
     }
