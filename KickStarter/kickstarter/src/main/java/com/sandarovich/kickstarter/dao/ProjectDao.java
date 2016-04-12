@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface ProjectDao {
     List<Project> getProjects(Category category);
-    Project findProjectById(int projectId);
+
+    Project findById(int projectId);
 
     void invest(Payment payment, int projectId);
 }

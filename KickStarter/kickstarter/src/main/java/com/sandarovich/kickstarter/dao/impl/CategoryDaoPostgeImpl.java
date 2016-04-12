@@ -56,7 +56,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     }
 
     @Override
-    public Category findCategoryById(int categoryId) {
+    public Category findById(int categoryId) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_CATEGORY)) {
             statement.setInt(1, categoryId);
@@ -78,7 +78,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     }
 
     @Override
-    public Category findCategoryByProject(Project project) {
+    public Category findByProject(Project project) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_CATEGORY_BY_PROJECT)) {
             statement.setInt(1, project.getId());

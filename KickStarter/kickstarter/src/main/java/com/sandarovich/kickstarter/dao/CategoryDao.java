@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface CategoryDao {
     List<Category> getCategories();
-    Category findCategoryById(int id);
-    Category findCategoryByProject(Project project);
+
+    Category findById(int id);
+
+    Category findByProject(Project project);
 }

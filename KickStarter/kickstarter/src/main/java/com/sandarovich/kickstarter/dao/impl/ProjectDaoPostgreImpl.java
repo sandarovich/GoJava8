@@ -41,7 +41,7 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
     private DataSource dataSource;
 
     @Override
-    public Project findProjectById(int projectId) {
+    public Project findById(int projectId) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_PROJECT_ID)) {
             statement.setInt(1, projectId);
