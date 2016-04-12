@@ -8,15 +8,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add question:</div>
                 <div class="panel-body">
-                    <form role="form" name='add_question' method='POST' action=''>
+                    <form role="form" name="add_question" method="POST" action="">
                         <div class="form-group">
-                            <input type='hidden' name='action' value='addQuestion'/>
-                        	<input type='hidden' name='projectId' value='${project.id}'/>
+                            <input type="hidden" name="action" value="questionAdd"/>
+                        	<input type="hidden" name="projectId" value="${project.id}"/>
                             <label for="question">Please fill your question:</label>
                             <textarea rows="5" type="question" class="form-control" name="question"></textarea>
                         </div>
                         <button type="submit" value="send" class="btn btn-default">Submit</button>
-                        <a class="btn btn-default" href='?view=project&id=${project.id}'>Return</a>
+                        <a class="btn btn-default" href="?view=project&id=${project.id}">Return</a>
                     </form>
                 </div>
             </div>

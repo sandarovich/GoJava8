@@ -8,10 +8,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Invest:</div>
                 <div class="panel-body">
-                    <form role="form" name='add_invest' method='POST' action=''>
+                    <form role="form" name="add_invest" method="POST" action="">
                         <div class="form-group">
-                            <input type='hidden' name='action' value='addInvestment'/>
-                        	<input type='hidden' name='projectId' value='${project.id}'/>
+                            <input type="hidden" name="action" value="paymentAdd"/>
+                        	<input type="hidden" name="projectId" value="${project.id}"/>
                             <label for="cardHolder">Card Holder</label>
                             <input class="form-control" name="cardHolder" placeholder="Bob" value="Bob"/>
                             <label for="cardNumber">Card Number</label>

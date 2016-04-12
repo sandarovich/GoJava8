@@ -17,14 +17,15 @@ import java.util.List;
 
 public class KickstarterServlet extends HttpServlet {
 
-    private static final String IDENTIFIER_VIEW = "view";
-    private static final String CATEGORY_VIEW = "category";
-    private static final String CATEGORIES_VIEW = "categories";
-    private static final String PROJECT_VIEW = "project";
-    private static final String QUESTION_VIEW = "question";
-    private static final String INVEST_VIEW = "invest";
-    private static final String QUESTION_ADD_ACTION = "addQuestion";
-    private static final String PAYMENT_ADD_ACTION = "addInvestment";
+    private static final String PAGE_IDENTIFIER_PARAMETER = "view";
+    private static final String CATEGORY_PAGE = "category";
+    private static final String CATEGORIES_PAGE = "categories";
+    private static final String PROJECT_PAGE = "project";
+    private static final String QUESTION_PAGE = "question";
+    private static final String INVEST_PAGE = "invest";
+    private static final String AWARD_PARAMETER = "award";
+    private static final String QUESTION_ADD_ACTION = "questionAdd";
+    private static final String PAYMENT_ADD_ACTION = "paymentAdd";
     private static final String WEB_INF_LAYOUTS = "/WEB-INF/layouts";
 
     @Autowired
@@ -42,9 +43,6 @@ public class KickstarterServlet extends HttpServlet {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
-
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String requestedAction = request.getParameter("action");
@@ -58,10 +56,10 @@ public class KickstarterServlet extends HttpServlet {
     private void addInvestment(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int projectId = 0;
         Payment payment = new Payment();
-        if (request.getParameter("award") == null || request.getParameter("award").isEmpty()) {
+        if (request.getParameter(AWARD_PARAMETER) == null || request.getParameter(AWARD_PARAMETER).isEmpty()) {
             payment.setAmount(Double.valueOf(request.getParameter("amount")));
         } else {
-            payment.setAmount(Double.valueOf(request.getParameter("award")));
+            payment.setAmount(Double.valueOf(request.getParameter(AWARD_PARAMETER)));
         }
         payment.setCardHolder(request.getParameter("cardHolder"));
         payment.setCardNumber(request.getParameter("cardNumber"));
@@ -73,7 +71,7 @@ public class KickstarterServlet extends HttpServlet {
             return;
         }
         projectDao.invest(payment, projectId);
-        response.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
+        response.sendRedirect("/kickstarter/kickstarter?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
     }
 
     private void addQuestion(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -87,24 +85,24 @@ public class KickstarterServlet extends HttpServlet {
         Question question = new Question();
         question.setText(request.getParameter("question"));
         questionDao.addQuestion(question, projectId);
-        response.sendRedirect("/kickstarter/kickstarter?view=project&id=" + projectId);
+        response.sendRedirect("/kickstarter/kickstarter?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
-        String requestView = request.getParameter(IDENTIFIER_VIEW);
-        if (requestView == null || request.getQueryString() == null) {
+        String requestPage = request.getParameter(PAGE_IDENTIFIER_PARAMETER);
+        if (requestPage == null || request.getQueryString() == null) {
             showMainPage(request, response);
-        } else if (CATEGORIES_VIEW.equals(requestView)) {
+        } else if (CATEGORIES_PAGE.equals(requestPage)) {
             showCategoriesPage(request, response);
-        } else if (CATEGORY_VIEW.equals(requestView)) {
+        } else if (CATEGORY_PAGE.equals(requestPage)) {
             showCategoryPage(request, response);
-        } else if (PROJECT_VIEW.equals(requestView)) {
+        } else if (PROJECT_PAGE.equals(requestPage)) {
             showProjectPage(request, response);
-        } else if (QUESTION_VIEW.equals(requestView)) {
+        } else if (QUESTION_PAGE.equals(requestPage)) {
             showQuestionPage(request, response);
-        } else if (INVEST_VIEW.equals(requestView)) {
+        } else if (INVEST_PAGE.equals(requestPage)) {
             showInvestPage(request, response);
         }
     }
@@ -128,7 +126,7 @@ public class KickstarterServlet extends HttpServlet {
         request.setAttribute("project", project);
         request.setAttribute("title", "Invest");
         request.setAttribute("awards", awards);
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/invest.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/payment.jsp");
         rd.forward(request, response);
     }
 
