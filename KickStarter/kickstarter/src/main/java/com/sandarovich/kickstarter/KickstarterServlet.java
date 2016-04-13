@@ -26,7 +26,7 @@ public class KickstarterServlet extends HttpServlet {
     private static final String AWARD_PARAMETER = "award";
     private static final String QUESTION_ADD_ACTION = "questionAdd";
     private static final String PAYMENT_ADD_ACTION = "paymentAdd";
-    private static final String WEB_INF_LAYOUTS = "/WEB-INF/layouts";
+    private static final String WEB_INF_LAYOUTS = "/WEB-INF/pages";
 
     @Autowired
     private QuoteDao quoteDao;
@@ -71,7 +71,7 @@ public class KickstarterServlet extends HttpServlet {
             return;
         }
         projectDao.invest(payment, projectId);
-        response.sendRedirect("/kickstarter/kickstarter?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
+        response.sendRedirect("?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
     }
 
     private void addQuestion(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -85,7 +85,7 @@ public class KickstarterServlet extends HttpServlet {
         Question question = new Question();
         question.setText(request.getParameter("question"));
         questionDao.addQuestion(question, projectId);
-        response.sendRedirect("/kickstarter/kickstarter?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
+        response.sendRedirect("?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
     }
 
     @Override
@@ -210,7 +210,7 @@ public class KickstarterServlet extends HttpServlet {
 
     private void showMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Quote quote = quoteDao.getRandomQuota();
-        request.setAttribute("quote", "\"" + quote.getQuote() + "\" - " + quote.getAuthor());
+        request.setAttribute("quote", quote);
         request.setAttribute("title", "Kickstarter");
         RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/index.jsp");
         rd.forward(request, response);
