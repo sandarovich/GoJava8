@@ -5,10 +5,6 @@ import com.sandarovich.kickstarter.model.Project;
 
 import java.util.List;
 
-/**
- * Category DAO
- */
-
 public interface CategoryDao {
     List<Category> getCategories();
 

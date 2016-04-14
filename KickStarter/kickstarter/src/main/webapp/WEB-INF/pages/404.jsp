@@ -5,7 +5,7 @@
                  <h1> 404 Not found </h1>
             </div>
              <ol class="breadcrumb">
-                 <li><a href="kickstarter">Home</a></li>
+                 <li><a href="/kickstarter/">Home</a></li>
              </ol>
         </div>
 <jsp:include page="/WEB-INF/pages/footer.jsp" />
