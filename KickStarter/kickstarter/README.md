@@ -3,7 +3,7 @@
 <h2>Ubuntu</h2>
 <ol>
   <li> Download source files</li>
-  <li>Build with maven3. Use command: mvn -Dtomcat.deploy.username=<your tomcat user> -D tomcat.deploy.password=<you tomcat password> clean tomcat7:deploy </li>
+  <li>Build with maven3. Use command: mvn -Dtomcat.deploy.username=<your tomcat user> -D tomcat.deploy.password= <your tomcat password> clean tomcat7:deploy </li>
 </ol>
 
 If somethings went wrong:
