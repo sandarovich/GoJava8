@@ -4,10 +4,11 @@
 <ol>
   <li> Download source files</li>
   <li>Build with maven3. Use command:</li> 
+</ol>
   ``` bash
   mvn -Dtomcat.deploy.username=<your tomcat user> -D tomcat.deploy.password=<your tomcat password> clean tomcat7:deploy 
   ```
-</ol>
+
 
 If somethings went wrong:
 <ol>
