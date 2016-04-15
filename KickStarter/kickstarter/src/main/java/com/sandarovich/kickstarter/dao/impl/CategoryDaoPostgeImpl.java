@@ -7,6 +7,8 @@ import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -14,7 +16,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -35,24 +36,12 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Override
     public List<Category> getCategories() {
-        List<Category> result = new ArrayList<>();
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_CATEGORIES)) {
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                Category category = new Category();
-                category.setId(rs.getInt("id"));
-                category.setName(rs.getString("name"));
-                result.add(category);
-            }
-            rs.close();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return result;
+        return jdbcTemplate.query(SQL_GET_CATEGORIES, new BeanPropertyRowMapper<Category>(Category.class));
     }
 
     @Override
