@@ -119,7 +119,7 @@ public class KickstarterServlet extends HttpServlet {
         Project project = null;
         try {
             project = projectDao.findById(projectId);
-        } catch (NoResultException e) {
+        } catch (EmptyResultDataAccessException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
@@ -142,7 +142,7 @@ public class KickstarterServlet extends HttpServlet {
         Project project = null;
         try {
             project = projectDao.findById(projectId);
-        } catch (NoResultException e) {
+        } catch (EmptyResultDataAccessException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
@@ -161,16 +161,18 @@ public class KickstarterServlet extends HttpServlet {
             return;
         }
         Project project = null;
+        Category category = null;
         try {
             project = projectDao.findById(projectId);
+            category = categoryDao.findByProject(project);
 
-        } catch (NoResultException e) {
+        } catch (EmptyResultDataAccessException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
         List<Question> questions;
         questions = questionDao.getQuestions(project);
-        Category category = categoryDao.findByProject(project);
+
         request.setAttribute("title", project.getName());
         request.setAttribute("project", project);
         request.setAttribute("questions", questions);
