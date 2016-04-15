@@ -4,6 +4,7 @@ import com.sandarovich.kickstarter.dao.*;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.RequestDispatcher;
@@ -189,7 +190,7 @@ public class KickstarterServlet extends HttpServlet {
         Category category = null;
         try {
             category = categoryDao.findById(categoryId);
-        } catch (NoResultException e) {
+        } catch (EmptyResultDataAccessException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }

@@ -24,14 +24,14 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     private static final String SQL_GET_CATEGORIES = "SELECT id, name FROM category";
     private static final String SQL_FIND_BY_CATEGORY = "SELECT id, name FROM category WHERE id=?";
     private static final String SQL_FIND_CATEGORY_BY_PROJECT =
-        "SELECT id, name " +
-            "FROM category " +
-            "WHERE id = ( " +
-            "SELECT categoryid " +
-            "FROM project " +
-            "WHERE id=? " +
-            "GROUP by categoryid " +
-            "LIMIT(1));";
+            "SELECT id, name " +
+                    "FROM category " +
+                    "WHERE id = ( " +
+                    "SELECT categoryid " +
+                    "FROM project " +
+                    "WHERE id=? " +
+                    "GROUP by categoryid " +
+                    "LIMIT(1));";
 
     @Autowired
     private DataSource dataSource;
@@ -46,26 +46,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
 
     @Override
     public Category findById(int categoryId) {
-        Category category = (Category) jdbcTemplate.queryForObject(SQL_FIND_BY_CATEGORY, new Object[]{categoryId}, new BeanPropertyRowMapper(Category.class));
-//        try (Connection connection = dataSource.getConnection();
-//             PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_CATEGORY)) {
-//            statement.setInt(1, categoryId);
-//            ResultSet rs = statement.executeQuery();
-//            Category category;
-//            if (rs.next()) {
-//                String name = rs.getString("name");
-//                rs.close();
-//                category = new Category();
-//                category.setId(categoryId);
-//                category.setName(name);
-//            } else {
-//                throw new NoResultException("No category found");
-//            }
-//            return category;
-//        } catch (SQLException e) {
-//            throw new DaoException(e);
-//        }
-        return category;
+        return (Category) jdbcTemplate.queryForObject(SQL_FIND_BY_CATEGORY, new Object[]{categoryId}, new BeanPropertyRowMapper(Category.class));
     }
 
     @Override
@@ -90,7 +71,6 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
             throw new DaoException(e);
         }
     }
-
 
 
 }
