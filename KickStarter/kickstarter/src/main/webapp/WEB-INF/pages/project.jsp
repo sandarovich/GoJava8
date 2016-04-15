@@ -17,7 +17,7 @@
                         </tr>
                         <tr>
                            <td>Description:</td>
-                           <td>${project.desription}</td>
+                           <td>${project.description}</td>
                         </tr>
                          <tr>
                            <td>Required:</td>

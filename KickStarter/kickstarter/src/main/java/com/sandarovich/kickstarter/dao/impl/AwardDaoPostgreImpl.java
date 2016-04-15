@@ -1,6 +1,5 @@
 package com.sandarovich.kickstarter.dao.impl;
 
-
 import com.sandarovich.kickstarter.dao.AwardDao;
 import com.sandarovich.kickstarter.model.Award;
 import com.sandarovich.kickstarter.model.Project;

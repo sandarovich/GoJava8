@@ -1,7 +1,6 @@
 package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.*;
-import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
 public class KickstarterServlet extends HttpServlet {
 
     private static final String PAGE_IDENTIFIER_PARAMETER = "view";
@@ -28,7 +26,8 @@ public class KickstarterServlet extends HttpServlet {
     private static final String QUESTION_ADD_ACTION = "questionAdd";
     private static final String PAYMENT_ADD_ACTION = "paymentAdd";
     private static final String WEB_INF_LAYOUTS = "/WEB-INF/pages";
-
+    @Autowired
+    PaymentDao paymentDao;
     @Autowired
     private QuoteDao quoteDao;
     @Autowired
@@ -67,11 +66,11 @@ public class KickstarterServlet extends HttpServlet {
         try {
             projectId = Integer.valueOf(request.getParameter("projectId"));
             projectDao.findById(projectId);
-        } catch (NumberFormatException | NoResultException e) {
+        } catch (NumberFormatException | EmptyResultDataAccessException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-        projectDao.invest(payment, projectId);
+        paymentDao.pay(payment, projectId);
         response.sendRedirect("?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
     }
 
@@ -198,7 +197,7 @@ public class KickstarterServlet extends HttpServlet {
         }
         request.setAttribute("title", category.getName());
         request.setAttribute("category", category);
-        request.setAttribute("projects", projectDao.getProjects(category));
+        request.setAttribute("projects", projectDao.getByCategory(category));
         RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/category.jsp");
         rd.forward(request, response);
     }
