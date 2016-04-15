@@ -1,16 +1,12 @@
 package com.sandarovich.kickstarter.dao.impl;
 
 import com.sandarovich.kickstarter.dao.PaymentDao;
-import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.model.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 @Repository
 public class PaymentDaoPostgreImpl implements PaymentDao {
@@ -24,15 +20,12 @@ public class PaymentDaoPostgreImpl implements PaymentDao {
     private JdbcTemplate jdbcTemplate;
 
     public void pay(Payment payment, int projectId) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_INVEST_INTO_PROJECT)) {
-            statement.setString(1, payment.getCardNumber());
-            statement.setString(2, payment.getCardHolder());
-            statement.setDouble(3, payment.getAmount());
-            statement.setInt(4, projectId);
-            statement.execute();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
+
+        jdbcTemplate.update(
+                SQL_INVEST_INTO_PROJECT,
+                payment.getCardNumber(),
+                payment.getCardHolder(),
+                payment.getAmount(),
+                projectId);
     }
 }
