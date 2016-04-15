@@ -123,7 +123,7 @@ public class KickstarterServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        List<Award> awards = awardDao.getAwardsByProject(project);
+        List<Award> awards = awardDao.getByProject(project);
         request.setAttribute("project", project);
         request.setAttribute("title", "Invest");
         request.setAttribute("awards", awards);

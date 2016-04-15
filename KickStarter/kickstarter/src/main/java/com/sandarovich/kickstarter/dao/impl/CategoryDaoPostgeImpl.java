@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
@@ -26,9 +25,6 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
                     "WHERE id=? " +
                     "GROUP by categoryid " +
                     "LIMIT(1));";
-
-    @Autowired
-    private DataSource dataSource;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
