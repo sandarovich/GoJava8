@@ -46,24 +46,26 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
 
     @Override
     public Category findById(int categoryId) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_CATEGORY)) {
-            statement.setInt(1, categoryId);
-            ResultSet rs = statement.executeQuery();
-            Category category;
-            if (rs.next()) {
-                String name = rs.getString("name");
-                rs.close();
-                category = new Category();
-                category.setId(categoryId);
-                category.setName(name);
-            } else {
-                throw new NoResultException("No category found");
-            }
-            return category;
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
+        Category category = (Category) jdbcTemplate.queryForObject(SQL_FIND_BY_CATEGORY, new Object[]{categoryId}, new BeanPropertyRowMapper(Category.class));
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_CATEGORY)) {
+//            statement.setInt(1, categoryId);
+//            ResultSet rs = statement.executeQuery();
+//            Category category;
+//            if (rs.next()) {
+//                String name = rs.getString("name");
+//                rs.close();
+//                category = new Category();
+//                category.setId(categoryId);
+//                category.setName(name);
+//            } else {
+//                throw new NoResultException("No category found");
+//            }
+//            return category;
+//        } catch (SQLException e) {
+//            throw new DaoException(e);
+//        }
+        return category;
     }
 
     @Override
