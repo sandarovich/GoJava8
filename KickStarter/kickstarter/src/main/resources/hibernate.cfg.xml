@@ -7,17 +7,15 @@
             org.hibernate.dialect.PostgreSQL94Dialect
         </property>
         <property name="hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
-        </property>
-        <property name="hibernate.connection.driver_class">
             org.postgresql.Driver
         </property>
         <property name="hibernate.connection.datasource">
-            "java:comp/env/jdbc/kickstarter"
+            java:comp/env/jdbc/kickstarter
         </property>
         <property name="show_sql">
             true
         </property>
+        <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
         <!-- List of XML mapping files -->
         <mapping resource="Quote.hbm.xml"/>
     </session-factory>
