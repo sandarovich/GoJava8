@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class>
-        <id name="id" type="int" column="id">
+        <id name="id" type="BigInteger" column="id">
             <generator class="native"/>
         </id>
         <property name="name" type="string" column="text"/>
