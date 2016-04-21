@@ -19,9 +19,11 @@ public class QuoteDaoPostgreImpl implements QuoteDao {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Quote quote;
         try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
             int quoteCount = ((Long) session.createCriteria(Quote.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
             int randomQuoteIndex = new Random().nextInt(quoteCount) + 1;
             quote = session.get(Quote.class, randomQuoteIndex);
+            session.getTransaction().commit();
         } catch (HibernateException e) {
             throw new DaoException(e);
         }
