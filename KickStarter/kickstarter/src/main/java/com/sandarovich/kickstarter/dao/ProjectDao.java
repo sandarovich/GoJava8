@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ProjectDao {
     List<Project> getByCategoryId(long categoryId);
-
     Project findById(int projectId);
+
+    Long getCategoryId(long projectId);
 
 }
