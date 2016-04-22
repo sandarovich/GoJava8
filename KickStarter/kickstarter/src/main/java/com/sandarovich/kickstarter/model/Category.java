@@ -2,18 +2,18 @@ package com.sandarovich.kickstarter.model;
 
 public class Category {
 
-    private int id;
+    private long id;
     private String name;
 
     public Category() {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

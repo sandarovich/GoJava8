@@ -2,10 +2,10 @@ package com.sandarovich.kickstarter.dao.impl;
 
 
 import com.sandarovich.kickstarter.dao.CategoryDao;
-import com.sandarovich.kickstarter.dao.HibernateUtil;
 import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
+import com.sandarovich.kickstarter.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -48,12 +48,20 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
             throw new DaoException(e);
         }
         return categories;
-        //return jdbcTemplate.query(SQL_GET_CATEGORIES, new BeanPropertyRowMapper<Category>(Category.class));
     }
 
     @Override
-    public Category findById(int categoryId) {
-        return (Category) jdbcTemplate.queryForObject(SQL_FIND_BY_CATEGORY, new Object[]{categoryId}, new BeanPropertyRowMapper(Category.class));
+    public Category findById(long categoryId) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Category category = null;
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            category = session.get(Category.class, categoryId);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            throw new DaoException(e);
+        }
+        return category;
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 public interface CategoryDao {
     List<Category> getCategories();
 
-    Category findById(int id);
+    Category findById(long id);
 
     Category findByProject(Project project);
 }

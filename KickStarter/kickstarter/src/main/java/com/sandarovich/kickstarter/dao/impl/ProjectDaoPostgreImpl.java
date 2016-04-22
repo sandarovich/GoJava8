@@ -42,7 +42,7 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
     }
 
     @Override
-    public List<Project> getByCategory(int categoryId) {
+    public List<Project> getByCategoryId(long categoryId) {
         return jdbcTemplate.query(
                 SQL_FIND_PROJECTS_BY_CATEGORY,
                 new Object[]{categoryId},

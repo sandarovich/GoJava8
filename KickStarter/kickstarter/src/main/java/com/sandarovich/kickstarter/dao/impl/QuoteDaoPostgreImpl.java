@@ -1,9 +1,9 @@
 package com.sandarovich.kickstarter.dao.impl;
 
-import com.sandarovich.kickstarter.dao.HibernateUtil;
 import com.sandarovich.kickstarter.dao.QuoteDao;
 import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.model.Quote;
+import com.sandarovich.kickstarter.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

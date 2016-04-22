@@ -3,10 +3,10 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class>
-        <id name="id" type="BigInteger" column="id">
+    <class name="com.sandarovich.kickstarter.model.Category" table="category">
+        <id name="id" type="long" column="id">
             <generator class="native"/>
         </id>
-        <property name="name" type="string" column="text"/>
+        <property name="name" type="string" column="name"/>
     </class>
 </hibernate-mapping>
