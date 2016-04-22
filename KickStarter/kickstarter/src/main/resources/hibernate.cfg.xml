@@ -19,5 +19,7 @@
         <!-- List of XML mapping files -->
         <mapping resource="Quote.hbm.xml"/>
         <mapping resource="Category.hbm.xml"/>
+        <mapping resource="Award.hbm.xml"/>
+        <mapping resource="Project.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
