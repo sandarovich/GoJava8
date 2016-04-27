@@ -1,9 +1,19 @@
 package com.sandarovich.kickstarter.model;
 
-public class Category {
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "category ")
+public class Category {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name = "name")
     private String name;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    private List<Project> projects;
 
     public Category() {
 
@@ -24,4 +34,13 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
 }

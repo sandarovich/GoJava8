@@ -1,13 +1,30 @@
 package com.sandarovich.kickstarter.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "project")
 public class Project {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Category category;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @Column(name = "required_budget")
     private double requiredBudget;
+
     private double gatheredBudget;
+    @Column(name = "days_left")
     private int daysLeft;
+    @Column(name = "video_link")
     private String videoLink;
+    @Column(name = "history")
     private String history;
 
     public Project() {
@@ -75,6 +92,14 @@ public class Project {
 
     public void setGatheredBudget(double gatheredBudget) {
         this.gatheredBudget = gatheredBudget;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }
