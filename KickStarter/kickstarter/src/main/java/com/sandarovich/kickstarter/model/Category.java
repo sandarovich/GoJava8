@@ -13,7 +13,7 @@ public class Category {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "categoryid")
     private List<Project> projects;
 
     public Category() {

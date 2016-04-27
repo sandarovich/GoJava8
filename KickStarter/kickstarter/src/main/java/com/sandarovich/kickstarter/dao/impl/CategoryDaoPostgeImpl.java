@@ -22,6 +22,10 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     public List<Category> getCategories() {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Category.class);
+//        ProjectionList projectionList = Projections.projectionList();
+//        projectionList.add(Projections.groupProperty("id"));
+//        projectionList.add(Projections.groupProperty("name"));
+//        criteria.setProjection(projectionList);
         return criteria.list();
     }
 
