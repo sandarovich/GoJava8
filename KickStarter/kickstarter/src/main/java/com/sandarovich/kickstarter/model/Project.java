@@ -11,6 +11,7 @@ public class Project {
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoryid")
     private Category category;
     @Column(name = "name")
     private String name;
@@ -19,7 +20,6 @@ public class Project {
     @Column(name = "required_budget")
     private double requiredBudget;
 
-    private double gatheredBudget;
     @Column(name = "days_left")
     private int daysLeft;
     @Column(name = "video_link")
@@ -84,14 +84,6 @@ public class Project {
 
     public void setHistory(String history) {
         this.history = history;
-    }
-
-    public double getGatheredBudget() {
-        return gatheredBudget;
-    }
-
-    public void setGatheredBudget(double gatheredBudget) {
-        this.gatheredBudget = gatheredBudget;
     }
 
     public Category getCategory() {

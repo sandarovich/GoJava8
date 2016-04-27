@@ -79,7 +79,7 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
             project.setDaysLeft(resultSet.getInt("days_left"));
             project.setHistory(resultSet.getString("history"));
             project.setVideoLink(resultSet.getString("video_link"));
-            project.setGatheredBudget(getGatheredBudget(project));
+            //project.setGatheredBudget(getGatheredBudget(project));
             return project;
         }
     }
