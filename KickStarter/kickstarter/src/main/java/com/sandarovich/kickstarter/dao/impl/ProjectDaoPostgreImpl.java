@@ -2,11 +2,17 @@ package com.sandarovich.kickstarter.dao.impl;
 
 
 import com.sandarovich.kickstarter.dao.ProjectDao;
+import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -40,6 +46,9 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public Project findById(int projectId) {
         return jdbcTemplate.queryForObject(SQL_FIND_BY_PROJECT_ID, new Object[]{projectId}, new ProjectRowMapper());
@@ -53,12 +62,18 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
                 Long.class);
     }
 
+    @Transactional
     @Override
-    public List<Project> getByCategoryId(long categoryId) {
-        return jdbcTemplate.query(
-                SQL_FIND_PROJECTS_BY_CATEGORY,
-                new Object[]{categoryId},
-                new ProjectRowMapper());
+    public List<Project> getByCategory(Category category) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Project.class);
+        criteria.add(Restrictions.eq("category", category));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return criteria.list();
+//        return jdbcTemplate.query(
+//                SQL_FIND_PROJECTS_BY_CATEGORY,
+//                new Object[]{categoryId},
+//                new ProjectRowMapper());
     }
 
     private double getGatheredBudget(Project project) {

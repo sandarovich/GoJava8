@@ -31,8 +31,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     @Transactional
     @Override
     public Category findById(long categoryId) {
-        try (Session session = sessionFactory.getCurrentSession()) {
-            return session.get(Category.class, categoryId);
-        }
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Category.class, categoryId);
     }
 }

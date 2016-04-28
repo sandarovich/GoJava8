@@ -1,15 +1,17 @@
 package com.sandarovich.kickstarter.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "project")
 public class Project {
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    List<Payment> payments;
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categoryid")
     private Category category;
@@ -19,7 +21,6 @@ public class Project {
     private String description;
     @Column(name = "required_budget")
     private double requiredBudget;
-
     @Column(name = "days_left")
     private int daysLeft;
     @Column(name = "video_link")
@@ -94,4 +95,19 @@ public class Project {
         this.category = category;
     }
 
+    public double getGatheredBudget() {
+        double result = 0;
+        for (Payment payment : payments) {
+            result += payment.getAmount();
+        }
+        return result;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
 }

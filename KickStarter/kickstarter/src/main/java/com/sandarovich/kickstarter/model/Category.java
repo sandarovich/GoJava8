@@ -1,5 +1,8 @@
 package com.sandarovich.kickstarter.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,7 +16,7 @@ public class Category {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "category")
-    // @JoinColumn(name = "categoryid")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Project> projects;
 
     public Category() {
