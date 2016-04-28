@@ -47,4 +47,8 @@ public class Category {
         this.projects = projects;
     }
 
+    public int getProjectCount() {
+        return projects.size();
+    }
+
 }
