@@ -12,8 +12,8 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "categoryid")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "category")
+    // @JoinColumn(name = "categoryid")
     private List<Project> projects;
 
     public Category() {
