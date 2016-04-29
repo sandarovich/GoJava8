@@ -7,9 +7,8 @@ import com.sandarovich.kickstarter.model.Project;
 import java.util.List;
 
 public interface ProjectDao {
-    List<Project> getByCategory(Category category);
-    Project findById(int projectId);
+    List<Project> findByCategory(Category category);
 
-    Long getCategoryId(long projectId);
+    Project findById(long projectId);
 
 }

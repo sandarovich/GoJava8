@@ -163,8 +163,8 @@ public class KickstarterServlet extends HttpServlet {
         Category category = null;
         try {
             project = projectDao.findById(projectId);
-            category = categoryDao.findById(projectDao.getCategoryId(project.getId()));
-
+            //category = categoryDao.findById(projectDao.getCategoryId(project.getId()));
+            category = project.getCategory();
         } catch (EmptyResultDataAccessException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -197,7 +197,7 @@ public class KickstarterServlet extends HttpServlet {
         }
         request.setAttribute("title", category.getName());
         request.setAttribute("category", category);
-        request.setAttribute("projects", projectDao.getByCategory(category));
+        request.setAttribute("projects", projectDao.findByCategory(category));
         RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/category.jsp");
         rd.forward(request, response);
     }

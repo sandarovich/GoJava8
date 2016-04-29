@@ -26,7 +26,7 @@
                          <tr>
                             <td>Gathered:</td>
                             <td>
-                                ${project.requiredBudget}
+                                ${project.gatheredBudget}
                                 <a class="btn btn-default btn-small" href="?view=invest&id=${project.id}" role="button">Invest</a>
                             </td>
                         </tr>

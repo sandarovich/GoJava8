@@ -3,7 +3,7 @@
         <div class="container">
             <%@ include file="navigation.jsp" %>
             <div class="page-header">
-              <h2>${title}</h1>
+                <h2>${title}</h1>
             </div>
             <ol class="breadcrumb">
                 <li><a href="?view=categories">All</a></li>

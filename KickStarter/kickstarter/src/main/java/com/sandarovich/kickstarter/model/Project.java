@@ -1,5 +1,9 @@
 package com.sandarovich.kickstarter.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.SortNatural;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +11,12 @@ import java.util.List;
 @Table(name = "project")
 public class Project {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @Fetch(value = FetchMode.SUBSELECT)
     List<Payment> payments;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @SortNatural
+    @Fetch(value = FetchMode.SUBSELECT)
+    List<Question> questions;
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -27,6 +36,10 @@ public class Project {
     private String videoLink;
     @Column(name = "history")
     private String history;
+
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+//    @SortNatural
+//    List<Award> awards;
 
     public Project() {
     }
@@ -110,4 +123,20 @@ public class Project {
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
     }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+//    public List<Award> getAwards() {
+//        return awards;
+//    }
+//
+//    public void setAwards(List<Award> awards) {
+//        this.awards = awards;
+//    }
 }
