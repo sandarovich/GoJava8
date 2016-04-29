@@ -1,6 +1,7 @@
 package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.*;
+import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -66,9 +67,11 @@ public class KickstarterServlet extends HttpServlet {
         try {
             projectId = Integer.valueOf(request.getParameter("projectId"));
             projectDao.findById(projectId);
-        } catch (NumberFormatException | EmptyResultDataAccessException e) {
+        } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
+        } catch (NoResultException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
         paymentDao.pay(payment, projectId);
         response.sendRedirect("?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
@@ -160,18 +163,15 @@ public class KickstarterServlet extends HttpServlet {
             return;
         }
         Project project = null;
-        Category category = null;
         try {
             project = projectDao.findById(projectId);
-            //category = categoryDao.findById(projectDao.getCategoryId(project.getId()));
-            category = project.getCategory();
-        } catch (EmptyResultDataAccessException e) {
+        } catch (NoResultException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
         List<Question> questions;
-        questions = questionDao.getQuestions(project);
-
+        questions = projectDao.getQuestions(project);
+        Category category = project.getCategory();
         request.setAttribute("title", project.getName());
         request.setAttribute("project", project);
         request.setAttribute("questions", questions);

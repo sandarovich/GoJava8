@@ -17,6 +17,10 @@ public class Project {
     @SortNatural
     @Fetch(value = FetchMode.SUBSELECT)
     List<Question> questions;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @SortNatural
+    @Fetch(value = FetchMode.SUBSELECT)
+    List<Award> awards;
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -36,10 +40,6 @@ public class Project {
     private String videoLink;
     @Column(name = "history")
     private String history;
-
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
-//    @SortNatural
-//    List<Award> awards;
 
     public Project() {
     }
@@ -132,11 +132,11 @@ public class Project {
         this.questions = questions;
     }
 
-//    public List<Award> getAwards() {
-//        return awards;
-//    }
-//
-//    public void setAwards(List<Award> awards) {
-//        this.awards = awards;
-//    }
+    public List<Award> getAwards() {
+        return awards;
+    }
+
+    public void setAwards(List<Award> awards) {
+        this.awards = awards;
+    }
 }

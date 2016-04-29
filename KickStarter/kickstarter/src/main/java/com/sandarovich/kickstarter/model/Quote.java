@@ -14,10 +14,6 @@ public class Quote {
     @Column(name = "text")
     private String text;
 
-    public Quote() {
-
-    }
-
     public int getId() {
         return id;
     }

@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jdk.version>1.7</jdk.version>
+        <jdk.version>1.8</jdk.version>
         <spring-version>4.2.3.RELEASE</spring-version>
         <tomcat.deploy.username>tomcat</tomcat.deploy.username>
         <tomcat.deploy.password>tomcat</tomcat.deploy.password>

@@ -2,8 +2,10 @@ package com.sandarovich.kickstarter.dao.impl;
 
 
 import com.sandarovich.kickstarter.dao.ProjectDao;
+import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
+import com.sandarovich.kickstarter.model.Question;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class ProjectDaoPostgreImpl implements ProjectDao {
@@ -24,7 +27,16 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
     @Override
     public Project findById(long projectId) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Project.class, projectId);
+        Project project = session.get(Project.class, projectId);
+        if (Objects.isNull(project)) {
+            throw new NoResultException("Project not found");
+        }
+        return project;
+    }
+
+    @Override
+    public List<Question> getQuestions(Project project) {
+        return project.getQuestions();
     }
 
 
