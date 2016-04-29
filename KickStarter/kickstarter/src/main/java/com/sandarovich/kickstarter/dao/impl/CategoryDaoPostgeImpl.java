@@ -18,7 +18,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Category> getCategories() {
         Session session = sessionFactory.getCurrentSession();
@@ -28,7 +28,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
         return criteria.list();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public Category findById(long categoryId) {
         Session session = sessionFactory.getCurrentSession();

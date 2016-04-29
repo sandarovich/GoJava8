@@ -5,7 +5,6 @@ import com.sandarovich.kickstarter.dao.ProjectDao;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
-import com.sandarovich.kickstarter.model.Question;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,11 +31,6 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
             throw new NoResultException("Project not found");
         }
         return project;
-    }
-
-    @Override
-    public List<Question> getQuestions(Project project) {
-        return project.getQuestions();
     }
 
 

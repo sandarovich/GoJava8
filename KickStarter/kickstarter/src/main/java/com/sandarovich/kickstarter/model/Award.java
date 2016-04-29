@@ -8,6 +8,7 @@ public class Award {
     @Id
     @GeneratedValue
     private long id;
+
     @Column(name = "amount")
     private double amount;
     @Column(name = "name")
@@ -42,7 +43,6 @@ public class Award {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     public String getName() {
         return name;
