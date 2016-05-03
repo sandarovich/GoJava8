@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -17,20 +18,15 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Category> getCategories() {
-//        Session session = sessionFactory.getCurrentSession();
-//        Criteria criteria = session.createCriteria(Category.class).
-//            setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-//        criteria.addOrder(Order.asc("id"));
-//        return criteria.list();
-        return null;
+    public List<Category> getAll() {
+        return em.createNamedQuery("Category.getAll", Category.class).getResultList();
     }
 
     @Transactional(readOnly = true)
     @Override
     public Category findById(long categoryId) {
-//        Session session = sessionFactory.getCurrentSession();
-//        return session.get(Category.class, categoryId);
-        return null;
+        Query query = em.createNamedQuery("Category.getById", Category.class);
+        query.setParameter("id", categoryId);
+        return (Category) query.getSingleResult();
     }
 }

@@ -8,6 +8,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "category ")
+@NamedQueries({
+    @NamedQuery(name = "Category.getAll", query = "SELECT c from Category as c"),
+    @NamedQuery(name = "Category.getById", query = "SELECT c from Category as c WHERE c.id = :id")
+})
 public class Category {
     @Id
     @GeneratedValue
@@ -45,10 +49,6 @@ public class Category {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
-    }
-
-    public int getProjectCount() {
-        return projects.size();
     }
 
 }
