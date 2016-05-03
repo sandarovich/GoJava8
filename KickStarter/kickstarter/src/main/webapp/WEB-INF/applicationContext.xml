@@ -16,7 +16,7 @@
         <property name="jndiName" value="java:comp/env/jdbc/kickstarter"/>
     </bean>
 
-    <bean id="entityMangerFactory"
+    <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
     </bean>

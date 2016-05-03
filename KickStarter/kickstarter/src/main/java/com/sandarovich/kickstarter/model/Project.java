@@ -10,22 +10,25 @@ import java.util.List;
 @Entity
 @Table(name = "project")
 public class Project {
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @OneToMany(mappedBy = "project")
     @Fetch(value = FetchMode.SUBSELECT)
     List<Payment> payments;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+
+    @OneToMany(mappedBy = "project")
     @SortNatural
     @Fetch(value = FetchMode.SUBSELECT)
     List<Question> questions;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+
+    @OneToMany(mappedBy = "project")
     @SortNatural
     @Fetch(value = FetchMode.SUBSELECT)
     List<Award> awards;
+
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "categoryid")
     private Category category;
     @Column(name = "name")

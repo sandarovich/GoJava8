@@ -12,7 +12,7 @@ public class Question {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "projectid")
     private Project project;
 

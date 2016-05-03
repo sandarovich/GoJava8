@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "quote")
+@NamedQueries({
+    @NamedQuery(name = "Quote.getRandom", query = "SELECT q from Quote as q ORDER BY RAND()")
+})
 public class Quote {
 
     @Id

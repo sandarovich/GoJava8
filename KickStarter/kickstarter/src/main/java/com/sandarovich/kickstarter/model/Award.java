@@ -16,7 +16,7 @@ public class Award {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "projectid")
     private Project project;
 

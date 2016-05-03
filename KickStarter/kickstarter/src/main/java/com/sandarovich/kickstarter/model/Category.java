@@ -15,7 +15,7 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany(mappedBy = "category")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Project> projects;
 
