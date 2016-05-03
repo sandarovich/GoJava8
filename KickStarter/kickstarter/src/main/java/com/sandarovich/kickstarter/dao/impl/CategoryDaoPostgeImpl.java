@@ -13,6 +13,7 @@ import java.util.List;
 
 @Repository
 public class CategoryDaoPostgeImpl implements CategoryDao {
+
     @PersistenceContext
     private EntityManager em;
 
@@ -25,7 +26,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
     @Transactional(readOnly = true)
     @Override
     public Category findById(long categoryId) {
-        Query query = em.createNamedQuery("Category.getById", Category.class);
+        Query query = em.createNamedQuery("Category.getById");
         query.setParameter("id", categoryId);
         return (Category) query.getSingleResult();
     }

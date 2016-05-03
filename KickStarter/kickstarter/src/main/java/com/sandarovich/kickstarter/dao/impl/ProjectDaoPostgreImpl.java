@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -27,18 +28,16 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
 //        }
 //        return project;
         return null;
+
     }
 
 
     @Transactional(readOnly = true)
     @Override
     public List<Project> findByCategory(Category category) {
-//        Session session = sessionFactory.getCurrentSession();
-//        Criteria criteria = session.createCriteria(Project.class);
-//        criteria.add(Restrictions.eq("category", category));
-//        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-//        return criteria.list();
-        return null;
+        Query query = em.createNamedQuery("Project.findByCategory");
+        query.setParameter("category", category);
+        return query.getResultList();
     }
 
 

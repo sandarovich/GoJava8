@@ -9,6 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "project")
+@NamedQueries({
+    @NamedQuery(name = "Project.findByCategory", query = "SELECT p from Project as p WHERE p.category = :category")
+})
 public class Project {
     @OneToMany(mappedBy = "project")
     @Fetch(value = FetchMode.SUBSELECT)
@@ -28,9 +31,11 @@ public class Project {
     @GeneratedValue
     @Column(name = "id")
     private long id;
+
     @ManyToOne
     @JoinColumn(name = "categoryid")
     private Category category;
+
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -112,11 +117,12 @@ public class Project {
     }
 
     public double getGatheredBudget() {
-        double result = 0;
-        for (Payment payment : payments) {
-            result += payment.getAmount();
-        }
-        return result;
+//        double result = 0;
+//        for (Payment payment : payments) {
+//            result += payment.getAmount();
+//        }
+//        return result;
+        return 0;
     }
 
     public List<Payment> getPayments() {
