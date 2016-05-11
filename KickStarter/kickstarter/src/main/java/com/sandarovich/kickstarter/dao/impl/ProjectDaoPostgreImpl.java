@@ -3,7 +3,6 @@ package com.sandarovich.kickstarter.dao.impl;
 
 import com.sandarovich.kickstarter.dao.PaymentDao;
 import com.sandarovich.kickstarter.dao.ProjectDao;
-import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Category;
 import com.sandarovich.kickstarter.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,9 @@ public class ProjectDaoPostgreImpl implements ProjectDao {
     @Transactional(readOnly = true)
     @Override
     public Project findById(long projectId) {
-        if (isProjectExist(projectId)) {
-            Project project = em.find(Project.class, projectId);
-            project.setGatheredBudget(paymentDao.getGatheredBudgetByProjectId(projectId));
-            return project;
-        } else {
-            throw new NoResultException("Project not found");
-        }
+        Project project = em.find(Project.class, projectId);
+        project.setGatheredBudget(paymentDao.getGatheredBudgetByProjectId(projectId));
+        return project;
     }
 
     @Override

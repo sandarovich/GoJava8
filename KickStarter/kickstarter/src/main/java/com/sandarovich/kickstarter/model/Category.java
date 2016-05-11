@@ -10,7 +10,8 @@ import java.util.List;
 @Table(name = "category ")
 @NamedQueries({
     @NamedQuery(name = "Category.getAll", query = "SELECT c from Category as c"),
-    @NamedQuery(name = "Category.getById", query = "SELECT c from Category as c WHERE c.id = :id")
+    @NamedQuery(name = "Category.getById", query = "SELECT c from Category as c WHERE c.id = :id"),
+    @NamedQuery(name = "Category.isCategoryExist", query = "SELECT COUNT(c) from Category as c WHERE c.id = :id")
 })
 public class Category {
     @Id

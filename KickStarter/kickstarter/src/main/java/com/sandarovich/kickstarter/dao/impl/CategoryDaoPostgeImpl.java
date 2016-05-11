@@ -30,4 +30,12 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
         query.setParameter("id", categoryId);
         return (Category) query.getSingleResult();
     }
+
+    @Override
+    public boolean isCategoryExist(long categoryId) {
+        Query query = em.createNamedQuery("Category.getById");
+        query.setParameter("id", categoryId);
+        long categoryCount = (long) query.getSingleResult();
+        return categoryCount == 1;
+    }
 }

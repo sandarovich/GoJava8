@@ -4,7 +4,6 @@ import com.sandarovich.kickstarter.dao.*;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.RequestDispatcher;
@@ -145,13 +144,13 @@ public class KickstarterServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-        Project project = null;
-        try {
-            project = projectDao.findById(projectId);
-        } catch (NoResultException e) {
+
+        if (!projectDao.isProjectExist(projectId)) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+
+        Project project = projectDao.findById(projectId);
         request.setAttribute("title", "Question");
         request.setAttribute("project", project);
         RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/question.jsp");
@@ -166,13 +165,11 @@ public class KickstarterServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-        Project project = null;
-        try {
-            project = projectDao.findById(projectId);
-        } catch (NoResultException e) {
+        if (!projectDao.isProjectExist(projectId)) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+        Project project = projectDao.findById(projectId);
         List<Question> questions;
         questions = questionDao.getQuestions(project);
         Category category = project.getCategory();
@@ -192,13 +189,11 @@ public class KickstarterServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-        Category category = null;
-        try {
-            category = categoryDao.findById(categoryId);
-        } catch (EmptyResultDataAccessException e) {
+        if (!categoryDao.isCategoryExist(categoryId)) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+        Category category = categoryDao.findById(categoryId);
         request.setAttribute("title", category.getName());
         request.setAttribute("category", category);
         request.setAttribute("projects", projectDao.findByCategory(category));
