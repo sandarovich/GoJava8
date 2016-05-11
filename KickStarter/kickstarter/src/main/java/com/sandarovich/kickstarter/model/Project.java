@@ -1,7 +1,5 @@
 package com.sandarovich.kickstarter.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.*;
@@ -15,17 +13,14 @@ import java.util.List;
 })
 public class Project {
     @OneToMany(mappedBy = "project")
-    @Fetch(value = FetchMode.SUBSELECT)
     List<Payment> payments;
 
     @OneToMany(mappedBy = "project")
     @SortNatural
-    @Fetch(value = FetchMode.SUBSELECT)
     List<Question> questions;
 
     @OneToMany(mappedBy = "project")
     @SortNatural
-    @Fetch(value = FetchMode.SUBSELECT)
     List<Award> awards;
 
     @Id

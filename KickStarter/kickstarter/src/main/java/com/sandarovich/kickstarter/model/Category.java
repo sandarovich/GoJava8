@@ -1,8 +1,5 @@
 package com.sandarovich.kickstarter.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +18,6 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @Fetch(value = FetchMode.SUBSELECT)
     private List<Project> projects;
 
     public Category() {

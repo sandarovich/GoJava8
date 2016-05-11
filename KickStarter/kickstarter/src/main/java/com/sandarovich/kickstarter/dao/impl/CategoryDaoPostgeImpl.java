@@ -33,7 +33,7 @@ public class CategoryDaoPostgeImpl implements CategoryDao {
 
     @Override
     public boolean isCategoryExist(long categoryId) {
-        Query query = em.createNamedQuery("Category.getById");
+        Query query = em.createNamedQuery("Category.isCategoryExist");
         query.setParameter("id", categoryId);
         long categoryCount = (long) query.getSingleResult();
         return categoryCount == 1;
