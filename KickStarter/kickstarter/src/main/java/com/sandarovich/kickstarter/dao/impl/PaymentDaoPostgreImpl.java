@@ -20,4 +20,9 @@ public class PaymentDaoPostgreImpl implements PaymentDao {
 //        session.save(payment);
 //        session.flush();
     }
+
+    @Override
+    public double getGatheredBudgetByProjectId(long projecId) {
+        return 777;
+    }
 }

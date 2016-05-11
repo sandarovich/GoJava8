@@ -73,7 +73,7 @@ public class KickstarterServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         } catch (NoResultException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
         payment.setProject(project);
         paymentDao.pay(payment);

@@ -10,7 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "project")
 @NamedQueries({
-    @NamedQuery(name = "Project.findByCategory", query = "SELECT p from Project as p WHERE p.category = :category")
+    @NamedQuery(name = "Project.findByCategory", query = "SELECT p from Project as p WHERE p.category = :category"),
+    @NamedQuery(name = "Project.isProjectExist", query = "SELECT COUNT(p) from Project as p WHERE p.id = :id")
 })
 public class Project {
     @OneToMany(mappedBy = "project")
@@ -42,6 +43,8 @@ public class Project {
     private String description;
     @Column(name = "required_budget")
     private double requiredBudget;
+    @Transient
+    private double gatheredBudget;
     @Column(name = "days_left")
     private int daysLeft;
     @Column(name = "video_link")
@@ -50,6 +53,14 @@ public class Project {
     private String history;
 
     public Project() {
+    }
+
+    public double getGatheredBudget() {
+        return gatheredBudget;
+    }
+
+    public void setGatheredBudget(double gatheredBudget) {
+        this.gatheredBudget = gatheredBudget;
     }
 
     public long getId() {
@@ -114,15 +125,6 @@ public class Project {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public double getGatheredBudget() {
-//        double result = 0;
-//        for (Payment payment : payments) {
-//            result += payment.getAmount();
-//        }
-//        return result;
-        return 0;
     }
 
     public List<Payment> getPayments() {
