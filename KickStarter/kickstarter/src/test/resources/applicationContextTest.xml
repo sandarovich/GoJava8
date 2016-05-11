@@ -14,7 +14,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.sandarovich"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSourceTest" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
         <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"/>
         <property name="username" value="sa"/>
@@ -22,7 +22,7 @@
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSourceTest"/>
         <property name="persistenceUnitName" value="kickstarterTest"/>
         <property name="packagesToScan" value="com.sandarovich.kickstarter.model"/>
 

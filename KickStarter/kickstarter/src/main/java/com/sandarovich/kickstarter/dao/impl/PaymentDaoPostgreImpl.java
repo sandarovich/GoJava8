@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Repository
 public class PaymentDaoPostgreImpl implements PaymentDao {
@@ -22,7 +23,9 @@ public class PaymentDaoPostgreImpl implements PaymentDao {
     }
 
     @Override
-    public double getGatheredBudgetByProjectId(long projecId) {
-        return 777;
+    public double getGatheredBudgetByProjectId(long projectId) {
+        Query query = em.createNamedQuery("Payment.getGatheredBudgetByProjectId");
+        query.setParameter("projectId", projectId);
+        return (double) query.getSingleResult();
     }
 }
