@@ -3,6 +3,9 @@ package com.sandarovich.kickstarter.model;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Award.getByProject", query = "SELECT a from Award as a WHERE a.project = :project")
+})
 @Table(name = "award")
 public class Award {
     @Id

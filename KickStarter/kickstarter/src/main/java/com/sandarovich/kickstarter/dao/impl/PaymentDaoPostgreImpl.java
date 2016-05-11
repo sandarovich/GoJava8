@@ -17,11 +17,10 @@ public class PaymentDaoPostgreImpl implements PaymentDao {
 
     @Transactional
     public void pay(Payment payment) {
-//        Session session = sessionFactory.getCurrentSession();
-//        session.save(payment);
-//        session.flush();
+        em.merge(payment);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public double getGatheredBudgetByProjectId(long projectId) {
         Query query = em.createNamedQuery("Payment.getGatheredBudgetByProjectId");
