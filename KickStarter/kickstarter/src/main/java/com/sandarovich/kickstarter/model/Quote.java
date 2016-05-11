@@ -1,13 +1,14 @@
 package com.sandarovich.kickstarter.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "quote")
 @NamedQueries({
     @NamedQuery(name = "Quote.getRandom", query = "SELECT q from Quote as q ORDER BY RAND()")
 })
-public class Quote {
+public class Quote implements Serializable {
 
     @Id
     @GeneratedValue

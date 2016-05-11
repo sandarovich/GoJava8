@@ -17,7 +17,7 @@ import static org.hamcrest.core.Is.is;
 
 @Transactional()
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContextTest.xml"})
+@ContextConfiguration(locations = {"classpath*:applicationContextTest.xml"})
 
 public class QuoteMappingTest {
 
@@ -28,11 +28,11 @@ public class QuoteMappingTest {
     @Before
     public void init() {
         Quote quote1 = new Quote();
-        //quote1.setId(1);
+        quote1.setId(1);
         quote1.setAuthor("1A");
         quote1.setText("1A_TEXT");
         Quote quote2 = new Quote();
-        // quote2.setId(2);
+        quote2.setId(2);
         quote2.setAuthor("2A");
         quote2.setText("2A_TEXT");
         em.merge(quote1);
@@ -42,7 +42,7 @@ public class QuoteMappingTest {
 
     @After
     public void tearDown() {
-        //em.createQuery("DELETE FROM Quote").executeUpdate();
+        em.createQuery("DELETE FROM Quote").executeUpdate();
     }
 
     @Test
