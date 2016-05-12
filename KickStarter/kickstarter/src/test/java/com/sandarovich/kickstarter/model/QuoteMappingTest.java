@@ -15,7 +15,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-@Transactional()
+@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:applicationContextTest.xml"})
 
@@ -46,7 +46,7 @@ public class QuoteMappingTest {
     }
 
     @Test
-    public void testQuoteUsage() {
+    public void testQuoteMapping() {
         List<Quote> quotes = em.createQuery("FROM Quote").getResultList();
         assertThat(quotes.get(0).getId(), is(1));
         assertThat(quotes.get(0).getAuthor(), is("1A"));
