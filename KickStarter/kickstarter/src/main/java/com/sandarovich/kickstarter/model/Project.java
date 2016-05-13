@@ -28,7 +28,7 @@ public class Project {
     @Column(name = "id")
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoryid")
     private Category category;
 

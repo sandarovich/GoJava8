@@ -30,10 +30,7 @@ public class AwardMappingTest {
     @Before
     public void init() {
         project = new Project();
-        //@Transient field set
-        project.setGatheredBudget(0);
-        project.setCategory(new Category());
-        em.merge(project);
+        em.persist(project);
 
         Award award1 = new Award();
         award1.setDescription("AW1_Description");
@@ -58,13 +55,13 @@ public class AwardMappingTest {
         List<Award> awards = query.getResultList();
         assertThat(awards.get(0).getId(), is(1L));
         assertThat(awards.get(0).getDescription(), is("AW1_Description"));
-        assertThat(awards.get(0).getAmount(), is(1));
+        assertThat(awards.get(0).getAmount(), is(1.0));
         assertThat(awards.get(0).getName(), is("AW1"));
         assertThat(awards.get(0).getProject(), is(project));
 
         assertThat(awards.get(1).getId(), is(2L));
         assertThat(awards.get(1).getDescription(), is("AW2_Description"));
-        assertThat(awards.get(1).getAmount(), is(100));
+        assertThat(awards.get(1).getAmount(), is(100.0));
         assertThat(awards.get(1).getName(), is("AW2"));
         assertThat(awards.get(1).getProject(), is(project));
     }
