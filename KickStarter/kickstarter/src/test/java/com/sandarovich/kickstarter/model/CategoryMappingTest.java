@@ -33,20 +33,17 @@ public class CategoryMappingTest {
         category1.setName("Cat1");
         Category category2 = new Category();
         category2.setName("Cat2");
+
         em.merge(category1);
         category = em.merge(category2);
     }
-
-//    @After
-//    public void tearDown() {
-//        em.createQuery("DELETE from Category");
-//    }
 
     @Test
     public void testCategoryMapping() {
         List<Category> categories = em.createNamedQuery("Category.getAll", Category.class).getResultList();
         assertThat(categories.get(0).getName(), is("Cat1"));
         assertThat(categories.get(0).getId(), is(1L));
+
         assertThat(categories.get(1).getName(), is("Cat2"));
         assertThat(categories.get(1).getId(), is(2L));
 

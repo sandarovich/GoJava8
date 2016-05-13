@@ -24,7 +24,6 @@ public class AwardMappingTest {
 
     @PersistenceContext
     EntityManager em;
-    private Award award;
     private Project project;
 
     @Before
@@ -45,7 +44,7 @@ public class AwardMappingTest {
         award2.setProject(project);
 
         em.merge(award1);
-        this.award = em.merge(award2);
+        em.merge(award2);
     }
 
     @Test
