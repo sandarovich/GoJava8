@@ -15,7 +15,7 @@ public class Question {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "projectid")
     private Project project;
 
