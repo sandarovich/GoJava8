@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Quote implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "author")
     private String author;
