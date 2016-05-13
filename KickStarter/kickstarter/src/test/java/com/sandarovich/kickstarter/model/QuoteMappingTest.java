@@ -1,6 +1,5 @@
 package com.sandarovich.kickstarter.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,10 +40,10 @@ public class QuoteMappingTest {
 
     }
 
-    @After
-    public void tearDown() {
-        em.createQuery("DELETE FROM Quote").executeUpdate();
-    }
+//    @After
+//    public void tearDown() {
+//        em.createQuery("DELETE FROM Quote").executeUpdate();
+//    }
 
     @Test
     public void testQuoteMapping() {

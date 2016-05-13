@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "award")
 public class Award {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "amount")
@@ -19,7 +19,7 @@ public class Award {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "projectid")
     private Project project;
 
