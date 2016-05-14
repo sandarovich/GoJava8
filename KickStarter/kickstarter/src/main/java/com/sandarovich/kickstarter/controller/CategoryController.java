@@ -22,8 +22,6 @@ public class CategoryController {
     @Autowired
     ProjectDao projectDao;
 
-    @Autowired
-
     @RequestMapping(value = "/" + CATEGORIES, method = RequestMethod.GET)
     public String showCategories(Map<String, Object> model) {
         model.put("title", "Categories");

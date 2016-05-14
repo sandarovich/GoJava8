@@ -181,23 +181,23 @@ public class KickstarterServlet extends HttpServlet {
     }
 
     private void showCategoryPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int categoryId = 0;
-        try {
-            categoryId = Integer.valueOf(request.getParameter("id"));
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-        if (!categoryDao.isCategoryExist(categoryId)) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-        Category category = categoryDao.findById(categoryId);
-        request.setAttribute("title", category.getName());
-        request.setAttribute("category", category);
-        request.setAttribute("projects", projectDao.findByCategory(category));
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/category.jsp");
-        rd.forward(request, response);
+//        int categoryId = 0;
+//        try {
+//            categoryId = Integer.valueOf(request.getParameter("id"));
+//        } catch (NumberFormatException e) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
+//        if (!categoryDao.isCategoryExist(categoryId)) {
+//            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//            return;
+//        }
+//        Category category = categoryDao.findById(categoryId);
+//        request.setAttribute("title", category.getName());
+//        request.setAttribute("category", category);
+//        request.setAttribute("projects", projectDao.findByCategory(category));
+//        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/category.jsp");
+//        rd.forward(request, response);
     }
 
     private void showCategoriesPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

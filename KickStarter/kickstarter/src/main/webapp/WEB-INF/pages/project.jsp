@@ -6,7 +6,7 @@
               <h2>${title}</h1>
             </div>
              <ol class="breadcrumb">
-                <li><a href="?view=category&id=${category.id}">${category.name}</a></li>
+                <li><a href="<c:url value="/category/${category.id}" />">${category.name}</a></li>
              </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">Project:</div>
