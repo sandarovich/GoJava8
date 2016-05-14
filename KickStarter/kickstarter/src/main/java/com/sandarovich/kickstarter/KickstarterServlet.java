@@ -201,11 +201,11 @@ public class KickstarterServlet extends HttpServlet {
     }
 
     private void showCategoriesPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("title", "Categories");
-        List<Category> categories = categoryDao.getAll();
-        request.setAttribute("categories", categories);
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/categories.jsp");
-        rd.forward(request, response);
+//        request.setAttribute("title", "Categories");
+//        List<Category> categories = categoryDao.getAll();
+//        request.setAttribute("categories", categories);
+//        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/categories.jsp");
+//        rd.forward(request, response);
     }
 
 //    private void showMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
