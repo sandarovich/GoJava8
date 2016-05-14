@@ -38,5 +38,6 @@
     </bean>
 
     <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/img/**" location="/img/"/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
