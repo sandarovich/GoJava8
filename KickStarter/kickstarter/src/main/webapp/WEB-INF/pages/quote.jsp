@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp" />
         <div class="container">
             <jsp:include page="navigation.jsp" />
@@ -7,7 +8,7 @@
             <div class="jumbotron">
                 <h2>Categories</h2>
                  <p>We have a best project to invest in for everybody. Right here and right now.</p>
-                 <p><a class="btn btn-primary btn-lg" href="?view=categories" role="button">Learn more</a></p>
+                 <p><a class="btn btn-primary btn-lg" href="<c:url value="/categories" />" role="button">Learn more</a></p>
             </div>
         </div>
 <jsp:include page="footer.jsp" />

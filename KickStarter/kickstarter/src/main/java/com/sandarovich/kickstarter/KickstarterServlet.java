@@ -16,10 +16,9 @@ import java.util.List;
 
 public class KickstarterServlet extends HttpServlet {
 
-    public static final String APPLICATION_TITLE = "Kickstarter";
     private static final String PAGE_IDENTIFIER_PARAMETER = "view";
     private static final String CATEGORY_PAGE = "category";
-    private static final String CATEGORIES_PAGE = "categories";
+
     private static final String PROJECT_PAGE = "project";
     private static final String QUESTION_PAGE = "question";
     private static final String INVEST_PAGE = "invest";
@@ -99,9 +98,9 @@ public class KickstarterServlet extends HttpServlet {
         throws IOException, ServletException {
         String requestPage = request.getParameter(PAGE_IDENTIFIER_PARAMETER);
         if (requestPage == null || request.getQueryString() == null) {
-            showMainPage(request, response);
-        } else if (CATEGORIES_PAGE.equals(requestPage)) {
-            showCategoriesPage(request, response);
+//            showMainPage(request, response);
+//        } else if (CATEGORIES_PAGE.equals(requestPage)) {
+//            showCategoriesPage(request, response);
         } else if (CATEGORY_PAGE.equals(requestPage)) {
             showCategoryPage(request, response);
         } else if (PROJECT_PAGE.equals(requestPage)) {
@@ -209,13 +208,13 @@ public class KickstarterServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void showMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Quote quote = quoteDao.getRandomQuota();
-        request.setAttribute("quote", quote);
-        request.setAttribute("title", APPLICATION_TITLE);
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/index.jsp");
-        rd.forward(request, response);
-    }
+//    private void showMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        Quote quote = quoteDao.getRandomQuota();
+//        request.setAttribute("quote", quote);
+//        request.setAttribute("title", APPLICATION_TITLE);
+//        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/quote.jsp");
+//        rd.forward(request, response);
+//    }
 
 
 }

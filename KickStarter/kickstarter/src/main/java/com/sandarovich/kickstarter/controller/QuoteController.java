@@ -11,7 +11,7 @@ import java.util.Map;
 @Controller
 public class QuoteController {
     public static final String APPLICATION_TITLE = "Kickstarter";
-    private static final String IDEX_JSP = "index";
+    private static final String QUOTE = "quote";
 
     @Autowired
     QuoteDao quoteDao;
@@ -19,8 +19,8 @@ public class QuoteController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showRandomQuota(Map<String, Object> model) {
         model.put("title", APPLICATION_TITLE);
-        model.put("quote", quoteDao.getRandomQuota());
-        return IDEX_JSP;
+        model.put(QUOTE, quoteDao.getRandomQuota());
+        return QUOTE;
     }
 
 }
