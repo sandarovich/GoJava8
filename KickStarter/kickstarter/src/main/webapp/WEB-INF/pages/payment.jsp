@@ -12,7 +12,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Payment:</div>
                 <div class="panel-body">
-                    <form:form action="register" method="post" commandName="paymentForm">
+                    <form:form action="" method="post" commandName="paymentForm">
                         <div class="form-group">
                             <label for="cardHolder">Card Holder</label>
                             <form:input path="cardHolder"  class="form-control" placeholder="Bob" value="Bob"/>
@@ -29,7 +29,9 @@
                             <div class="row">
                                 <c:forEach var="award" items="${awards}" varStatus="varStatus">
                                     <div class="col-xs-4">
-                                        <form:button path="awardId" value="${award.id}" class="btn btn-default btn-small" value="${award.amount}$-${award.name}"/>
+                                        <button type="submit" name="awardId" class="btn btn-default btn-small"  value="${award.id}">
+                                           ${award.amount}$-${award.name}
+                                        </button>
                                     </div>
                                 </c:forEach>
                             </div>

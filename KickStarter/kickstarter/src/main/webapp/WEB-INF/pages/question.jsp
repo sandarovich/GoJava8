@@ -9,7 +9,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add question:</div>
                 <div class="panel-body">
-                    <form:form action="register" method="post" commandName="questionForm">
+                    <form:form action="" method="post" commandName="questionForm">
                         <div class="form-group">
                             <label for="text">Please fill your question:</label>
                             <form:input path="projectId" class="form-control" type="hidden" />

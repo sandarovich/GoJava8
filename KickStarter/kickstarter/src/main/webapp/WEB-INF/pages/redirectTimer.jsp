@@ -10,7 +10,7 @@
         document.getElementById('countdown').innerHTML = timeLeft;
         if(timeLeft === 0){
             clearInterval(interval);
-            window.location="<c:url value="/project/${question.projectId}" />";
+            window.location="<c:url value="/project/${projectId}" />";
         }
     };
     interval = setInterval(timeDec, 1000);

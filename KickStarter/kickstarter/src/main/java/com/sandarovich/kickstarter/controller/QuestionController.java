@@ -51,6 +51,7 @@ public class QuestionController {
             questionDao.addQuestion(question);
             model.put("question", questionDto);
             model.put("title", "Question was added.");
+            model.put("projecId", questionDto.getProjectId());
             return QUESTION_ADD_SUCCESS;
         } catch (DaoException e) {
             model.put("title", "Question was not added.");

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class PaymentController {
     private static final String PAYMENT = "payment";
     private static final String SC_NOT_FOUND = "404";
+    private static final String PROJECT = "project";
 
     @Autowired
     ProjectDao projectDao;
@@ -43,12 +45,20 @@ public class PaymentController {
         return PAYMENT;
     }
 
-    //TODO Implement functionality to store payment
+    //TODO Implement functionality to store payment Award Id
     @RequestMapping(value = "/" + PAYMENT + "/{projectId}", method = RequestMethod.POST)
-    String addPayment(@ModelAttribute("paymentForm") PaymentDto paymentDto,
-                      Map<String, Object> model) {
-
+    ModelAndView addPayment(@PathVariable Integer projectId,
+                            @ModelAttribute("paymentForm") PaymentDto paymentDto) {
+        ModelAndView mav = new ModelAndView("redirect:/" + PROJECT + "/" + projectId);
         PaymentService paymentService = new PaymentService();
-        return "null";
+        paymentService.setPaymentDto(paymentDto);
+
+        if (paymentService.allowPayment()) {
+            mav.setViewName("paymentAddSuccess");
+            mav.addObject("title", "Payment Success");
+            mav.addObject("projectId", projectId);
+        }
+
+        return mav;
     }
 }
