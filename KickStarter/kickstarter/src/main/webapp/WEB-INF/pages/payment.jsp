@@ -6,6 +6,9 @@
             <div class="page-header">
               <h2>${title}</h1>
             </div>
+            <ol class="breadcrumb">
+                <li><a  href="<c:url value="/project/${project.id}" />">${project.name}</a></li>
+            </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">Payment:</div>
                 <div class="panel-body">
@@ -16,21 +19,17 @@
                             <label for="cardNumber">Card Number</label>
                             <form:input path="cardNumber" class="form-control"  placeholder="123456789011"  value="123456789011"/>
                             <label for="amount">Amount</label>
-                            <form:input path="amount" class="form-control" placeholder="100" value="100"/>
+                            <form:input path="amount" class="form-control" placeholder="0" value="0"/>
                         </div>
                         <div class="form-group">
                             <button type="submit" value="addPayment" class="btn btn-default">Submit</button>
-                            <a class="btn btn-default" href="<c:url value="/project/${project.id}" />">Return to ${project.name}</a>
                         </div>
                         <label for="awards">Awards:</label>
                         <div id="awards" class="container">
                             <div class="row">
                                 <c:forEach var="award" items="${awards}" varStatus="varStatus">
                                     <div class="col-xs-4">
-                                        <button type="submit" value="${award.amount}" class="btn btn-default btn-small" name="award">
-                                            ${award.amount}$-
-                                            ${award.name}
-                                        </button>
+                                        <form:button path="awardId" value="${award.id}" class="btn btn-default btn-small" value="${award.amount}$-${award.name}"/>
                                     </div>
                                 </c:forEach>
                             </div>

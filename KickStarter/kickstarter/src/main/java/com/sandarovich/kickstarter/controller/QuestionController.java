@@ -2,6 +2,7 @@ package com.sandarovich.kickstarter.controller;
 
 import com.sandarovich.kickstarter.dao.ProjectDao;
 import com.sandarovich.kickstarter.dao.QuestionDao;
+import com.sandarovich.kickstarter.dao.exception.DaoException;
 import com.sandarovich.kickstarter.dto.QuestionDto;
 import com.sandarovich.kickstarter.model.Project;
 import com.sandarovich.kickstarter.model.Question;
@@ -49,10 +50,10 @@ public class QuestionController {
         try {
             questionDao.addQuestion(question);
             model.put("question", questionDto);
-            model.put("title", "Question was added.Success");
+            model.put("title", "Question was added.");
             return QUESTION_ADD_SUCCESS;
-        } catch (Exception e) {
-            model.put("title", "Question was not added. Unsuccessfull!!");
+        } catch (DaoException e) {
+            model.put("title", "Question was not added.");
             return QUESTION_ADD_UNSUCCESS;
         }
 

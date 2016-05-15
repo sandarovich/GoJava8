@@ -6,6 +6,7 @@ public class PaymentDto {
     private String cardHolder;
     private String cardNumber;
     private long projectId;
+    private long awardId;
 
     public double getAmount() {
         return amount;
@@ -37,5 +38,13 @@ public class PaymentDto {
 
     public void setProjectId(long projectId) {
         this.projectId = projectId;
+    }
+
+    public long getAwardId() {
+        return awardId;
+    }
+
+    public void setAwardId(long awardId) {
+        this.awardId = awardId;
     }
 }

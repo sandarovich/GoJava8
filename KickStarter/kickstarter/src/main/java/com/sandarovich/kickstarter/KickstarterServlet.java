@@ -2,19 +2,16 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.*;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
-import com.sandarovich.kickstarter.model.Award;
 import com.sandarovich.kickstarter.model.Payment;
 import com.sandarovich.kickstarter.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 public class KickstarterServlet extends HttpServlet {
 
@@ -115,26 +112,26 @@ public class KickstarterServlet extends HttpServlet {
     }
 
     private void showInvestPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int projectId = 0;
-        try {
-            projectId = Integer.valueOf(request.getParameter("id"));
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-        Project project = null;
-        try {
-            project = projectDao.findById(projectId);
-        } catch (NoResultException e) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-        List<Award> awards = awardDao.getByProject(project);
-        request.setAttribute("project", project);
-        request.setAttribute("title", "Invest");
-        request.setAttribute("awards", awards);
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/payment.jsp");
-        rd.forward(request, response);
+//        int projectId = 0;
+//        try {
+//            projectId = Integer.valueOf(request.getParameter("id"));
+//        } catch (NumberFormatException e) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
+//        Project project = null;
+//        try {
+//            project = projectDao.findById(projectId);
+//        } catch (NoResultException e) {
+//            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//            return;
+//        }
+//        List<Award> awards = awardDao.getByProject(project);
+//        request.setAttribute("project", project);
+//        request.setAttribute("title", "Invest");
+//        request.setAttribute("awards", awards);
+//        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/payment.jsp");
+//        rd.forward(request, response);
     }
 
     private void showQuestionPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

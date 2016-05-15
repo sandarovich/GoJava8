@@ -6,22 +6,6 @@
             <div class="page-header">
               <h2>${title}</h1>
             </div>
-            <div class="alert alert-danger" role="alert"> Redirecting to project page in <span class="label label-danger" id="countdown">5</span></div>
-                <script type="text/javascript">
-                (function () {
-                    var timeLeft = 5,
-                        interval;
-
-                    var timeDec = function (){
-                        timeLeft--;
-                        document.getElementById('countdown').innerHTML = timeLeft;
-                        if(timeLeft === 0){
-                            clearInterval(interval);
-                            window.location="<c:url value="/project/${question.projectId}" />";
-                        }
-                    };
-                    interval = setInterval(timeDec, 1000);
-                })();
-            </script>
+            <jsp:include page="redirectTimer.jsp" />
         </div>
 <jsp:include page="footer.jsp" />
