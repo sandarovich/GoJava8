@@ -2,7 +2,10 @@ package com.sandarovich.kickstarter;
 
 import com.sandarovich.kickstarter.dao.*;
 import com.sandarovich.kickstarter.dao.exception.NoResultException;
-import com.sandarovich.kickstarter.model.*;
+import com.sandarovich.kickstarter.model.Award;
+import com.sandarovich.kickstarter.model.Payment;
+import com.sandarovich.kickstarter.model.Project;
+import com.sandarovich.kickstarter.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -136,48 +139,48 @@ public class KickstarterServlet extends HttpServlet {
     }
 
     private void showQuestionPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long projectId = 0;
-        try {
-            projectId = Long.valueOf(request.getParameter("id"));
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
-        if (!projectDao.isProjectExist(projectId)) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-
-        Project project = projectDao.findById(projectId);
-        request.setAttribute("title", "Question");
-        request.setAttribute("project", project);
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/question.jsp");
-        rd.forward(request, response);
+//        long projectId = 0;
+//        try {
+//            projectId = Long.valueOf(request.getParameter("id"));
+//        } catch (NumberFormatException e) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
+//
+//        if (!projectDao.isProjectExist(projectId)) {
+//            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//            return;
+//        }
+//
+//        Project project = projectDao.findById(projectId);
+//        request.setAttribute("title", "Question");
+//        request.setAttribute("project", project);
+//        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/question.jsp");
+//        rd.forward(request, response);
     }
 
     private void showProjectPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int projectId = 0;
-        try {
-            projectId = Integer.valueOf(request.getParameter("id"));
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-        if (!projectDao.isProjectExist(projectId)) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-        Project project = projectDao.findById(projectId);
-        List<Question> questions;
-        questions = questionDao.getQuestions(project);
-        Category category = project.getCategory();
-        request.setAttribute("title", project.getName());
-        request.setAttribute("project", project);
-        request.setAttribute("questions", questions);
-        request.setAttribute("category", category);
-        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/project.jsp");
-        rd.forward(request, response);
+//        int projectId = 0;
+//        try {
+//            projectId = Integer.valueOf(request.getParameter("id"));
+//        } catch (NumberFormatException e) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
+//        if (!projectDao.isProjectExist(projectId)) {
+//            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//            return;
+//        }
+//        Project project = projectDao.findById(projectId);
+//        List<Question> questions;
+//        questions = questionDao.getQuestions(project);
+//        Category category = project.getCategory();
+//        request.setAttribute("title", project.getName());
+//        request.setAttribute("project", project);
+//        request.setAttribute("questions", questions);
+//        request.setAttribute("category", category);
+//        RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_LAYOUTS + "/project.jsp");
+//        rd.forward(request, response);
     }
 
     private void showCategoryPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

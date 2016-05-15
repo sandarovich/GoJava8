@@ -50,7 +50,7 @@
                                         <tr><td>${varStatus.count}. ${question.text}</td></tr>
                                     </c:forEach>
                                 </table>
-                                <a class="btn btn-default btn-small" href="?view=question&id=${project.id}" role="button">Add Question</a>
+                                <a class="btn btn-default btn-small" href="<c:url value="/question/${project.id}" />" role="button">Add Question</a>
                             <td>
                         </tr>
                     </table>
