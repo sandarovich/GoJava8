@@ -49,10 +49,10 @@ public class QuestionController {
         try {
             questionDao.addQuestion(question);
             model.put("question", questionDto);
-            model.put("title", "Add Question Success");
+            model.put("title", "Question was added.Success");
             return QUESTION_ADD_SUCCESS;
         } catch (Exception e) {
-            model.put("title", "Add Question was unsuccessfull!!");
+            model.put("title", "Question was not added. Unsuccessfull!!");
             return QUESTION_ADD_UNSUCCESS;
         }
 

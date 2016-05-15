@@ -5,7 +5,6 @@ import com.sandarovich.kickstarter.dao.exception.NoResultException;
 import com.sandarovich.kickstarter.model.Award;
 import com.sandarovich.kickstarter.model.Payment;
 import com.sandarovich.kickstarter.model.Project;
-import com.sandarovich.kickstarter.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -82,18 +81,18 @@ public class KickstarterServlet extends HttpServlet {
     }
 
     private void addQuestion(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int projectId = 0;
-        try {
-            projectId = Integer.valueOf(request.getParameter("projectId"));
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-        Question question = new Question();
-        question.setText(request.getParameter("question"));
-        question.setProject(projectDao.findById(projectId));
-        questionDao.addQuestion(question);
-        response.sendRedirect("?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
+//        int projectId = 0;
+//        try {
+//            projectId = Integer.valueOf(request.getParameter("projectId"));
+//        } catch (NumberFormatException e) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
+//        Question question = new Question();
+//        question.setText(request.getParameter("question"));
+//        question.setProject(projectDao.findById(projectId));
+//        questionDao.addQuestion(question);
+//        response.sendRedirect("?" + PAGE_IDENTIFIER_PARAMETER + "=project&id=" + projectId);
     }
 
     @Override
