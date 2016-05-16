@@ -17,8 +17,8 @@
                  					<td>Question</td>
             					</tr>
             					    <tr>
-            				    	<td>${question.projectId}</td>
-            				    	<td>${question.text}</td>
+            				    	<td>${dto.projectId}</td>
+            				    	<td>${dto.text}</td>
             				    </tr>
                 			</table>
             			</fieldset>

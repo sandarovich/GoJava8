@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
 @Controller
 public class QuestionController {
     private static final String QUESTION = "question";
-    private static final String QUESTION_ADD_SUCCESS = "questionAddSuccess";
-    private static final String QUESTION_ADD_UNSUCCESS = "questionAddUnSuccess";
+    private static final String QUESTION_ADD_RESULT = "questionAddResult";
     private static final String SC_NOT_FOUND = "404";
+    private static final String PROJECT = "project";
 
     @Autowired
     private QuestionDao questionDao;
@@ -42,21 +43,20 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/" + QUESTION + "/{projectId}", method = RequestMethod.POST)
-    public String addQuestion(@ModelAttribute("questionForm") QuestionDto questionDto,
-                              Map<String, Object> model) {
+    public ModelAndView addQuestion(@ModelAttribute("questionForm") QuestionDto questionDto) {
+        ModelAndView mav = new ModelAndView("redirect:/" + PROJECT + "/" + questionDto.getProjectId());
+        mav.setViewName(QUESTION_ADD_RESULT);
         Question question = new Question();
         question.setText(questionDto.getText());
         question.setProject(projectDao.findById(questionDto.getProjectId()));
         try {
             questionDao.addQuestion(question);
-            model.put("question", questionDto);
-            model.put("title", "Question was added.");
-            model.put("projectId", questionDto.getProjectId());
-            return QUESTION_ADD_SUCCESS;
+            mav.addObject("dto", questionDto);
+            mav.addObject("title", "Question was added.");
         } catch (DaoException e) {
-            model.put("title", "Question was not added.");
-            return QUESTION_ADD_UNSUCCESS;
+            mav.addObject("title", "Question was not added.");
         }
+        return mav;
 
     }
 }
