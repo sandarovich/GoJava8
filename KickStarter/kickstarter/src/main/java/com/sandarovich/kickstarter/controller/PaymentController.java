@@ -1,9 +1,11 @@
 package com.sandarovich.kickstarter.controller;
 
 import com.sandarovich.kickstarter.dao.AwardDao;
+import com.sandarovich.kickstarter.dao.PaymentDao;
 import com.sandarovich.kickstarter.dao.ProjectDao;
 import com.sandarovich.kickstarter.dto.PaymentDto;
 import com.sandarovich.kickstarter.model.Award;
+import com.sandarovich.kickstarter.model.Payment;
 import com.sandarovich.kickstarter.model.Project;
 import com.sandarovich.kickstarter.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,15 @@ import java.util.Map;
 @Controller
 public class PaymentController {
     private static final String PAYMENT = "payment";
-    private static final String SC_NOT_FOUND = "404";
     private static final String PROJECT = "project";
+    private static final String PAYMENT_ADD_RESULT = "paymentAddResult";
+    private static final String SC_NOT_FOUND = "404";
 
     @Autowired
     ProjectDao projectDao;
+
+    @Autowired
+    PaymentDao paymentDao;
 
     @Autowired
     AwardDao awardDao;
@@ -45,20 +51,33 @@ public class PaymentController {
         return PAYMENT;
     }
 
-    //TODO Implement functionality to store payment Award Id
+    //TODO Implement functionality to store payment Award Id not only amount as per now
     @RequestMapping(value = "/" + PAYMENT + "/{projectId}", method = RequestMethod.POST)
-    ModelAndView addPayment(@PathVariable Integer projectId,
-                            @ModelAttribute("paymentForm") PaymentDto paymentDto) {
-        ModelAndView mav = new ModelAndView("redirect:/" + PROJECT + "/" + projectId);
+    ModelAndView addPayment(@ModelAttribute("paymentForm") PaymentDto paymentDto) {
+        ModelAndView mav = new ModelAndView("redirect:/" + PROJECT + "/" + paymentDto.getProjectId());
         PaymentService paymentService = new PaymentService();
-        paymentService.setPaymentDto(paymentDto);
+        mav.setViewName(PAYMENT_ADD_RESULT);
 
         if (paymentService.allowPayment()) {
-            mav.setViewName("paymentAddSuccess");
+            Payment payment = new Payment();
+            payment.setCardHolder(paymentDto.getCardHolder());
+            payment.setCardNumber(paymentDto.getCardNumber());
+            double amount;
+            long awardId = paymentDto.getAwardId();
+            if (awardId != 0) {
+                amount = awardDao.getById(awardId).getAmount();
+            } else {
+                amount = paymentDto.getAmount();
+            }
+            payment.setAmount(amount);
+            paymentDto.setAmount(amount);
+            payment.setProject(projectDao.findById(paymentDto.getProjectId()));
+            paymentDao.pay(payment);
             mav.addObject("title", "Payment Success");
-            mav.addObject("projectId", projectId);
+        } else {
+            mav.addObject("title", "Payment was not done");
         }
-
+        mav.addObject("dto", paymentDto);
         return mav;
     }
 }

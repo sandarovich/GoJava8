@@ -14,6 +14,7 @@
                 <div class="panel-body">
                     <form:form action="" method="post" commandName="paymentForm">
                         <div class="form-group">
+                            <form:input path="projectId" class="form-control" type="hidden" />
                             <label for="cardHolder">Card Holder</label>
                             <form:input path="cardHolder"  class="form-control" placeholder="Bob" value="Bob"/>
                             <label for="cardNumber">Card Number</label>
